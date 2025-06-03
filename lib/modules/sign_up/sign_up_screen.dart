@@ -1,162 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../widgets/custom_text_field.dart';
+import 'sign_up_controller.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  String? selectedRole;
-  final List<String> roles = [
-    'Repository Owner',
-    'Pharmacy Owner',
-    'Pharmacist',
-    'Employee',
-  ];
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
-  final TextEditingController storeNameController = TextEditingController();
-  final TextEditingController storeAddressController = TextEditingController();
-
-  bool _obscurePassword = true;
-  bool _obscureConfirm = true;
-
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildTextField('Name', nameController, icon: Icons.person),
-          buildTextField('Phone Number', phoneController, icon: Icons.phone),
-          buildTextField('Email', emailController, icon: Icons.email),
-          buildTextField(
-            'Password',
-            passwordController,
-            obscure: _obscurePassword,
-            icon: Icons.lock,
-            suffixIcon: IconButton(
-              icon: Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  _obscurePassword = !_obscurePassword;
-                });
-              },
-            ),
-          ),
-          buildTextField(
-            'Confirm Password',
-            confirmPasswordController,
-            obscure: _obscureConfirm,
-            icon: Icons.lock_outline,
-            suffixIcon: IconButton(
-              icon: Icon(_obscureConfirm ? Icons.visibility_off : Icons.visibility),
-              onPressed: () {
-                setState(() {
-                  _obscureConfirm = !_obscureConfirm;
-                });
-              },
-            ),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'Role',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(height: 6),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF1F1F1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: DropdownButtonFormField<String>(
-              value: selectedRole,
-              hint: const Text("Select Role"),
-              decoration: const InputDecoration(border: InputBorder.none),
-              items: roles.map((role) {
-                return DropdownMenuItem(value: role, child: Text(role));
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedRole = value;
-                });
-              },
-            ),
-          ),
-          const SizedBox(height: 10),
-          if (selectedRole == 'Repository Owner') ...[
-            buildTextField('Repository Name', storeNameController, icon: Icons.store),
-            buildTextField('Repository Address', storeAddressController, icon: Icons.location_on),
-          ] else if (selectedRole == 'Pharmacy Owner') ...[
-            buildTextField('Pharmacy Name', storeNameController, icon: Icons.local_pharmacy),
-            buildTextField('Pharmacy Address', storeAddressController, icon: Icons.location_on),
-          ],
-          const SizedBox(height: 10),
-          SizedBox(
-            width: double.infinity,
-            height: 45,
-            child: ElevatedButton(
-              onPressed: () {
-                // Action for sign up
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF245FD5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
+    return GetBuilder<SignUpController>(
+      init: SignUpController(),
+      builder: (controller) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTextField(
+                label: 'Name',
+                controller: controller.nameController,
+                icon: Icons.person,
+              ),
+              CustomTextField(
+                label: 'Phone Number',
+                controller: controller.phoneController,
+                icon: Icons.phone,
+              ),
+              CustomTextField(
+                label: 'Email',
+                controller: controller.emailController,
+                icon: Icons.email,
+              ),
+              CustomTextField(
+                label: 'Password',
+                controller: controller.passwordController,
+                icon: Icons.lock,
+                obscure: controller.obscurePassword,
+                suffixIcon: IconButton(
+                  icon: Icon(controller.obscurePassword ? Icons.visibility_off : Icons.visibility),
+                  onPressed: controller.togglePasswordVisibility,
                 ),
               ),
-              child: const Text(
-                'Sign Up',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+              CustomTextField(
+                label: 'Confirm Password',
+                controller: controller.confirmPasswordController,
+                icon: Icons.lock,
+                obscure: controller.obscureConfirmPassword,
+                suffixIcon: IconButton(
+                  icon: Icon(controller.obscureConfirmPassword ? Icons.visibility_off : Icons.visibility),
+                  onPressed: controller.toggleConfirmPasswordVisibility,
+                ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-  Widget buildTextField(
-      String label,
-      TextEditingController controller, {
-        bool obscure = false,
-        IconData? icon,
-        Widget? suffixIcon,
-      }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-          const SizedBox(height: 6),
-          Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFF1F1F1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: TextField(
-              controller: controller,
-              obscureText: obscure,
-              decoration: InputDecoration(
-                hintText: "Enter your $label",
-                hintStyle: const TextStyle(fontSize: 15,
-                    color: Colors.grey),
-                border: InputBorder.none,
-                prefixIcon: icon != null ? Icon(icon, color: Colors.grey[700],size: 20,) : null,
-                suffixIcon: suffixIcon,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              const SizedBox(height: 10),
+              const Text('Role', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 6),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF1F1F1),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: DropdownButtonFormField<String>(
+                  value: controller.selectedRole,
+                  hint: const Text("Select Role"),
+                  decoration: const InputDecoration(border: InputBorder.none),
+                  items: controller.roles.map((role) {
+                    return DropdownMenuItem(value: role, child: Text(role));
+                  }).toList(),
+                  onChanged: controller.changeRole,
+                ),
               ),
-            ),
+              const SizedBox(height: 10),
+              if (controller.selectedRole == 'Repository Owner') ...[
+                CustomTextField(
+                  label: 'Repository Name',
+                  controller: controller.storeNameController,
+                  icon: Icons.store,
+                ),
+                CustomTextField(
+                  label: 'Repository Address',
+                  controller: controller.storeAddressController,
+                  icon: Icons.location_on,
+                ),
+                CustomTextField(
+                  label: 'Repository Phone',
+                  controller: controller.storePhoneController,
+                  icon: Icons.phone,
+                ),
+              ] else if (controller.selectedRole == 'Pharmacy Owner') ...[
+                CustomTextField(
+                  label: 'Pharmacy Name',
+                  controller: controller.storeNameController,
+                  icon: Icons.local_pharmacy,
+                ),
+                CustomTextField(
+                  label: 'Pharmacy Address',
+                  controller: controller.storeAddressController,
+                  icon: Icons.location_on,
+                ),
+                CustomTextField(
+                  label: 'Pharmacy Phone',
+                  controller: controller.storePhoneController,
+                  icon: Icons.phone,
+                ),
+              ],
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: controller.signUp,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF245FD5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
