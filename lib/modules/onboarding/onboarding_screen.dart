@@ -27,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: controller.currentPage.value == index
                           ? AppColors.primaryColor
-                          : AppColors.textGray,
+                          : AppColors.Gray,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -62,7 +62,7 @@ class OnboardingScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: controller.nextPage,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -73,10 +73,10 @@ class OnboardingScreen extends StatelessWidget {
 
                       const Text(
                         'Next',
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        style: TextStyle(color: AppColors.black, fontSize: 15),
                       ),
                       SizedBox(width: 5,),
-                      Icon(Icons.arrow_forward,color: Colors.black,),
+                      Icon(Icons.arrow_forward,color: AppColors.black,),
                     ],
                   ),
                 ),

@@ -78,7 +78,6 @@ class SignInScreen extends StatelessWidget {
                                     child: TabBarView(
                                       children: [
                                         GetBuilder<SignInController>(
-                                          init: SignInController(),
                                           builder: (controller) {
                                             return Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +87,7 @@ class SignInScreen extends StatelessWidget {
                                                   controller: controller.emailController,
                                                   icon: Icons.email,
                                                 ),
-                                                CustomTextField(
+                                                Obx(() => CustomTextField(
                                                   label: 'Password',
                                                   controller: controller.passwordController,
                                                   icon: Icons.lock,
@@ -103,11 +102,12 @@ class SignInScreen extends StatelessWidget {
                                                     ),
                                                     onPressed: controller.togglePasswordVisibility,
                                                   ),
-                                                ),
+                                                )),
+
                                                 Align(
                                                   alignment: Alignment.bottomRight,
                                                   child: TextButton(
-                                                    onPressed: () {},
+                                                    onPressed: () {Get.toNamed('/forgetpass');},
                                                     child: const Text(
                                                       'Forget Password?',
                                                       style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
