@@ -10,7 +10,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppColors.backgroundColorOnboarding,
+      backgroundColor:Color(0xFFEEF0F3),
       body: SafeArea(
         child: Column(
           children: [
@@ -34,12 +34,14 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               )),
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 50),
             Obx(() => Image.asset(
               controller.onboardingData[controller.currentPage.value]['image']!,
-              height: 400,
+              height: 300,
             )),
+
             const SizedBox(height: 30),
+
             Obx(() => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Text(
@@ -51,6 +53,7 @@ class OnboardingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             )),
+
             const Spacer(),
             Align(
               alignment: Alignment.bottomRight,
@@ -65,18 +68,15 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 12),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                  child: Row(mainAxisSize: MainAxisSize.min,
                     children: [
+
                       const Text(
                         'Next',
-                        style: TextStyle(color: AppColors.black, fontSize: 18),
+                        style: TextStyle(color: AppColors.black, fontSize: 15),
                       ),
                       SizedBox(width: 5,),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: AppColors.black,
-                      ),
+                      Icon(Icons.arrow_forward,color: AppColors.black,),
                     ],
                   ),
                 ),

@@ -9,6 +9,7 @@ class SplashScreen extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     final SplashController controller = Get.put(SplashController());
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
@@ -26,9 +27,9 @@ class SplashScreen extends GetView<SplashController> {
             Obx(() => AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
               opacity: controller.showText.value ? 1.0 : 0.0,
-              child:  Text(
+              child: const Text(
                 'PharMes',
-                style: TextStyle(fontSize: 33, color: AppColors.white,
+                style: TextStyle(fontSize: 33, color: Colors.white,
                 fontFamily: 'EduVIC'),
               ),
             )),

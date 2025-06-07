@@ -123,14 +123,14 @@ class SignInScreen extends StatelessWidget {
                                                 Align(
                                                   alignment: Alignment.bottomRight,
                                                   child: TextButton(
-                                                    onPressed: () {Get.toNamed('/forgetPass');},
+                                                    onPressed: () {Get.toNamed('/forgetpass');},
                                                     child: const Text(
                                                       'Forget Password?',
                                                       style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
                                                     ),
                                                   ),
                                                 ),
-                                                const SizedBox(height: 20),
+                                                const SizedBox(height: 10),
                                                 SizedBox(
                                                   width: double.infinity,
                                                   height: 45,
@@ -172,4 +172,3 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-//eline
