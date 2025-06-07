@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pharmes_app/app_theme/app_colors.dart';
 import 'modules/email_verification/email_verification_screen.dart';
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/onboarding/onboarding_screen.dart';
@@ -22,19 +21,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
     initialRoute:'/splash' ,
     debugShowCheckedModeBanner: false,
-    theme: ThemeData( colorScheme: ColorScheme.fromSeed(seedColor:AppColors.primaryColor),),
     getPages: [
       GetPage(name: '/signIn', page: ()=>SignInScreen()),
       GetPage(name: '/signUp', page: ()=>SignUpScreen()),
       GetPage(name: '/splash', page: ()=>SplashScreen()),
       GetPage(name: '/Onboarding', page: ()=>OnboardingScreen()),
-      GetPage(name: '/forgetPass', page: ()=>ForgetPasswordScreen()),
-      GetPage(name: '/emailVerify', page: ()=>EmailVerificationScreen()),
-      GetPage(name: '/resetPass', page: ()=>ResetPasswordScreen()),
+      GetPage(name: '/forgetpass', page: ()=>ForgetPasswordScreen()),
+      GetPage(name: '/emailverify', page: ()=>EmailVerificationScreen()),
+      GetPage(name: '/resetpass', page: ()=>ResetPasswordScreen()),
 
     ],
     );
   }
 }
 
-//mustafa sharaf
+

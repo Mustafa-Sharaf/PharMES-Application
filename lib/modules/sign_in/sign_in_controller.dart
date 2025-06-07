@@ -1,24 +1,106 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:pharmes_app/app_theme/app_colors.dart';
+
+import '../../configurations/http_helpers.dart';
 
 class SignInController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final confirmPasswordController = TextEditingController();
   var obscurePassword = true.obs;
+  var obscureConfirmPassword = true.obs;
 
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
   }
+  void toggleConfirmPasswordVisibility() {
+    obscureConfirmPassword.value = !obscureConfirmPassword.value;
+  }
 
-  void signIn() {
+  login(BuildContext context) async {
+    String email = emailController.text.trim();
+    String password = passwordController.text;
+    String confirmPassword = confirmPasswordController.text;
 
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please fill in all fields',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    if (!email.contains('@') || !email.contains('.')) {
+      Get.snackbar(
+        'Error',
+        'Please enter a valid email address',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    if (password.length < 6) {
+      Get.snackbar(
+        'Error',
+        'Password must be at least 6 characters',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      Get.snackbar(
+        'Error',
+        'Passwords do not match',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+    await HttpHelper.postData(
+      url: 'Pharmacy/login',
+      body: {
+        'email': emailController.text,
+        'password': passwordController.text,
+        'password_confirmation': confirmPasswordController.text,
+      },
+    ).then((value) {
+      Map<String, dynamic> res = jsonDecode(value.body);
+      print(res);
+      if (value.statusCode == 200 || value.statusCode == 201) {
+        token = res['data']['authorization']['token'];
+        GetStorage _box = GetStorage();
+        _box.write('token', token);
+        Get.snackbar(' ', res['status'].toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: AppColors.primaryColor,
+            colorText: Colors.white);
+
+       Get.offNamed('/home');
+      } else {
+        Get.snackbar(' ', res['status'].toString(),
+            backgroundColor: Colors.red, colorText: Colors.white);
+      }
+    }).catchError((e) {
+      print('login error: $e');
+      Get.snackbar('Exception', 'An error occurred during the log in process',
+          backgroundColor: Colors.red, colorText: Colors.white);
+    });
   }
 
   @override
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.onClose();
   }
 }

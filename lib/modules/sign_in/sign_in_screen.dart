@@ -11,7 +11,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SignInController controller = Get.put(SignInController());
+    SignInController controller = Get.find();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -103,6 +103,22 @@ class SignInScreen extends StatelessWidget {
                                                     onPressed: controller.togglePasswordVisibility,
                                                   ),
                                                 )),
+                                                Obx(() => CustomTextField(
+                                                  label: 'Confirm Password',
+                                                  controller: controller.confirmPasswordController,
+                                                  icon: Icons.lock,
+                                                  obscure: controller.obscureConfirmPassword.value,
+                                                  suffixIcon: IconButton(
+                                                    icon: Icon(
+                                                      controller.obscureConfirmPassword.value
+                                                          ? Icons.visibility_off
+                                                          : Icons.visibility,
+                                                      color: Colors.grey[700],
+                                                      size: 22,
+                                                    ),
+                                                    onPressed: controller.toggleConfirmPasswordVisibility,
+                                                  ),
+                                                )),
 
                                                 Align(
                                                   alignment: Alignment.bottomRight,
@@ -119,7 +135,7 @@ class SignInScreen extends StatelessWidget {
                                                   width: double.infinity,
                                                   height: 45,
                                                   child: ElevatedButton(
-                                                    onPressed: controller.signIn,
+                                                    onPressed: () => controller.login(context),
                                                     style: ElevatedButton.styleFrom(
                                                       backgroundColor: const Color(0xFF245FD5),
                                                       shape: RoundedRectangleBorder(
