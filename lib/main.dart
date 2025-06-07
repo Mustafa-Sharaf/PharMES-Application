@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
@@ -8,8 +9,12 @@ import 'modules/reset_password/reset_password_screen.dart';
 import 'modules/sign_in/sign_in_screen.dart';
 import 'modules/sign_up/sign_up_screen.dart';
 import 'modules/splash/splash_screen.dart';
+import 'notifications.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await Notifications().initNotifications();
   runApp(MyApp());
 }
 

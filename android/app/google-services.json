@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836454342093",
+    "project_id": "pharmes-app",
+    "storage_bucket": "pharmes-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836454342093:android:529a2af49e7f96ba39f884",
+        "android_client_info": {
+          "package_name": "com.example.pharmes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMXT6nt6UC8m8rNiEAHVOHJVxU-N_S4zE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
