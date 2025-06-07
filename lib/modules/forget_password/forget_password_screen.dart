@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../app_theme/app_colors.dart';
 import '../../helpers/clipper_forgetpass.dart';
 import 'forget_password_controller.dart';
@@ -24,7 +23,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                     alignment: const Alignment(-0.3, -0.3),
                     child: Row(mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.arrow_back_ios,color: AppColors.white,size: 20,),
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+                          onPressed: () => Get.back(),
+                        ),
                         SizedBox(width: 30,),
                         Text('Forget Password',
                             style: TextStyle(fontSize: 25, color: Colors.white)),
@@ -70,7 +72,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 );}
                 ),
               SizedBox(height: 55,),
-              MaterialButton(onPressed: (){Get.toNamed('/emailverify');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
+              MaterialButton(onPressed: (){Get.toNamed('/emailVerify');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 20),
                   child: Text('Verify and Proceed',style: TextStyle(color: AppColors.white,
