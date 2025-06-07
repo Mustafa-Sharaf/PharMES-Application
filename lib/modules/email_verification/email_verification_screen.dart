@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+
 import '../../app_theme/app_colors.dart';
 import '../../helpers/clipper_forgetpass.dart';
 import 'email_verification_controller.dart';
@@ -27,10 +28,7 @@ class EmailVerificationScreen extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
-                          onPressed: () => Get.back(),
-                        ),
+                        const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
                         const SizedBox(width: 30),
                         const Text('Email Verification',
                             style: TextStyle(fontSize: 25, color: Colors.white)),
@@ -64,7 +62,7 @@ class EmailVerificationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 55),
               MaterialButton(
-                onPressed: () {Get.toNamed('/resetPass');},
+                onPressed: () {Get.toNamed('/resetpass');},
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: AppColors.primaryColor,
                 child: const Padding(

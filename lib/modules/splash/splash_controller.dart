@@ -4,6 +4,7 @@ import 'dart:async';
 class SplashController extends GetxController {
   final imageSize = 25.0.obs;
   final showText = true.obs;
+
   late Timer _blinkTimer;
 
   @override

@@ -25,10 +25,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     alignment: const Alignment(-0.3, -0.3),
                     child: Row(mainAxisSize: MainAxisSize.min,
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
-                          onPressed: () => Get.back(),
-                        ),
+                        Icon(Icons.arrow_back_ios,color: AppColors.white,size: 20,),
                         SizedBox(width: 30,),
                         Text('Reset Password',
                             style: TextStyle(fontSize: 25, color: Colors.white)),
