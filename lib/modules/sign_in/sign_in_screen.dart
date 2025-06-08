@@ -79,81 +79,82 @@ class SignInScreen extends StatelessWidget {
                                       children: [
                                         GetBuilder<SignInController>(
                                           builder: (controller) {
-                                            return Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                CustomTextField(
-                                                  label: 'Email',
-                                                  controller: controller.emailController,
-                                                  icon: Icons.email,
-                                                ),
-                                                Obx(() => CustomTextField(
-                                                  label: 'Password',
-                                                  controller: controller.passwordController,
-                                                  icon: Icons.lock,
-                                                  obscure: controller.obscurePassword.value,
-                                                  suffixIcon: IconButton(
-                                                    icon: Icon(
-                                                      controller.obscurePassword.value
-                                                          ? Icons.visibility_off
-                                                          : Icons.visibility,
-                                                      color: Colors.grey[700],
-                                                      size: 22,
-                                                    ),
-                                                    onPressed: controller.togglePasswordVisibility,
+                                            return SingleChildScrollView(
+                                              padding: const EdgeInsets.only(bottom: 100),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  CustomTextField(
+                                                    label: 'Email',
+                                                    controller: controller.emailController,
+                                                    icon: Icons.email,
                                                   ),
-                                                )),
-                                                Obx(() => CustomTextField(
-                                                  label: 'Confirm Password',
-                                                  controller: controller.confirmPasswordController,
-                                                  icon: Icons.lock,
-                                                  obscure: controller.obscureConfirmPassword.value,
-                                                  suffixIcon: IconButton(
-                                                    icon: Icon(
-                                                      controller.obscureConfirmPassword.value
-                                                          ? Icons.visibility_off
-                                                          : Icons.visibility,
-                                                      color: Colors.grey[700],
-                                                      size: 22,
+                                                  Obx(() => CustomTextField(
+                                                    label: 'Password',
+                                                    controller: controller.passwordController,
+                                                    icon: Icons.lock,
+                                                    obscure: controller.obscurePassword.value,
+                                                    suffixIcon: IconButton(
+                                                      icon: Icon(
+                                                        controller.obscurePassword.value ? Icons.visibility_off : Icons.visibility,
+                                                        color: Colors.grey[700],
+                                                        size: 22,
+                                                      ),
+                                                      onPressed: controller.togglePasswordVisibility,
                                                     ),
-                                                    onPressed: controller.toggleConfirmPasswordVisibility,
-                                                  ),
-                                                )),
-
-                                                Align(
-                                                  alignment: Alignment.bottomRight,
-                                                  child: TextButton(
-                                                    onPressed: () {Get.toNamed('/forgetpass');},
-                                                    child: const Text(
-                                                      'Forget Password?',
-                                                      style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
+                                                  )),
+                                                  Obx(() => CustomTextField(
+                                                    label: 'Confirm Password',
+                                                    controller: controller.confirmPasswordController,
+                                                    icon: Icons.lock,
+                                                    obscure: controller.obscureConfirmPassword.value,
+                                                    suffixIcon: IconButton(
+                                                      icon: Icon(
+                                                        controller.obscureConfirmPassword.value ? Icons.visibility_off : Icons.visibility,
+                                                        color: Colors.grey[700],
+                                                        size: 22,
+                                                      ),
+                                                      onPressed: controller.toggleConfirmPasswordVisibility,
                                                     ),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                SizedBox(
-                                                  width: double.infinity,
-                                                  height: 45,
-                                                  child: ElevatedButton(
-                                                    onPressed: () => controller.login(context),
-                                                    style: ElevatedButton.styleFrom(
-                                                      backgroundColor: const Color(0xFF245FD5),
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(25),
+                                                  )),
+                                                  Align(
+                                                    alignment: Alignment.bottomRight,
+                                                    child: TextButton(
+                                                      onPressed: () {
+                                                        Get.toNamed('/forgetpass');
+                                                      },
+                                                      child: const Text(
+                                                        'Forget Password?',
+                                                        style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
                                                       ),
                                                     ),
-                                                    child: const Text('Sign In',
-                                                        style: TextStyle(fontSize: 16, color: Colors.white)),
                                                   ),
-                                                ),
-                                              ],
+                                                  const SizedBox(height: 10),
+                                                  SizedBox(
+                                                    width: double.infinity,
+                                                    height: 45,
+                                                    child: ElevatedButton(
+                                                      onPressed: () => controller.login(context),
+                                                      style: ElevatedButton.styleFrom(
+                                                        backgroundColor: const Color(0xFF245FD5),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(25),
+                                                        ),
+                                                      ),
+                                                      child: const Text('Sign In',
+                                                          style: TextStyle(fontSize: 16, color: Colors.white)),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         ),
                                         const SignUpScreen(),
                                       ],
                                     ),
-                                  ),
+                                  )
+
                                 ],
                               ),
                             ),
