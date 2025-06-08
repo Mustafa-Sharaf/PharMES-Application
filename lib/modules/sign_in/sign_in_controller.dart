@@ -10,23 +10,17 @@ import '../../configurations/http_helpers.dart';
 class SignInController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
   var obscurePassword = true.obs;
   var obscureConfirmPassword = true.obs;
 
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
   }
-  void toggleConfirmPasswordVisibility() {
-    obscureConfirmPassword.value = !obscureConfirmPassword.value;
-  }
 
   login(BuildContext context) async {
     String email = emailController.text.trim();
     String password = passwordController.text;
-    String confirmPassword = confirmPasswordController.text;
-
-    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+    if (email.isEmpty || password.isEmpty ) {
       Get.snackbar(
         'Error',
         'Please fill in all fields',
@@ -55,22 +49,12 @@ class SignInController extends GetxController {
       );
       return;
     }
-
-    if (passwordController.text != confirmPasswordController.text) {
-      Get.snackbar(
-        'Error',
-        'Passwords do not match',
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-      return;
-    }
     await HttpHelper.postData(
       url: 'Pharmacy/login',
       body: {
         'email': emailController.text,
         'password': passwordController.text,
-        'password_confirmation': confirmPasswordController.text,
+        //'password_confirmation': confirmPasswordController.text,
       },
     ).then((value) {
       Map<String, dynamic> res = jsonDecode(value.body);
@@ -100,7 +84,6 @@ class SignInController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-    confirmPasswordController.dispose();
     super.onClose();
   }
 }
