@@ -5,6 +5,7 @@ import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_page_screen.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 import 'modules/reset_password/reset_password_screen.dart';
+import 'modules/setting/permissions_screen.dart';
 import 'modules/sign_in/sign_in_bindings.dart';
 import 'modules/sign_in/sign_in_screen.dart';
 import 'modules/sign_up/sign_up_screen.dart';
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
       GetPage(name: '/emailverify', page: ()=>EmailVerificationScreen()),
       GetPage(name: '/resetpass', page: ()=>ResetPasswordScreen()),
       GetPage(name: '/home', page: ()=>HomePageScreen()),
+      GetPage(name: '/setting', page: ()=>PermissionsScreen()),
+
 
     ],
     );

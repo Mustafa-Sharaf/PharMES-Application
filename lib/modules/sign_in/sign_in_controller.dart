@@ -68,9 +68,14 @@ class SignInController extends GetxController {
             backgroundColor: AppColors.primaryColor,
             colorText: Colors.white);
 
-       Get.offNamed('/home');
-      } else {
-        Get.snackbar(' ', res['status'].toString(),
+       Get.offNamed('/setting');
+      }
+      else if(value.statusCode == 406) {
+        Get.snackbar(' Incorrect password or email', res['error'].toString(),
+            backgroundColor: Colors.red, colorText: Colors.white);
+      }
+      else {
+        Get.snackbar(' ', res['message'].toString(),
             backgroundColor: Colors.red, colorText: Colors.white);
       }
     }).catchError((e) {
