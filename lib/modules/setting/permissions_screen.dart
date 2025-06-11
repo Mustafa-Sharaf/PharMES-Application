@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-import 'package:pharmes_app/modules/setting/permissions.dart';
+import 'package:pharmes_app/modules/setting/permissions_controller.dart';
 
 class PermissionsScreen extends StatelessWidget {
   const PermissionsScreen({super.key});
@@ -9,7 +9,7 @@ class PermissionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final controller = Get.put<PermissionsController>(PermissionsController());
+    PermissionsController controller = Get.find();
 
     return Scaffold(
       appBar: AppBar(

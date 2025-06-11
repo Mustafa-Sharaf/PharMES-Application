@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app_theme/app_colors.dart';
+
 class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: TextField(
+              cursorColor: AppColors.primaryColor,
               controller: controller,
               obscureText: obscure,
               decoration: InputDecoration(

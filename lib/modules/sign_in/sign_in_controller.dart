@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 
 import '../../configurations/http_helpers.dart';
+import '../test.dart';
 
 class SignInController extends GetxController {
   final emailController = TextEditingController();
@@ -54,7 +55,6 @@ class SignInController extends GetxController {
       body: {
         'email': emailController.text,
         'password': passwordController.text,
-        //'password_confirmation': confirmPasswordController.text,
       },
     ).then((value) {
       Map<String, dynamic> res = jsonDecode(value.body);
@@ -67,8 +67,8 @@ class SignInController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: AppColors.primaryColor,
             colorText: Colors.white);
-
-       Get.offNamed('/setting');
+            Get.to(Test());
+       //Get.offNamed('/setting');
       }
       else if(value.statusCode == 406) {
         Get.snackbar(' Incorrect password or email', res['error'].toString(),

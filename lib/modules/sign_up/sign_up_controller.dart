@@ -153,7 +153,7 @@ class SignUpController extends GetxController {
         token = res['data']['authorization']['token'];
         GetStorage().write('token', token);
         Get.snackbar('Success', res['status'].toString(), backgroundColor: AppColors.primaryColor, colorText: Colors.white);
-        Get.offNamed('/home');
+        Get.offNamed('/test');
       } else {
       print("Sending to [$endpoint]:");
       print(jsonEncode(data));
