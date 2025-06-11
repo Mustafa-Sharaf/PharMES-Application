@@ -4,7 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 class Notifications {
   final firebaseMessaging=FirebaseMessaging.instance;
 
-  initNotifications()async{
 
     Future<void> initNotifications() async {
       try {
@@ -21,7 +20,7 @@ class Notifications {
     final notificationToken=await firebaseMessaging.getToken();
     print("Notification Token= $notificationToken");
     FirebaseMessaging.onBackgroundMessage(handleNotification);*/
-  }
+
 
 
 }
