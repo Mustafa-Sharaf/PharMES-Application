@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'modules/email_verification/email_verification_screen.dart';
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_page_screen.dart';
@@ -18,19 +19,23 @@ import 'notifications.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  final box = GetStorage();
+  String? token = box.read('token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
-  runApp(MyApp());
+  runApp(MyApp(initialRoute: token == null ? '/splash' : '/test'));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({Key? key, required this.initialRoute}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-    initialRoute:'/home' ,
+    initialRoute: initialRoute,
     debugShowCheckedModeBanner: false,
     getPages: [
       GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
