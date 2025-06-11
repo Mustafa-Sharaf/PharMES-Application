@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart 'as http;
 
@@ -12,14 +13,17 @@ class HttpHelper{
   static Future<Response> postData(
 
       {required String url, Map<String, dynamic>?body} )async{
-
+    final box = GetStorage();
+    final storedToken = box.read<String>('token');
     return await http.post(Uri.parse('$baseurl$url'), body: body,headers:{ 'Accept':'application/json',
-      "Authorization":'Bearer $token'});
+      if (storedToken != null) 'Authorization': 'Bearer $storedToken',});
   }
   static Future<Response> gettData({required String url})async {
+    final box = GetStorage();
+    final storedToken = box.read<String>('token');
     return await http.get(
         Uri.parse('$baseurl$url'), headers: {
-      "Authorization": 'Bearer $token'
+      if (storedToken != null) 'Authorization': 'Bearer $storedToken',
     });
   }
   getData(String url)async {

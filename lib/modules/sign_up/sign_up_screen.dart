@@ -12,6 +12,7 @@ class SignUpScreen extends StatelessWidget {
       init: SignUpController(),
       builder: (controller) {
         return SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 100),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -108,7 +109,7 @@ class SignUpScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
-                  onPressed: controller.signUp,
+                  onPressed:   () =>controller.signUp(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF245FD5),
                     shape: RoundedRectangleBorder(

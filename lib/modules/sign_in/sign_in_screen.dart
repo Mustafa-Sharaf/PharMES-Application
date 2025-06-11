@@ -73,87 +73,87 @@ class SignInScreen extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 20),
-                                  SizedBox(
-                                    height: 428,
-                                    child: TabBarView(
-                                      children: [
-                                        GetBuilder<SignInController>(
-                                          builder: (controller) {
-                                            return Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                CustomTextField(
-                                                  label: 'Email',
-                                                  controller: controller.emailController,
-                                                  icon: Icons.email,
-                                                ),
-                                                Obx(() => CustomTextField(
-                                                  label: 'Password',
-                                                  controller: controller.passwordController,
-                                                  icon: Icons.lock,
-                                                  obscure: controller.obscurePassword.value,
-                                                  suffixIcon: IconButton(
-                                                    icon: Icon(
-                                                      controller.obscurePassword.value
-                                                          ? Icons.visibility_off
-                                                          : Icons.visibility,
-                                                      color: Colors.grey[700],
-                                                      size: 22,
-                                                    ),
-                                                    onPressed: controller.togglePasswordVisibility,
-                                                  ),
-                                                )),
-                                                Obx(() => CustomTextField(
-                                                  label: 'Confirm Password',
-                                                  controller: controller.confirmPasswordController,
-                                                  icon: Icons.lock,
-                                                  obscure: controller.obscureConfirmPassword.value,
-                                                  suffixIcon: IconButton(
-                                                    icon: Icon(
-                                                      controller.obscureConfirmPassword.value
-                                                          ? Icons.visibility_off
-                                                          : Icons.visibility,
-                                                      color: Colors.grey[700],
-                                                      size: 22,
-                                                    ),
-                                                    onPressed: controller.toggleConfirmPasswordVisibility,
-                                                  ),
-                                                )),
+                                  AnimatedBuilder(
+                                    animation: DefaultTabController.of(context)!.animation!,
+                                    builder: (context, _) {
+                                      final tabIndex = DefaultTabController.of(context)!.index;
+                                      final screenHeight = MediaQuery.of(context).size.height;
 
-                                                Align(
-                                                  alignment: Alignment.bottomRight,
-                                                  child: TextButton(
-                                                    onPressed: () {Get.toNamed('/forgetpass');},
-                                                    child: const Text(
-                                                      'Forget Password?',
-                                                      style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                SizedBox(
-                                                  width: double.infinity,
-                                                  height: 45,
-                                                  child: ElevatedButton(
-                                                    onPressed: () => controller.login(context),
-                                                    style: ElevatedButton.styleFrom(
-                                                      backgroundColor: const Color(0xFF245FD5),
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.circular(25),
+                                      final height = tabIndex == 0 ? screenHeight * 0.45 : screenHeight * 0.58;
+
+                                      return SizedBox(
+                                        height: height,
+                                        child: TabBarView(
+                                          children: [
+                                            GetBuilder<SignInController>(
+                                              builder: (controller) {
+                                                return SingleChildScrollView(
+                                                  padding: const EdgeInsets.only(bottom: 100),
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      CustomTextField(
+                                                        label: 'Email',
+                                                        controller: controller.emailController,
+                                                        icon: Icons.email,
                                                       ),
-                                                    ),
-                                                    child: const Text('Sign In',
-                                                        style: TextStyle(fontSize: 16, color: Colors.white)),
+                                                      Obx(() => CustomTextField(
+                                                        label: 'Password',
+                                                        controller: controller.passwordController,
+                                                        icon: Icons.lock,
+                                                        obscure: controller.obscurePassword.value,
+                                                        suffixIcon: IconButton(
+                                                          icon: Icon(
+                                                            controller.obscurePassword.value
+                                                                ? Icons.visibility_off
+                                                                : Icons.visibility,
+                                                            color: Colors.grey[700],
+                                                            size: 22,
+                                                          ),
+                                                          onPressed: controller.togglePasswordVisibility,
+                                                        ),
+                                                      )),
+                                                      Align(
+                                                        alignment: Alignment.bottomRight,
+                                                        child: TextButton(
+                                                          onPressed: () {
+                                                            Get.toNamed('/forgetpass');
+                                                          },
+                                                          child: const Text(
+                                                            'Forget Password?',
+                                                            style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 10),
+                                                      SizedBox(
+                                                        width: double.infinity,
+                                                        height: 45,
+                                                        child: ElevatedButton(
+                                                          onPressed: () => controller.login(context),
+                                                          style: ElevatedButton.styleFrom(
+                                                            backgroundColor: const Color(0xFF245FD5),
+                                                            shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(25),
+                                                            ),
+                                                          ),
+                                                          child: const Text('Sign In',
+                                                              style: TextStyle(fontSize: 16, color: Colors.white)),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ),
-                                              ],
-                                            );
-                                          },
+                                                );
+                                              },
+                                            ),
+                                            const SignUpScreen(),
+                                          ],
                                         ),
-                                        const SignUpScreen(),
-                                      ],
-                                    ),
-                                  ),
+                                      );
+                                    },
+                                  )
+
+
                                 ],
                               ),
                             ),
