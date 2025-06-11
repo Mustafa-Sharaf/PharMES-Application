@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-
 import '../../configurations/http_helpers.dart';
-import '../test.dart';
+
 
 class SignInController extends GetxController {
   final emailController = TextEditingController();
@@ -67,7 +65,7 @@ class SignInController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: AppColors.primaryColor,
             colorText: Colors.white);
-            Get.to(Test());
+            //Get.to(Test());
        //Get.offNamed('/setting');
       }
       else if(value.statusCode == 406) {
