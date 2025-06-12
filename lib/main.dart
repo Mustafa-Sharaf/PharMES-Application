@@ -24,7 +24,8 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   final box = GetStorage();
-  String? token = box.read('token');
+  final token = box.read<String>('token');
+  print('[main] Token from storage: $token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
   runApp(MyApp(initialRoute: token == null ? '/splash' : '/test'));

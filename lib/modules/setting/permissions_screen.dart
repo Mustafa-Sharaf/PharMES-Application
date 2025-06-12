@@ -13,8 +13,9 @@ class PermissionsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Setting',style: TextStyle(color: AppColors.white),),
+        title: const Text('Permissions',style: TextStyle(color: AppColors.white),),
         backgroundColor: AppColors.primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body:Stack(
           children: [
@@ -67,7 +68,7 @@ class PermissionsScreen extends StatelessWidget {
               },
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.grey[150],
+                fillColor: Colors.grey[500]!.withOpacity(0.16),
                 hintText: 'Search for the name',
                 suffixIcon: Icon(Icons.search, color: Colors.grey[700]),
                 contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -118,7 +119,7 @@ class PermissionsScreen extends StatelessWidget {
               cursorColor: AppColors.primaryColor,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.grey[150],
+                fillColor: Colors.grey[500]!.withOpacity(0.16),
                 hintText: 'Select the role',
                 contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 border: OutlineInputBorder(

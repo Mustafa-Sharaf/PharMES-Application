@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart 'as http;
 
-String? token;
+//String? token;
 const String baseurl='http://192.168.43.63:8000/api/';
 const String imgURL='http://192.168.43.63:8000';
 class HttpHelper{
@@ -21,6 +21,11 @@ class HttpHelper{
   static Future<Response> gettData({required String url})async {
     final box = GetStorage();
     final storedToken = box.read<String>('token');
+    final token = box.read('token') ?? '';
+    print('[DEBUG] Sending POST request to: $url');
+    print('[DEBUG] Token used: $token');
+
+
     return await http.get(
         Uri.parse('$baseurl$url'), headers: {
       if (storedToken != null) 'Authorization': 'Bearer $storedToken',
@@ -41,21 +46,7 @@ class HttpHelper{
       print('error catch $e');
     }
   }
-  static Future<Response> uploadProfile({
-    required String url,
-    required Map<String, String> fields,
-    required File file,
-  }) async {
-    var request = http.MultipartRequest('POST', Uri.parse('$baseurl$url'));
-    request.fields.addAll(fields);
-    request.headers.addAll({
-      'Accept': 'application/json',
-      "Authorization": 'Bearer $token',
-    });
-    request.files.add(await http.MultipartFile.fromPath('image', file.path));
-    var response = await request.send();
-    return await http.Response.fromStream(response);
-  }
+
 
 }
 

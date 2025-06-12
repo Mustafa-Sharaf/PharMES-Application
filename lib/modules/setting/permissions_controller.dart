@@ -68,10 +68,10 @@ class PermissionsController extends GetxController {
     bool hasRealInternet = await isInternetAvailable();
     if (hasRealInternet) {
       Get.snackbar(
-        '', '',
+        '',
+        '',
         titleText: Container(
           alignment: Alignment.center,
-          height: 20,
           child: Text(
             'Updating data',
             style: TextStyle(
@@ -82,6 +82,7 @@ class PermissionsController extends GetxController {
             textAlign: TextAlign.center,
           ),
         ),
+
         margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
         snackStyle: SnackStyle.FLOATING,
@@ -90,6 +91,7 @@ class PermissionsController extends GetxController {
         isDismissible: false,
         duration: const Duration(seconds: 2),
       );
+
 
       print('[NETWORK] Internet is available, refreshing names from API...');
       await fetchNamesFromApi();
@@ -102,6 +104,8 @@ class PermissionsController extends GetxController {
 
   Future<void> fetchNamesFromApi() async {
     try {
+      final token = box.read<String>('token');
+      print('[Eeeeeeeeeee] Token used: $token');
       var res = await HttpHelper.gettData(url: 'Repository/all-users');
       if (res.statusCode == 200) {
         var body = jsonDecode(res.body);
@@ -110,8 +114,9 @@ class PermissionsController extends GetxController {
         box.write('cached_names', users);
         print('[API] Fetched ${users.length} users from API.');
       } else {
+
         print('[API] Failed to fetch names. Status code: ${res.statusCode}');
-        Get.snackbar('Warning', 'Failed to refresh users, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
+        // Get.snackbar('Warning', 'Failed to refresh users, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
       }
     } catch (e) {
       print('[API ERROR] $e');
@@ -215,7 +220,6 @@ class PermissionsController extends GetxController {
           'permissions':  jsonEncode(permissionIds),
         },
       );
-
       if (response.statusCode == 200) {
         Get.snackbar('Success', 'Role and permissions saved successfully',
             backgroundColor: Colors.green, colorText: Colors.white);
@@ -228,8 +232,6 @@ class PermissionsController extends GetxController {
           backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
-
-
   @override
   void onClose() {
     nameController.dispose();
