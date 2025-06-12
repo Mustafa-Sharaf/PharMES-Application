@@ -14,7 +14,7 @@ class BuildDrugType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width*0.24,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      margin:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -26,13 +26,13 @@ class BuildDrugType extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
               image,
-              height: 70,
-              width: 70,
+              height: MediaQuery.of(context).size.width*0.18,
+              width: MediaQuery.of(context).size.width*0.18,
               fit: BoxFit.cover,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top:5),
+            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01,),
             child: Text(titleType, style: const TextStyle(fontSize: 13)),
           ),
         ],

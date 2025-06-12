@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../app_theme/app_colors.dart';
+
+class DrawerHome extends StatelessWidget {
+  const DrawerHome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            SizedBox(
+              height:MediaQuery.of(context).size.height*0.25,
+              child: DrawerHeader(
+                decoration: const BoxDecoration(color:AppColors.primaryColor,),
+                child: Column(
+                  mainAxisAlignment:MainAxisAlignment.start ,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('PharMES',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
+                    ),
+                    const Text('Mustafa Sharaf',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18
+                      ),
+                    ),
+                    const Text('MustafaSharaf@gmail.com',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Setting'),
+              onTap: () {
+                Get.toNamed('/settingScreen');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.inventory_2),
+              title: Text('My Pharmacy Management'),
+              onTap: () {
+                Get.toNamed('/pharmacyManagementScreen');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.support),
+              title: Text('Support'),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('log out'),
+              onTap: () {
+                Get.toNamed('/logoutScreen');
+              },
+            ),
+          ]
+      ),
+    );
+  }
+}

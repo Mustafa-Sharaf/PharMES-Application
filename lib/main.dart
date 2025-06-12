@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: initialRoute,
+      initialRoute: '/home',
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
