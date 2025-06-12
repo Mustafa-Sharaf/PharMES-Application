@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-import 'package:pharmes_app/modules/setting/permissions_controller.dart';
+import 'package:pharmes_app/modules/profile/permissions_controller.dart';
+
 
 class PermissionsScreen extends StatelessWidget {
   const PermissionsScreen({super.key});

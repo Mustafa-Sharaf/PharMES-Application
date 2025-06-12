@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-import '../../helpers/bottomTabItem.dart';
-import '../../helpers/drawer_home.dart';
+import '../../widgets/bottom_tab_Item.dart';
+import '../../widgets/drawer_home.dart';
 import '../bills/bills_screen.dart';
 import '../cart/cart_screen.dart';
 import '../inventory_management/inventory_management_screen.dart';

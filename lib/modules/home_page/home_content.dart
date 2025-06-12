@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../helpers/Build_drug_type.dart';
-import '../../helpers/build_Companies.dart';
+import 'package:pharmes_app/app_theme/app_colors.dart';
+import '../../widgets/Build_drug_type.dart';
+import '../../widgets/build_Companies.dart';
 
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
@@ -8,14 +9,17 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xffDCE0E9),
+      backgroundColor:AppColors.backgroundHome,
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Padding(
-               padding: const EdgeInsets.only(top: 5,bottom: 5),
+               padding: EdgeInsets.only(
+                   top: MediaQuery.of(context).size.height*0.005,
+                   bottom: MediaQuery.of(context).size.height*0.002,
+               ),
                child: Text("Companies", style: TextStyle(fontSize: MediaQuery.textScalerOf(context).scale(18)
                    , fontWeight: FontWeight.bold)),
              ),
@@ -24,7 +28,7 @@ class HomeContent extends StatelessWidget {
                child: ListView(
                  scrollDirection: Axis.horizontal,
                  children: [
-                   BuildCompanies(image:'assets/images/tamico.jpeg',title:"TAMICO"),
+                   BuildCompanies(image:'assets/images/Tam.jpg',title:"TAMICO"),
                    BuildCompanies(image:'assets/images/alphapharma.png',title:"Alpha Pharma"),
                    BuildCompanies(image:'assets/images/dimapharma.jpeg',title:"Dima Pharma"),
                    BuildCompanies(image:'assets/images/ibnalhaytham.jpeg',title:"Ibn Al Haytham"),
@@ -35,7 +39,10 @@ class HomeContent extends StatelessWidget {
                ),
               ),
              Padding(
-               padding: const EdgeInsets.only(top: 5,bottom: 5),
+               padding:  EdgeInsets.only(
+                 top: MediaQuery.of(context).size.height*0.005,
+                 bottom: MediaQuery.of(context).size.height*0.002,
+               ),
                child: Text("Drug Types", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
              SizedBox(
@@ -53,19 +60,21 @@ class HomeContent extends StatelessWidget {
                ),
             ),
              Padding(
-               padding: const EdgeInsets.only(top: 5,bottom: 5),
+               padding:  EdgeInsets.only(
+                 top: MediaQuery.of(context).size.height*0.005,
+                 bottom: MediaQuery.of(context).size.height*0.002,
+               ),
                child: Text("View All", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
-             Container(
-               //color: Colors.cyanAccent,
-               height: MediaQuery.of(context).size.height*0.39,
+             SizedBox(
+               height: MediaQuery.of(context).size.height*0.4,
                child: ListView(
                  children: [
                    Padding(
-                     padding: const EdgeInsets.only(bottom: 5),
+                     padding: EdgeInsets.all(
+                      MediaQuery.of(context).size.height*0.003,
+                     ),
                      child: Container(
-                         height:MediaQuery.of(context).size.height*0.13,
-                         width: MediaQuery.of(context).size.width*0.99,
                          decoration:BoxDecoration(
                            color: Colors.white,
                            borderRadius:BorderRadius.circular(10),
@@ -76,11 +85,11 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Paracetamol"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("باراسيتامول"),
                                  ),
                                ],
@@ -89,18 +98,21 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Type:pill"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.green,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("600"),
                                        )
                                    ),
@@ -111,45 +123,38 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("اسم الشركة"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.red,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("800"),
                                        )
                                    ),
                                  ),
                                ],
                              ),
-                            /* Container(
-                               height:MediaQuery.of(context).size.height*0.026,
-                               width: MediaQuery.of(context).size.width*0.99,
-                               decoration:BoxDecoration(
-                                 color: Color(0xff059FFF),
-                                 borderRadius:BorderRadius.circular(10),
-                               ) ,
-                               child: Center(
-                                 child: Text("البدائل"),
-                               ),
-                             )*/
+
                            ],
                          )
 
                      ),
                    ),
                    Padding(
-                     padding: const EdgeInsets.only(bottom: 5),
+                     padding: EdgeInsets.all(
+                       MediaQuery.of(context).size.height*0.003,
+                     ),
                      child: Container(
-                         height:MediaQuery.of(context).size.height*0.13,
-                         width: MediaQuery.of(context).size.width*0.99,
                          decoration:BoxDecoration(
                            color: Colors.white,
                            borderRadius:BorderRadius.circular(10),
@@ -160,11 +165,11 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Paracetamol"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("باراسيتامول"),
                                  ),
                                ],
@@ -173,18 +178,21 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Type:pill"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.green,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("600"),
                                        )
                                    ),
@@ -195,45 +203,38 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("اسم الشركة"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.red,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("800"),
                                        )
                                    ),
                                  ),
                                ],
                              ),
-                             /* Container(
-                               height:MediaQuery.of(context).size.height*0.026,
-                               width: MediaQuery.of(context).size.width*0.99,
-                               decoration:BoxDecoration(
-                                 color: Color(0xff059FFF),
-                                 borderRadius:BorderRadius.circular(10),
-                               ) ,
-                               child: Center(
-                                 child: Text("البدائل"),
-                               ),
-                             )*/
+
                            ],
                          )
 
                      ),
                    ),
                    Padding(
-                     padding: const EdgeInsets.only(bottom: 5),
+                     padding: EdgeInsets.all(
+                       MediaQuery.of(context).size.height*0.003,
+                     ),
                      child: Container(
-                         height:MediaQuery.of(context).size.height*0.13,
-                         width: MediaQuery.of(context).size.width*0.99,
                          decoration:BoxDecoration(
                            color: Colors.white,
                            borderRadius:BorderRadius.circular(10),
@@ -244,11 +245,11 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Paracetamol"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("باراسيتامول"),
                                  ),
                                ],
@@ -257,18 +258,21 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Type:pill"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.green,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("600"),
                                        )
                                    ),
@@ -279,46 +283,116 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Text("اسم الشركة"),
                                  ),
                                  Padding(
-                                   padding: const EdgeInsets.all(8.0),
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.red,
                                          borderRadius:BorderRadius.circular(10),
                                        ) ,
                                        child: Padding(
-                                         padding: const EdgeInsets.only(left: 8,right: 8),
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
                                          child: Text("800"),
                                        )
                                    ),
                                  ),
                                ],
                              ),
-                             /* Container(
-                               height:MediaQuery.of(context).size.height*0.026,
-                               width: MediaQuery.of(context).size.width*0.99,
-                               decoration:BoxDecoration(
-                                 color: Color(0xff059FFF),
-                                 borderRadius:BorderRadius.circular(10),
-                               ) ,
-                               child: Center(
-                                 child: Text("البدائل"),
-                               ),
-                             )*/
+
                            ],
                          )
 
                      ),
                    ),
+                   Padding(
+                     padding: EdgeInsets.all(
+                       MediaQuery.of(context).size.height*0.003,
+                     ),
+                     child: Container(
+                         decoration:BoxDecoration(
+                           color: Colors.white,
+                           borderRadius:BorderRadius.circular(10),
+                         ) ,
+                         child:Column(
+                           children: [
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Text("Paracetamol"),
+                                 ),
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Text("باراسيتامول"),
+                                 ),
+                               ],
+                             ),
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Text("Type:pill"),
+                                 ),
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Container(
+                                       decoration:BoxDecoration(
+                                         color: Colors.green,
+                                         borderRadius:BorderRadius.circular(10),
+                                       ) ,
+                                       child: Padding(
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
+                                         child: Text("600"),
+                                       )
+                                   ),
+                                 ),
+                               ],
+                             ),
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Text("اسم الشركة"),
+                                 ),
+                                 Padding(
+                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   child: Container(
+                                       decoration:BoxDecoration(
+                                         color: Colors.red,
+                                         borderRadius:BorderRadius.circular(10),
+                                       ) ,
+                                       child: Padding(
+                                         padding:  EdgeInsets.only(
+                                             left:MediaQuery.of(context).size.width * 0.02,
+                                             right: MediaQuery.of(context).size.width * 0.02
+                                         ),
+                                         child: Text("800"),
+                                       )
+                                   ),
+                                 ),
+                               ],
+                             ),
 
+                           ],
+                         )
 
+                     ),
+                   ),
                  ],
                ),
              )
-
           ],
         ),
       ),
