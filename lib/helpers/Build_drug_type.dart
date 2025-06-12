@@ -13,7 +13,7 @@ class BuildDrugType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width*0.2,
+      width: MediaQuery.of(context).size.width*0.24,
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -26,8 +26,8 @@ class BuildDrugType extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
               image,
-              height: 60,
-              width: 60,
+              height: 70,
+              width: 70,
               fit: BoxFit.cover,
             ),
           ),
