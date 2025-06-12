@@ -67,13 +67,35 @@ class PermissionsController extends GetxController {
 
     bool hasRealInternet = await isInternetAvailable();
     if (hasRealInternet) {
-      Get.snackbar('', 'Updating data',
-          backgroundColor: AppColors.primaryColor, colorText: Colors.white);
+      Get.snackbar(
+        '', '',
+        titleText: Container(
+          alignment: Alignment.center,
+          height: 20,
+          child: Text(
+            'Updating data',
+            style: TextStyle(
+              color: AppColors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+        snackStyle: SnackStyle.FLOATING,
+        backgroundColor: const Color(0xD7CFFFCB),
+        borderRadius: 8,
+        isDismissible: false,
+        duration: const Duration(seconds: 2),
+      );
+
       print('[NETWORK] Internet is available, refreshing names from API...');
       await fetchNamesFromApi();
     } else {
       Get.snackbar('', 'No internet connection',
-          backgroundColor: AppColors.primaryColor, colorText: Colors.white);
+          backgroundColor: Color(0xFFEFCED5), colorText: Colors.white);
       print('[NETWORK] No real internet connection, using cached names only.');
     }
   }
@@ -137,11 +159,11 @@ class PermissionsController extends GetxController {
           List<Map<String, dynamic>> perms = List<Map<String, dynamic>>.from(body['data']);
           allPermissions.assignAll(perms);
           box.write('cached_permissions', perms);
-          Get.snackbar('Updated', 'Permissions updated', backgroundColor: Colors.green, colorText: Colors.white);
+         // Get.snackbar('Updated', 'Permissions updated', backgroundColor: Colors.green, colorText: Colors.white);
           print('[API] Fetched and cached ${perms.length} permissions');
         } else {
           print('[API] Failed to fetch permissions. Status code: ${res.statusCode}');
-          Get.snackbar('Warning', 'Failed to refresh permissions, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
+          //Get.snackbar('Warning', 'Failed to refresh permissions, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
         }
       } catch (e) {
         print('[API ERROR] $e');
@@ -149,8 +171,10 @@ class PermissionsController extends GetxController {
       }
     } else {
       if (cachedPerms == null) {
-        Get.snackbar('No Internet', 'No cached permissions available', backgroundColor: Colors.red, colorText: Colors.white);
+        print('No Internet No cached permissions available');
+       // Get.snackbar('No Internet', 'No cached permissions available', backgroundColor: Colors.red, colorText: Colors.white);
       } else {
+        print('No Internet Using cached permissions');
         Get.snackbar('No Internet', 'Using cached permissions', backgroundColor: Colors.orange, colorText: Colors.white);
       }
       print('[NETWORK] No internet connection, using cached permissions only.');

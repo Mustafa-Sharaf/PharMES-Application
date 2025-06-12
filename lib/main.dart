@@ -38,49 +38,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-    initialRoute: '/home',
-    debugShowCheckedModeBanner: false,
-    getPages: [
-      GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
-      GetPage(name: '/signUp', page: ()=>SignUpScreen()),
-      GetPage(name: '/splash', page: ()=>SplashScreen()),
-      GetPage(name: '/Onboarding', page: ()=>OnboardingScreen()),
-      GetPage(name: '/forgetPass', page: ()=>ForgetPasswordScreen()),
-      GetPage(name: '/emailVerify', page: ()=>EmailVerificationScreen()),
-      GetPage(name: '/resetPass', page: ()=>ResetPasswordScreen()),
-      GetPage(name: '/home', page: ()=>HomeScreen()),
-      GetPage(name: '/searchScreen', page: ()=>SearchScreen()),
-      //GetPage(name: '/test', page: ()=>Test()),
-    //  GetPage(name: '/permissionScreen', page: ()=>PermissionsScreen(),binding: PermissionsBindings()),
-      GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
+      initialRoute: initialRoute,
+      debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
+        GetPage(name: '/signUp', page: ()=>SignUpScreen()),
+        GetPage(name: '/splash', page: ()=>SplashScreen()),
+        GetPage(name: '/Onboarding', page: ()=>OnboardingScreen()),
+        GetPage(name: '/forgetPass', page: ()=>ForgetPasswordScreen()),
+        GetPage(name: '/emailVerify', page: ()=>EmailVerificationScreen()),
+        GetPage(name: '/resetPass', page: ()=>ResetPasswordScreen()),
+        GetPage(name: '/home', page: ()=>HomeScreen()),
+        GetPage(name: '/searchScreen', page: ()=>SearchScreen()),
+        GetPage(name: '/test', page: ()=>Test()),
+        GetPage(name: '/permissionScreen', page: ()=>PermissionsScreen(),binding: PermissionsBindings()),
+        GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
 
-    ],
+      ],
     );
   }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//mustafa sharaf

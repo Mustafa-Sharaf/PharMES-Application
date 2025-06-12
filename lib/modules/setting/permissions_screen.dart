@@ -13,10 +13,48 @@ class PermissionsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Setting'),
+        title: const Text(' Setting',style: TextStyle(color: AppColors.white),),
         backgroundColor: AppColors.primaryColor,
       ),
-      body: SingleChildScrollView(
+      body:Stack(
+          children: [
+            Positioned(
+              bottom: -50,
+              right: -50,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: -30,
+              right: -30,
+              child: Container(
+                width: 110,
+                height: 110,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.15),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: -10,
+              right: -10,
+              child: Container(
+                width: 70,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+      SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +155,7 @@ class PermissionsScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
+      ),]
+    ));
   }
 }
