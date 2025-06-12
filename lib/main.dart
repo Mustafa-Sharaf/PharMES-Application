@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
       GetPage(name: '/resetPass', page: ()=>ResetPasswordScreen()),
       GetPage(name: '/home', page: ()=>HomeScreen()),
       GetPage(name: '/searchScreen', page: ()=>SearchScreen()),
-      GetPage(name: '/test', page: ()=>Test()),
-      GetPage(name: '/permissionScreen', page: ()=>PermissionsScreen(),binding: PermissionsBindings()),
+      //GetPage(name: '/test', page: ()=>Test()),
+    //  GetPage(name: '/permissionScreen', page: ()=>PermissionsScreen(),binding: PermissionsBindings()),
       GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
 
     ],
