@@ -10,8 +10,6 @@ import '../../configurations/http_helpers.dart';
 class PermissionsController extends GetxController {
   var nameController = TextEditingController();
   var roleController = TextEditingController();
-
-
   RxList<Map<String, dynamic>> allPermissions = <Map<String, dynamic>>[].obs;
   RxList<String> selectedPermissionNames = <String>[].obs;
 
@@ -22,8 +20,6 @@ class PermissionsController extends GetxController {
   var nameSelectedFromResults = false.obs;
   bool ignoreNextInputChange = false;
   String lastText = '';
-
-
   final box = GetStorage();
 
   @override
@@ -31,7 +27,6 @@ class PermissionsController extends GetxController {
     super.onInit();
     initializeNameList();
     fetchPermissions();
-
     nameController.addListener(() {
       final currentText = nameController.text.trim();
 

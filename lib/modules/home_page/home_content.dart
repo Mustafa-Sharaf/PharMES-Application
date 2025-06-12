@@ -67,7 +67,7 @@ class HomeContent extends StatelessWidget {
                child: Text("View All", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
              SizedBox(
-               height: MediaQuery.of(context).size.height*0.4,
+               height: MediaQuery.of(context).size.height*0.35,
                child: ListView(
                  children: [
                    Padding(
