@@ -2,15 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pharmes_app/modules/setting/permissions_screen.dart';
 import 'modules/email_verification/email_verification_screen.dart';
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_page_screen.dart';
+import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
 import 'modules/notifications/notifications.dart';
 import 'modules/onboarding/onboarding_screen.dart';
+import 'modules/profile/permissions_bindings.dart';
+import 'modules/profile/permissions_screen.dart';
+import 'modules/profile/profile_screen.dart';
 import 'modules/reset_password/reset_password_screen.dart';
 import 'modules/search/search_screen.dart';
-import 'modules/setting/permissions_bindings.dart';
 import 'modules/sign_in/sign_in_bindings.dart';
 import 'modules/sign_in/sign_in_screen.dart';
 import 'modules/sign_up/sign_up_screen.dart';
@@ -53,6 +55,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/test', page: ()=>Test()),
         GetPage(name: '/permissionScreen', page: ()=>PermissionsScreen(),binding: PermissionsBindings()),
         GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
+        GetPage(name: '/profileScreen', page: ()=>ProfileScreen()),
+        GetPage(name: '/pharmacyManagementScreen', page: ()=>PharmacyManagementScreen()),
 
       ],
     );

@@ -47,10 +47,10 @@ class DrawerHome extends StatelessWidget {
             ),
 
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Setting'),
+              leading: Icon(Icons.person),
+              title: Text('My Profile'),
               onTap: () {
-                Get.toNamed('/settingScreen');
+                Get.toNamed('/profileScreen');
               },
             ),
             ListTile(
@@ -65,12 +65,14 @@ class DrawerHome extends StatelessWidget {
               title: Text('Support'),
             ),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('log out'),
-              onTap: () {
-                Get.toNamed('/logoutScreen');
-              },
+              leading: Icon(Icons.share),
+              title: Text('Share Application'),
             ),
+            ListTile(
+              leading: Icon(Icons.privacy_tip),
+              title: Text('Privacy Policy'),
+            ),
+
           ]
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmes_app/app_theme/app_colors.dart';
 import '../../widgets/Build_drug_type.dart';
 import '../../widgets/build_Companies.dart';
 
@@ -8,7 +9,7 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Color(0xffDCE0E9),
+      backgroundColor:AppColors.backgroundHome,
       body: Padding(
         padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
         child: Column(
@@ -65,8 +66,7 @@ class HomeContent extends StatelessWidget {
                ),
                child: Text("View All", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
-             Container(
-               //color: Colors.cyanAccent,
+             SizedBox(
                height: MediaQuery.of(context).size.height*0.4,
                child: ListView(
                  children: [
@@ -390,13 +390,9 @@ class HomeContent extends StatelessWidget {
 
                      ),
                    ),
-
-
-
                  ],
                ),
              )
-
           ],
         ),
       ),
