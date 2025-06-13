@@ -8,6 +8,7 @@ import 'modules/home_page/home_page_screen.dart';
 import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
 import 'modules/notifications/notifications.dart';
 import 'modules/onboarding/onboarding_screen.dart';
+import 'modules/profile/connectivity_service_controller.dart';
 import 'modules/profile/permissions_bindings.dart';
 import 'modules/profile/permissions_screen.dart';
 import 'modules/profile/profile_screen.dart';
@@ -26,6 +27,7 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   final box = GetStorage();
+  Get.put(ConnectivityService());
   final token = box.read<String>('token');
   print('[main] Token from storage: $token');
   await Firebase.initializeApp();
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/home',
+      initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),

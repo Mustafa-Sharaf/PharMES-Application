@@ -1,25 +1,27 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pharmes_app/app_theme/app_colors.dart';
 
 import '../../configurations/http_helpers.dart';
+import 'connectivity_service_controller.dart';
 
 class PermissionsController extends GetxController {
-  var nameController = TextEditingController();
-  var roleController = TextEditingController();
+  RxBool isOffline = false.obs;
+  RxBool showGreenBanner = false.obs;
   RxList<Map<String, dynamic>> allPermissions = <Map<String, dynamic>>[].obs;
   RxList<String> selectedPermissionNames = <String>[].obs;
-
   RxList<Map<String, dynamic>> localNames = <Map<String, dynamic>>[].obs;
   RxList<Map<String, dynamic>> searchResults = <Map<String, dynamic>>[].obs;
-  int? selectedUserId;
-
   var nameSelectedFromResults = false.obs;
   bool ignoreNextInputChange = false;
   String lastText = '';
+  int? selectedUserId;
+  var nameController = TextEditingController();
+  var roleController = TextEditingController();
+  ConnectivityService connectivityService = Get.find<ConnectivityService>();
   final box = GetStorage();
 
   @override
@@ -28,8 +30,7 @@ class PermissionsController extends GetxController {
     initializeNameList();
     fetchPermissions();
     nameController.addListener(() {
-      final currentText = nameController.text.trim();
-
+    final currentText = nameController.text.trim();
       if (ignoreNextInputChange) {
         ignoreNextInputChange = false;
         return;
@@ -38,19 +39,8 @@ class PermissionsController extends GetxController {
       nameSelectedFromResults.value = false;
     });
   }
-
-  Future<bool> isInternetAvailable() async {
-    try {
-      final result = await InternetAddress.lookup('google.com')
-          .timeout(Duration(seconds: 3));
-      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    } catch (_) {
-      return false;
-    }
-  }
   void initializeNameList() async {
     await GetStorage.init();
-
     List? cached = box.read('cached_names');
     if (cached != null) {
       localNames.value = List<Map<String, dynamic>>.from(cached);
@@ -59,44 +49,15 @@ class PermissionsController extends GetxController {
       print('[REMOTE] No cache found, fetching from API...');
       await fetchNamesFromApi();
     }
-
-    bool hasRealInternet = await isInternetAvailable();
+    bool hasRealInternet = await connectivityService.isInternetAvailable();
     if (hasRealInternet) {
-      Get.snackbar(
-        '',
-        '',
-        titleText: Container(
-          alignment: Alignment.center,
-          child: Text(
-            'Updating data',
-            style: TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-
-        margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-        snackStyle: SnackStyle.FLOATING,
-        backgroundColor: const Color(0xD7CFFFCB),
-        borderRadius: 8,
-        isDismissible: false,
-        duration: const Duration(seconds: 2),
-      );
-
-
+      isOffline.value = false;
       print('[NETWORK] Internet is available, refreshing names from API...');
       await fetchNamesFromApi();
     } else {
-      Get.snackbar('', 'No internet connection',
-          backgroundColor: Color(0xFFEFCED5), colorText: Colors.white);
       print('[NETWORK] No real internet connection, using cached names only.');
     }
   }
-
   Future<void> fetchNamesFromApi() async {
     try {
       final token = box.read<String>('token');
@@ -108,14 +69,15 @@ class PermissionsController extends GetxController {
         localNames.value = users;
         box.write('cached_names', users);
         print('[API] Fetched ${users.length} users from API.');
-      } else {
-
+      }
+      else if(res.statusCode == 500) {
+       Get.offNamed('/signIn');
+      }
+      else {
         print('[API] Failed to fetch names. Status code: ${res.statusCode}');
-        // Get.snackbar('Warning', 'Failed to refresh users, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
       }
     } catch (e) {
       print('[API ERROR] $e');
-      Get.snackbar('Error', 'Error updating users, using cached data', backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
   void onSearchSubmitted(String input) {
@@ -123,18 +85,14 @@ class PermissionsController extends GetxController {
     final exactMatches = localNames
         .where((user) => user['name'].toString().toLowerCase()==query)
         .toList();
-
     searchResults.value = exactMatches;
     nameSelectedFromResults.value = false;
-
     if (exactMatches.isEmpty) {
       print('[SEARCH] No exact match for "$query"');
     } else {
       print('[SEARCH] Found ${exactMatches.length} matches');
     }
   }
-
-
   void togglePermission(String permissionName) {
     if (selectedPermissionNames.contains(permissionName)) {
       selectedPermissionNames.remove(permissionName);
@@ -142,7 +100,6 @@ class PermissionsController extends GetxController {
       selectedPermissionNames.add(permissionName);
     }
   }
-
   void fetchPermissions() async {
     await GetStorage.init();
     List? cachedPerms = box.read('cached_permissions');
@@ -150,8 +107,7 @@ class PermissionsController extends GetxController {
       allPermissions.value = List<Map<String, dynamic>>.from(cachedPerms);
       print('[LOCAL] Loaded permissions from cache (${allPermissions.length})');
     }
-
-    if (await isInternetAvailable()) {
+    if (await connectivityService.isInternetAvailable()) {
       try {
         var res = await HttpHelper.gettData(url: 'Pharmacy/get-permissions/en');
         if (res.statusCode == 200) {
@@ -159,11 +115,9 @@ class PermissionsController extends GetxController {
           List<Map<String, dynamic>> perms = List<Map<String, dynamic>>.from(body['data']);
           allPermissions.assignAll(perms);
           box.write('cached_permissions', perms);
-         // Get.snackbar('Updated', 'Permissions updated', backgroundColor: Colors.green, colorText: Colors.white);
           print('[API] Fetched and cached ${perms.length} permissions');
         } else {
           print('[API] Failed to fetch permissions. Status code: ${res.statusCode}');
-          //Get.snackbar('Warning', 'Failed to refresh permissions, using cached data', backgroundColor: Colors.orange, colorText: Colors.white);
         }
       } catch (e) {
         print('[API ERROR] $e');
@@ -172,31 +126,24 @@ class PermissionsController extends GetxController {
     } else {
       if (cachedPerms == null) {
         print('No Internet No cached permissions available');
-       // Get.snackbar('No Internet', 'No cached permissions available', backgroundColor: Colors.red, colorText: Colors.white);
       } else {
         print('No Internet Using cached permissions');
-        Get.snackbar('No Internet', 'Using cached permissions', backgroundColor: Colors.orange, colorText: Colors.white);
       }
       print('[NETWORK] No internet connection, using cached permissions only.');
     }
   }
-
-
   List<int> getSelectedPermissionIds() {
     return allPermissions
         .where((permission) => selectedPermissionNames.contains(permission['name_en']))
         .map<int>((permission) => permission['id'] as int)
         .toList();
   }
-
-
   Future<void> saveRoleWithPermissions() async {
     if (selectedUserId == null) {
       Get.snackbar('Error', 'Please select a user',
           backgroundColor: Colors.red, colorText: Colors.white);
       return;
     }
-
     final role = roleController.text.trim();
     final permissionIds = getSelectedPermissionIds();
 
@@ -205,9 +152,7 @@ class PermissionsController extends GetxController {
           backgroundColor: Colors.red, colorText: Colors.white);
       return;
     }
-
     try {
-
       final response = await HttpHelper.postData(
         url:'Pharmacy/assign-permissions/${selectedUserId!}',
         body: {
@@ -223,8 +168,6 @@ class PermissionsController extends GetxController {
             backgroundColor: Colors.red, colorText: Colors.white);
       }
     } catch (e) {print('Error An error occurred: $e');
-      Get.snackbar('Error', 'An error occurred: $e',
-          backgroundColor: Colors.red, colorText: Colors.white);
     }
   }
   @override
