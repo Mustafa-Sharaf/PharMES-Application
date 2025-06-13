@@ -48,29 +48,29 @@ class DrawerHome extends StatelessWidget {
 
             ListTile(
               leading: Icon(Icons.person),
-              title: Text('My Profile'),
+              title: Text('My_Profile'.tr),
               onTap: () {
                 Get.toNamed('/profileScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.inventory_2),
-              title: Text('My Pharmacy Management'),
+              title: Text('My_Pharmacy_Management'.tr),
               onTap: () {
                 Get.toNamed('/pharmacyManagementScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.support),
-              title: Text('Support'),
+              title: Text('Support'.tr),
             ),
             ListTile(
               leading: Icon(Icons.share),
-              title: Text('Share Application'),
+              title: Text('Share_Application'.tr),
             ),
             ListTile(
               leading: Icon(Icons.privacy_tip),
-              title: Text('Privacy Policy'),
+              title: Text('Privacy_Policy'.tr),
             ),
 
           ]
