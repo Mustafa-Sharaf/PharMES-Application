@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import '../../widgets/Build_drug_type.dart';
 import '../../widgets/build_Companies.dart';
@@ -17,10 +18,10 @@ class HomeContent extends StatelessWidget {
           children: [
              Padding(
                padding: EdgeInsets.only(
-                   top: MediaQuery.of(context).size.height*0.005,
+                   top: MediaQuery.of(context).size.height*0.002,
                    bottom: MediaQuery.of(context).size.height*0.002,
                ),
-               child: Text("Companies", style: TextStyle(fontSize: MediaQuery.textScalerOf(context).scale(18)
+               child: Text("Companies".tr, style: TextStyle(fontSize: MediaQuery.textScalerOf(context).scale(18)
                    , fontWeight: FontWeight.bold)),
              ),
              SizedBox(
@@ -43,7 +44,7 @@ class HomeContent extends StatelessWidget {
                  top: MediaQuery.of(context).size.height*0.005,
                  bottom: MediaQuery.of(context).size.height*0.002,
                ),
-               child: Text("Drug Types", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+               child: Text("Drug_Types".tr, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
              SizedBox(
                height:MediaQuery.of(context).size.height*0.15,
@@ -64,7 +65,7 @@ class HomeContent extends StatelessWidget {
                  top: MediaQuery.of(context).size.height*0.005,
                  bottom: MediaQuery.of(context).size.height*0.002,
                ),
-               child: Text("View All", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+               child: Text("View_All".tr, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
              SizedBox(
                height: MediaQuery.of(context).size.height*0.4,

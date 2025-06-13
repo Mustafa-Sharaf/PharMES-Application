@@ -74,9 +74,8 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   child: Row(mainAxisSize: MainAxisSize.min,
                     children: [
-
-                      const Text(
-                        'Next',
+                       Text(
+                        'Next'.tr,
                         style: TextStyle(color: AppColors.black, fontSize: 15),
                       ),
                       SizedBox(width: screenWidth * 0.02,),

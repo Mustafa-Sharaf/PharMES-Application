@@ -37,7 +37,7 @@ class SignInScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Image.asset('assets/images/logo.jpg', height: 75, width: 75),
-                                const Text('PharMES',
+                                 Text('PharMes'.tr,
                                     style: TextStyle(fontSize: 32, color: Colors.white, fontStyle: FontStyle.italic)),
                               ],
                             ),
@@ -61,15 +61,15 @@ class SignInScreen extends StatelessWidget {
                               ),
                               child: Column(
                                 children: [
-                                  const TabBar(
+                                   TabBar(
                                     labelColor: AppColors.primaryColor,
                                     unselectedLabelColor: Colors.grey,
                                     labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                     indicatorColor: Color(0xFF1E62F2),
                                     indicatorWeight: 2,
                                     tabs: [
-                                      Tab(text: 'Sign in'),
-                                      Tab(text: 'Sign Up'),
+                                      Tab(text: 'Sign_in'.tr),
+                                      Tab(text: 'Sign_Up'.tr),
                                     ],
                                   ),
                                   const SizedBox(height: 20),
@@ -93,12 +93,12 @@ class SignInScreen extends StatelessWidget {
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       CustomTextField(
-                                                        label: 'Email',
+                                                        label: 'Email'.tr,
                                                         controller: controller.emailController,
                                                         icon: Icons.email,
                                                       ),
                                                       Obx(() => CustomTextField(
-                                                        label: 'Password',
+                                                        label: 'Password'.tr,
                                                         controller: controller.passwordController,
                                                         icon: Icons.lock,
                                                         obscure: controller.obscurePassword.value,
@@ -117,10 +117,10 @@ class SignInScreen extends StatelessWidget {
                                                         alignment: Alignment.bottomRight,
                                                         child: TextButton(
                                                           onPressed: () {
-                                                            Get.toNamed('/forgetpass');
+                                                            Get.toNamed('/forgetPass');
                                                           },
-                                                          child: const Text(
-                                                            'Forget Password?',
+                                                          child:  Text(
+                                                            'Forget_Password'.tr,
                                                             style: TextStyle(color: AppColors.primaryColor, fontSize: 14),
                                                           ),
                                                         ),
@@ -137,7 +137,7 @@ class SignInScreen extends StatelessWidget {
                                                               borderRadius: BorderRadius.circular(25),
                                                             ),
                                                           ),
-                                                          child: const Text('Sign In',
+                                                          child: Text('Sign_in'.tr,
                                                               style: TextStyle(fontSize: 16, color: Colors.white)),
                                                         ),
                                                       ),

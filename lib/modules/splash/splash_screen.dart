@@ -27,8 +27,8 @@ class SplashScreen extends GetView<SplashController> {
             Obx(() => AnimatedOpacity(
               duration: const Duration(milliseconds: 500),
               opacity: controller.showText.value ? 1.0 : 0.0,
-              child: const Text(
-                'PharMes',
+              child:  Text(
+                'PharMes'.tr,
                 style: TextStyle(fontSize: 33, color: Colors.white,
                 fontFamily: 'EduVIC'),
               ),

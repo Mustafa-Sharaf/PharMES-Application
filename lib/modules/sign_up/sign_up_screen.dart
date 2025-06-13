@@ -17,22 +17,22 @@ class SignUpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomTextField(
-                label: 'Name',
+                label: 'Name'.tr,
                 controller: controller.nameController,
                 icon: Icons.person,
               ),
               CustomTextField(
-                label: 'Phone Number',
+                label: 'Phone_Number'.tr,
                 controller: controller.phoneController,
                 icon: Icons.phone,
               ),
               CustomTextField(
-                label: 'Email',
+                label: 'Email'.tr,
                 controller: controller.emailController,
                 icon: Icons.email,
               ),
               CustomTextField(
-                label: 'Password',
+                label: 'Password'.tr,
                 controller: controller.passwordController,
                 icon: Icons.lock,
                 obscure: controller.obscurePassword,
@@ -42,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               CustomTextField(
-                label: 'Confirm Password',
+                label: 'Confirm_Password'.tr,
                 controller: controller.confirmPasswordController,
                 icon: Icons.lock,
                 obscure: controller.obscureConfirmPassword,
@@ -52,7 +52,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text('Role', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              Text('Role'.tr, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 6),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -62,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 child: DropdownButtonFormField<String>(
                   value: controller.selectedRole,
-                  hint: const Text("Select Role"),
+                  hint:  Text("Select_Role".tr),
                   decoration: const InputDecoration(border: InputBorder.none),
                   items: controller.roles.map((role) {
                     return DropdownMenuItem(value: role, child: Text(role));
@@ -73,33 +73,33 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 10),
               if (controller.selectedRole == 'Repository Owner') ...[
                 CustomTextField(
-                  label: 'Repository Name',
+                  label: 'Repository_Name'.tr,
                   controller: controller.storeNameController,
                   icon: Icons.store,
                 ),
                 CustomTextField(
-                  label: 'Repository Address',
+                  label: 'Repository_Address'.tr,
                   controller: controller.storeAddressController,
                   icon: Icons.location_on,
                 ),
                 CustomTextField(
-                  label: 'Repository Phone',
+                  label: 'Repository_Phone'.tr,
                   controller: controller.storePhoneController,
                   icon: Icons.phone,
                 ),
               ] else if (controller.selectedRole == 'Pharmacy Owner') ...[
                 CustomTextField(
-                  label: 'Pharmacy Name',
+                  label: 'Pharmacy_Name'.tr,
                   controller: controller.storeNameController,
                   icon: Icons.local_pharmacy,
                 ),
                 CustomTextField(
-                  label: 'Pharmacy Address',
+                  label: 'Pharmacy_Address'.tr,
                   controller: controller.storeAddressController,
                   icon: Icons.location_on,
                 ),
                 CustomTextField(
-                  label: 'Pharmacy Phone',
+                  label: 'Pharmacy_Phone'.tr,
                   controller: controller.storePhoneController,
                   icon: Icons.phone,
                 ),
@@ -116,8 +116,8 @@ class SignUpScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  child: const Text(
-                    'Sign Up',
+                  child:  Text(
+                    'Sign_Up'.tr,
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
