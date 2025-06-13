@@ -19,7 +19,7 @@ class DrawerHome extends StatelessWidget {
                   mainAxisAlignment:MainAxisAlignment.start ,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('PharMes'.tr,
+                    const Text('PharMES',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20
@@ -48,29 +48,29 @@ class DrawerHome extends StatelessWidget {
 
             ListTile(
               leading: Icon(Icons.person),
-              title: Text('My_Profile'.tr),
+              title: Text('My Profile'),
               onTap: () {
                 Get.toNamed('/profileScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.inventory_2),
-              title: Text('My_Pharmacy_Management'.tr),
+              title: Text('My Pharmacy Management'),
               onTap: () {
                 Get.toNamed('/pharmacyManagementScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.support),
-              title: Text('Support'.tr),
+              title: Text('Support'),
             ),
             ListTile(
               leading: Icon(Icons.share),
-              title: Text('Share_Application'.tr),
+              title: Text('Share Application'),
             ),
             ListTile(
               leading: Icon(Icons.privacy_tip),
-              title: Text('Privacy_Policy'.tr),
+              title: Text('Privacy Policy'),
             ),
 
           ]

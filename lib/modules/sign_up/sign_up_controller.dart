@@ -8,7 +8,7 @@ import '../../app_theme/app_colors.dart';
 import '../../configurations/http_helpers.dart';
 
 class SignUpController extends GetxController {
-
+  String? token;
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final emailController = TextEditingController();

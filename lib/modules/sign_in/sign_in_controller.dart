@@ -8,6 +8,7 @@ import '../test.dart';
 
 
 class SignInController extends GetxController {
+  String? token;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var obscurePassword = true.obs;
@@ -62,6 +63,7 @@ class SignInController extends GetxController {
         token = res['data']['authorization']['token'];
         GetStorage _box = GetStorage();
         _box.write('token', token);
+        //HttpHelper.token = token;
         Get.snackbar(' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: AppColors.primaryColor,

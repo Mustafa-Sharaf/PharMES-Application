@@ -17,11 +17,11 @@ class BuildCompanies extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: 35,
+            radius: MediaQuery.of(context).size.width * 0.084,
             backgroundImage:AssetImage(image),
           ),
           SizedBox(height:MediaQuery.of(context).size.height*0.01),
-          Text(title, style: const TextStyle(fontSize: 12)),
+          Text(title, style: const TextStyle(fontSize: 10)),
         ],
       ),
     );
