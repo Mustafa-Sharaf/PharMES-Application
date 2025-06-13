@@ -12,7 +12,7 @@ class OnboardingScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor:Color(0xFFEEF0F3),
+      backgroundColor:AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
