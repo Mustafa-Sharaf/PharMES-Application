@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
         shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
         child: Container(
-          color: Colors.cyanAccent,
+          //color: Colors.cyanAccent,
           height: MediaQuery.of(context).size.height*0.5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
