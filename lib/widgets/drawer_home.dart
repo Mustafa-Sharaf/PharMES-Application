@@ -12,33 +12,36 @@ class DrawerHome extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height:MediaQuery.of(context).size.height*0.25,
+              height:MediaQuery.of(context).size.height*0.30,
               child: DrawerHeader(
                 decoration: const BoxDecoration(color:AppColors.primaryColor,),
                 child: Column(
                   mainAxisAlignment:MainAxisAlignment.start ,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
                     const Text('PharMES',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
-                    ),
-                    const Text('Mustafa Sharaf',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18
                       ),
                     ),
+                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
+                    CircleAvatar(
+                      radius: 32,
+                      backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
+                    ),
+                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
+                    const Text('Mustafa Sharaf',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15
+                      ),
+                    ),
                     const Text('MustafaSharaf@gmail.com',
                       style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 15
+                          fontSize: 14
                       ),
                     ),
                   ],
