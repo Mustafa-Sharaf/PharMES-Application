@@ -84,8 +84,9 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 6.0,
-        child: SizedBox(
-          height: 50,
+        child: Container(
+          color: Colors.cyanAccent,
+          height: MediaQuery.of(context).size.height*0.5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

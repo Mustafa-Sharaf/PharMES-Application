@@ -19,7 +19,7 @@ class DrawerHome extends StatelessWidget {
                   mainAxisAlignment:MainAxisAlignment.start ,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('PharMES',
+                    Text('PharMes'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20

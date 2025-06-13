@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: AppColors.primaryColor),
-      locale:Get.deviceLocale,
+      //locale:Get.deviceLocale,
       translations: MyLanguage(),
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
