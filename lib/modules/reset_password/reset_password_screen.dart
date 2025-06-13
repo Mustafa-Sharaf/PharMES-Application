@@ -27,7 +27,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.arrow_back_ios,color: AppColors.white,size: 20,),
                         SizedBox(width: 30,),
-                        Text('Reset Password',
+                        Text('Reset_Password'.tr,
                             style: TextStyle(fontSize: 25, color: Colors.white)),
                         SizedBox(width: 30,),
                       ],
@@ -36,13 +36,13 @@ class ResetPasswordScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 35,),
-              Text('Enter New Password',
+              Text('Enter_New_Password'.tr,
                 style: TextStyle(color: AppColors.primaryColor,
                     fontSize: 22,fontWeight: FontWeight.w500),),
               SizedBox(height: 30,),
               Padding(
                 padding: const EdgeInsets.all(18.0),
-                child: Text('Enter new password must be different from previously used password ',
+                child: Text('Enter_new_password_must_be_different_from_previously_used_password'.tr,
                   style: TextStyle(fontSize: 17, color: AppColors.Gray,fontWeight: FontWeight.w600),),
               ),
               SizedBox(height: 25,),
@@ -56,7 +56,7 @@ class ResetPasswordScreen extends StatelessWidget {
                           controller: controller.passwordController,
                           obscureText: controller.obscurePassword.value,
                           decoration: InputDecoration(
-                            hintText: 'Password',
+                            hintText: 'Password'.tr,
                             prefixIcon: Icon(Icons.lock_outline, color: AppColors.Gray),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -86,7 +86,7 @@ class ResetPasswordScreen extends StatelessWidget {
                           controller: controller.confirmPassController,
                           obscureText: controller.obscureConfirmPassword.value,
                           decoration: InputDecoration(
-                            hintText: 'Confirm Password',
+                            hintText: 'Confirm_Password'.tr,
                             prefixIcon: Icon(Icons.lock_outline, color: AppColors.Gray),
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -118,7 +118,7 @@ class ResetPasswordScreen extends StatelessWidget {
               MaterialButton(onPressed: (){Get.offAllNamed('/signIn');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 70),
-                  child: Text('Continue',style: TextStyle(color: AppColors.white,
+                  child: Text('Continue'.tr,style: TextStyle(color: AppColors.white,
                       fontSize: 20),),
                 ),
               )

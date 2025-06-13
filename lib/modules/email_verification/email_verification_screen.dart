@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-
 import '../../app_theme/app_colors.dart';
 import '../../helpers/clipper_forgetpass.dart';
 import 'email_verification_controller.dart';
@@ -30,7 +29,7 @@ class EmailVerificationScreen extends StatelessWidget {
                       children: [
                         const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
                         const SizedBox(width: 30),
-                        const Text('Email Verification',
+                         Text('Email_Verification'.tr,
                             style: TextStyle(fontSize: 25, color: Colors.white)),
                         const SizedBox(width: 30),
                       ],
@@ -39,16 +38,16 @@ class EmailVerificationScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 35),
-              const Text(
-                'Get Your Code',
+               Text(
+                'Get_Your_Code'.tr,
                 style: TextStyle(color: AppColors.primaryColor,
                     fontSize: 22, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(18.0),
                 child: Text(
-                  'Please Enter the 6 digit code that sent to your email address',
+                  'Please_Enter_the_6_digit_code_that_sent_to_your_email_address'.tr,
                   style: TextStyle(fontSize: 17, color: AppColors.Gray, fontWeight: FontWeight.w600),
                 ),
               ),
@@ -62,13 +61,13 @@ class EmailVerificationScreen extends StatelessWidget {
               ),
               const SizedBox(height: 55),
               MaterialButton(
-                onPressed: () {Get.toNamed('/resetpass');},
+                onPressed: () {Get.toNamed('/resetPass');},
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: AppColors.primaryColor,
-                child: const Padding(
+                child:Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
                   child: Text(
-                    'Verify and Proceed',
+                    'Verify_and_Proceed'.tr,
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),

@@ -24,10 +24,10 @@ class SignUpController extends GetxController {
   String? selectedRole;
 
   List<String> roles = [
-    'Pharmacy Owner',
-    'Repository Owner',
-    'Pharmacist',
-    'RepositoryEmployee',
+    'Pharmacy_Owner'.tr,
+    'Repository_Owner'.tr,
+    'Pharmacist'.tr,
+    'RepositoryEmployee'.tr,
   ];
 
   void togglePasswordVisibility() {

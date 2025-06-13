@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:pharmes_app/app_theme/app_colors.dart';
+import 'package:pharmes_app/language/language.dart';
 import 'modules/email_verification/email_verification_screen.dart';
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_page_screen.dart';
@@ -43,8 +45,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: initialRoute,
+      initialRoute: '/home',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: AppColors.primaryColor),
+      locale:Get.deviceLocale,
+      translations: MyLanguage(),
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
         GetPage(name: '/signUp', page: ()=>SignUpScreen()),

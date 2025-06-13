@@ -26,7 +26,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.arrow_back_ios,color: AppColors.white,size: 20,),
                         SizedBox(width: 30,),
-                        Text('Forget Password',
+                        Text('forget_Password'.tr,
                             style: TextStyle(fontSize: 25, color: Colors.white)),
                         SizedBox(width: 30,),
                       ],
@@ -35,13 +35,13 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 35,),
-              Text('Mail Address Here',
+              Text('Mail_Address_Here'.tr,
                 style: TextStyle(color: AppColors.primaryColor,
                     fontSize: 22,fontWeight: FontWeight.w500),),
               SizedBox(height: 30,),
               Padding(
                 padding: const EdgeInsets.all(18.0),
-                child: Text('Enter the email address associated with your account ',
+                child: Text('Enter_the_email_address'.tr,
                   style: TextStyle(fontSize: 17, color: AppColors.Gray,fontWeight: FontWeight.w600),),
               ),
               SizedBox(height: 25,),
@@ -52,7 +52,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: 'Enter your Email',
+                      hintText: 'Enter_your_Email'.tr,
                       prefixIcon: Icon(Icons.email, color: AppColors.Gray),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
@@ -70,10 +70,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                 );}
                 ),
               SizedBox(height: 55,),
-              MaterialButton(onPressed: (){Get.toNamed('/emailverify');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
+              MaterialButton(onPressed: (){Get.toNamed('/emailVerify');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 20),
-                  child: Text('Verify and Proceed',style: TextStyle(color: AppColors.white,
+                  child: Text('Verify_and_Proceed'.tr,style: TextStyle(color: AppColors.white,
                       fontSize: 20),),
                 ),
               )

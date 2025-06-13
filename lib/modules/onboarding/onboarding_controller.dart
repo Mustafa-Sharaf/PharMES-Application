@@ -7,15 +7,15 @@ class OnboardingController extends GetxController {
   final List<Map<String, String>> onboardingData = [
     {
       'image': 'assets/images/2.png',
-      'text': ' Get timely alerts before any medication expires never lose money again ',
+      'text': "onboarding1".tr,
     },
     {
       'image': 'assets/images/1.png',
-      'text': 'Manage your pharmacy inventory effortlessly track stock levels ,update quantities',
+      'text': "onboarding2".tr,
     },
     {
       'image': 'assets/images/Web search-rafiki.png',
-      'text': 'Quickly find any medicine you need with our smart search no more walking around the pharmacy',
+      'text': "onboarding3".tr,
     },
   ];
 

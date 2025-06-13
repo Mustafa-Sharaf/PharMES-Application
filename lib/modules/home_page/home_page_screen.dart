@@ -26,20 +26,28 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerHome(),
-
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         actions: [
+          Text("Home_Screen".tr,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+              ),
+            ),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
           IconButton(
             icon: const Text('🔎', style: TextStyle(fontSize: 25)),
             onPressed: () => Get.toNamed('/searchScreen'),
           ),
+
           SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
           IconButton(
             icon: const Text('🔔', style: TextStyle(fontSize: 20)),
             onPressed: () => Get.toNamed('/notificationsScreen'),
           ),
           SizedBox(width:MediaQuery.of(context).size.width * 0.08,),
+
         ],
         leading: Builder(
           builder: (context) => IconButton(
@@ -81,13 +89,13 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(child: BottomTabItem(index: 0, icon: Icons.home, label: 'Home')),
+              Expanded(child: BottomTabItem(index: 0, icon: Icons.home, label: 'Home'.tr)),
               SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-              Expanded(child: BottomTabItem(index: 1, icon: Icons.inventory, label: 'Inventory')),
+              Expanded(child: BottomTabItem(index: 1, icon: Icons.inventory, label: 'Inventory'.tr)),
               SizedBox(width: MediaQuery.of(context).size.width * 0.20,),
-              Expanded(child: BottomTabItem(index: 3, icon: Icons.shopping_cart_outlined, label: 'Cart')),
+              Expanded(child: BottomTabItem(index: 3, icon: Icons.shopping_cart_outlined, label: 'Cart'.tr)),
               SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-              Expanded(child: BottomTabItem(index: 4, icon: Icons.receipt_long, label: 'Bills')),
+              Expanded(child: BottomTabItem(index: 4, icon: Icons.receipt_long, label: 'Bills'.tr)),
             ],
           ),
         ),

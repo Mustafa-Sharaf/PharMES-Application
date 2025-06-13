@@ -12,36 +12,33 @@ class DrawerHome extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height:MediaQuery.of(context).size.height*0.30,
+              height:MediaQuery.of(context).size.height*0.25,
               child: DrawerHeader(
                 decoration: const BoxDecoration(color:AppColors.primaryColor,),
                 child: Column(
                   mainAxisAlignment:MainAxisAlignment.start ,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
                     const Text('PharMES',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
+                    ),
+                    const Text('Mustafa Sharaf',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 18
                       ),
                     ),
-                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
-                    CircleAvatar(
-                      radius: 32,
-                      backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
-                    ),
-                    SizedBox(height:MediaQuery.of(context).size.height*0.01,),
-                    const Text('Mustafa Sharaf',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15
-                      ),
-                    ),
                     const Text('MustafaSharaf@gmail.com',
                       style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 14
+                          fontSize: 15
                       ),
                     ),
                   ],
@@ -51,29 +48,29 @@ class DrawerHome extends StatelessWidget {
 
             ListTile(
               leading: Icon(Icons.person),
-              title: Text('My Profile'),
+              title: Text('My_Profile'.tr),
               onTap: () {
                 Get.toNamed('/profileScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.inventory_2),
-              title: Text('My Pharmacy Management'),
+              title: Text('My_Pharmacy_Management'.tr),
               onTap: () {
                 Get.toNamed('/pharmacyManagementScreen');
               },
             ),
             ListTile(
               leading: Icon(Icons.support),
-              title: Text('Support'),
+              title: Text('Support'.tr),
             ),
             ListTile(
               leading: Icon(Icons.share),
-              title: Text('Share Application'),
+              title: Text('Share_Application'.tr),
             ),
             ListTile(
               leading: Icon(Icons.privacy_tip),
-              title: Text('Privacy Policy'),
+              title: Text('Privacy_Policy'.tr),
             ),
 
           ]

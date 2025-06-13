@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../app_theme/app_colors.dart';
 
@@ -36,7 +37,7 @@ class CustomTextField extends StatelessWidget {
               controller: controller,
               obscureText: obscure,
               decoration: InputDecoration(
-                hintText: "Enter your $label",
+                hintText:'Enter_your'.trParams({'field': label}),
                 hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
                 border: InputBorder.none,
                 prefixIcon: icon != null ? Icon(icon, color: Colors.grey[700], size: 20) : null,
