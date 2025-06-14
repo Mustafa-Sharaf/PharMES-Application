@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import 'package:pharmes_app/modules/profile/profile_controller.dart';
+import 'package:pharmes_app/modules/profile/update_profile%20_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -326,14 +327,19 @@ class ProfileScreen extends StatelessWidget {
                         const Text('English'),
                       ],
                     ),
-                    const Divider(),
-                    Row(
-                      children: [
-                        const Icon(Icons.edit),
-                        const SizedBox(width: 10),
-                        const Expanded(child: Text('Edit Profile')),
-                      ],
+                    const Divider(),GestureDetector(
+                      onTap: () {
+                        Get.to(() =>  UpdateProfileScreen());
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(Icons.edit),
+                          const SizedBox(width: 10),
+                          const Expanded(child: Text('Edit Profile')),
+                        ],
+                      ),
                     ),
+
                     const Divider(),
                     Row(
                       children: [

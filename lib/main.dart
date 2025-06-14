@@ -14,6 +14,7 @@ import 'modules/profile/connectivity_service_controller.dart';
 import 'modules/profile/permissions_bindings.dart';
 import 'modules/profile/permissions_screen.dart';
 import 'modules/profile/profile_screen.dart';
+import 'modules/profile/update_profile _screen.dart';
 import 'modules/reset_password/reset_password_screen.dart';
 import 'modules/search/search_screen.dart';
 import 'modules/sign_in/sign_in_bindings.dart';
@@ -34,7 +35,7 @@ void main()async {
   print('[main] Token from storage: $token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
-  runApp(MyApp(initialRoute: token == null ? '/splash' : '/splash'));
+  runApp(MyApp(initialRoute: token == null ? '/splash' : '/home'));
 }
 
 class MyApp extends StatelessWidget {
@@ -47,8 +48,15 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: AppColors.primaryColor),
-      //locale:Get.deviceLocale,
+    //  theme: ThemeData(primaryColor: AppColors.primaryColor),
+    theme: ThemeData(
+      textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.primaryColor,
+      selectionColor: Colors.blue.withOpacity(0.4),
+      selectionHandleColor: Colors.blue,
+       ),),
+
+    //locale:Get.deviceLocale,
       translations: MyLanguage(),
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),
@@ -65,6 +73,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
         GetPage(name: '/profileScreen', page: ()=>ProfileScreen()),
         GetPage(name: '/pharmacyManagementScreen', page: ()=>PharmacyManagementScreen()),
+        GetPage(name: '/updateProfile', page: ()=>UpdateProfileScreen()),
+
 
       ],
     );
