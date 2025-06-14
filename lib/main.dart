@@ -35,7 +35,7 @@ void main()async {
   print('[main] Token from storage: $token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
-  runApp(MyApp(initialRoute: token == null ? '/splash' : '/home'));
+  runApp(MyApp(initialRoute: token == null ? '/splash' : '/splash'));
 }
 
 class MyApp extends StatelessWidget {
