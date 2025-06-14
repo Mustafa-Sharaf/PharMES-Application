@@ -30,10 +30,10 @@ class BottomTabItem extends StatelessWidget {
             Icon(
               icon,
               color: isSelected ? AppColors.primaryColor : Colors.grey,
-              size:MediaQuery.of(context).size.width * 0.07,),
+              size:MediaQuery.of(context).size.width * 0.06,),
             Text(label,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 10,
                 color: isSelected ? AppColors.primaryColor : Colors.grey,
               ),
             ),
