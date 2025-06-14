@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import 'package:pharmes_app/modules/logout/logout_controller.dart';
 import 'package:pharmes_app/modules/profile/profile_controller.dart';
 import 'package:pharmes_app/modules/profile/update_profile%20_screen.dart';
 
@@ -8,6 +10,9 @@ class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
   ProfileController controller = Get.put<ProfileController>(
     ProfileController(),
+  );
+  LogOutController controllerLogout = Get.put<LogOutController>(
+    LogOutController(),
   );
   @override
   Widget build(BuildContext context) {
@@ -345,10 +350,15 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         const Icon(Icons.logout, color: Colors.red),
                         const SizedBox(width: 10),
-                        const Expanded(
-                          child: Text(
-                            'Log Out',
-                            style: TextStyle(color: Colors.red),
+                         Expanded(
+                          child: GestureDetector(
+                            onTap: (){
+                              controllerLogout.logout(controller.role.value);
+                            },
+                            child: Text(
+                              'Log Out',
+                              style: TextStyle(color: Colors.red),
+                            ),
                           ),
                         ),
                       ],
