@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           Text("Home_Screen".tr,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 25,
+                fontSize: 19,
               ),
             ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context) => IconButton(
             icon: const Padding(
               padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.menu, color: Colors.white, size: 35),
+              child: Icon(Icons.menu, color: Colors.white, size: 28),
             ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
@@ -83,10 +83,10 @@ class HomeScreen extends StatelessWidget {
 
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        notchMargin: 6.0,
+         notchMargin: 6.0,
         child: Container(
           //color: Colors.cyanAccent,
-          height: MediaQuery.of(context).size.height*0.5,
+          height: MediaQuery.of(context).size.height*0.08,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

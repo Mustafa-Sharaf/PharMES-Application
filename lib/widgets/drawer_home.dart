@@ -12,7 +12,7 @@ class DrawerHome extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height:MediaQuery.of(context).size.height*0.25,
+              height:MediaQuery.of(context).size.height*0.30,
               child: DrawerHeader(
                 decoration: const BoxDecoration(color:AppColors.primaryColor,),
                 child: Column(
@@ -29,6 +29,7 @@ class DrawerHome extends StatelessWidget {
                       radius: 30,
                       backgroundImage:AssetImage('assets/images/logodrawer.jpg'),
                     ),
+                    SizedBox(height:MediaQuery.of(context).size.height*0.01),
                     const Text('Mustafa Sharaf',
                       style: TextStyle(
                           color: Colors.white,

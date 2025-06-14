@@ -68,12 +68,14 @@ class HomeContent extends StatelessWidget {
                child: Text("View_All".tr, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
              ),
              SizedBox(
-               height: MediaQuery.of(context).size.height*0.4,
+               height: MediaQuery.of(context).size.height*0.355,
                child: ListView(
                  children: [
                    Padding(
-                     padding: EdgeInsets.all(
-                      MediaQuery.of(context).size.height*0.003,
+                     padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height*0.003,
+                       left: MediaQuery.of(context).size.height*0.003,
+
                      ),
                      child: Container(
                          decoration:BoxDecoration(
@@ -326,7 +328,7 @@ class HomeContent extends StatelessWidget {
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
                                  Padding(
-                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   padding: EdgeInsets.only(right:MediaQuery.of(context).size.width * 0.02),
                                    child: Text("Paracetamol"),
                                  ),
                                  Padding(
@@ -368,7 +370,8 @@ class HomeContent extends StatelessWidget {
                                    child: Text("اسم الشركة"),
                                  ),
                                  Padding(
-                                   padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+                                   padding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.02,
+                                   right: MediaQuery.of(context).size.width * 0.02),
                                    child: Container(
                                        decoration:BoxDecoration(
                                          color: Colors.red,
