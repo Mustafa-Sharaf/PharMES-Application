@@ -151,7 +151,9 @@ class SignUpController extends GetxController {
       print(jsonEncode(data));
       if (response.statusCode == 200 || response.statusCode == 201) {
         token = res['data']['authorization']['token'];
+        int role = res['data']['user']['role_id'];
         GetStorage().write('token', token);
+        GetStorage().write('role_id', role);
         Get.snackbar('Success', res['status'].toString(), backgroundColor: AppColors.primaryColor, colorText: Colors.white);
         Get.offNamed('/test');
       } else {

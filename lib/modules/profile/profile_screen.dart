@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import 'package:pharmes_app/modules/profile/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
+  ProfileScreen({super.key});
+  ProfileController controller = Get.put<ProfileController>(
+    ProfileController(),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +22,19 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 1.0),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.05,
-                      width: MediaQuery.of(context).size.width * 0.1,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(20),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Icon(Icons.arrow_back_ios, size: 15),
                       ),
-                      child: const Icon(Icons.arrow_back_ios, size: 15),
                     ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.20),
@@ -77,50 +86,217 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         child: const Icon(Icons.edit_outlined, size: 15),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
 
               const SizedBox(height: 10),
-              const Text('Eline Faramnd'),
-              const Text('elineF12@gmail.com',
-              style: TextStyle(color: AppColors.Gray)),
+              Obx(() {
+                final role = controller.role.value;
+                Widget infoUnderImage() {
+                  if (role == 1 || role == 2) {
+                    return Column(
+                      children: [
+                        Text(controller.name.value),
+                        Text(
+                          controller.email.value,
+                          style: TextStyle(color: AppColors.Gray),
+                        ),
+                        Text(
+                          controller.phone.value,
+                          style: TextStyle(color: AppColors.Gray),
+                        ),
+                      ],
+                    );
+                  } else if (role == 3 || role == 4) {
+                    return Column(
+                      children: [
+                        Text(controller.name.value),
+                        Text(
+                          controller.email.value,
+                          style: TextStyle(color: AppColors.Gray),
+                        ),
+                      ],
+                    );
+                  }
+                  return Container();
+                }
+                Widget whiteContainer() {
+                  if (role == 1) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 15,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.local_pharmacy),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.isNotEmpty
+                                    ? controller.otherInfo[0].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.phone),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.length > 1
+                                    ? controller.otherInfo[1].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.location_on),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.length > 2
+                                    ? controller.otherInfo[2].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else if (role == 2) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 15,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.business),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.isNotEmpty
+                                    ? controller.otherInfo[0].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.phone),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.length > 1
+                                    ? controller.otherInfo[1].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.location_on),
+                            title: Obx(
+                              () => Text(
+                                controller.otherInfo.length > 2
+                                    ? controller.otherInfo[2].values.first
+                                    : '',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else if (role == 3 || role == 4) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 15,
+                      ),
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.person),
+                            title: Obx(
+                              () => Text(
+                                controller.name.value,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.email),
+                            title: Obx(
+                              () => Text(
+                                controller.email.value,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: Icon(Icons.phone),
+                            title: Obx(
+                              () => Text(
+                                controller.phone.value,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }
 
-              const SizedBox(height: 10),
-
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.person),
-                      title: Text('Eline Faramnd',style: TextStyle(fontSize: 15),),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.email),
-                      title: Text('elineF12@gmail.com',style: TextStyle(fontSize: 15),),
-                     // subtitle: Text('elineF12@gmail.com'),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.phone),
-                      title: Text('+963 936 502 002',style: TextStyle(fontSize: 15),),
-                    ),
+                return Column(
+                  children: [
+                    infoUnderImage(),
+                    const SizedBox(height: 10),
+                    whiteContainer(),
                   ],
-                ),
-              ),
+                );
+              }),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: BorderRadius.circular(10),

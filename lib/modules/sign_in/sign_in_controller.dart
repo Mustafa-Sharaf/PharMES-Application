@@ -61,8 +61,10 @@ class SignInController extends GetxController {
       print(res);
       if (value.statusCode == 200 || value.statusCode == 201) {
         token = res['data']['authorization']['token'];
+        int role = res['data']['user']['role_id'];
         GetStorage _box = GetStorage();
         _box.write('token', token);
+        _box.write('role_id', role);
         //HttpHelper.token = token;
         Get.snackbar(' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,

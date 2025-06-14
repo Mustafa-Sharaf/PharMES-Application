@@ -34,7 +34,7 @@ void main()async {
   print('[main] Token from storage: $token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
-  runApp(MyApp(initialRoute: token == null ? '/splash' : '/home'));
+  runApp(MyApp(initialRoute: token == null ? '/splash' : '/splash'));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/home',
+      initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: AppColors.primaryColor),
       //locale:Get.deviceLocale,
