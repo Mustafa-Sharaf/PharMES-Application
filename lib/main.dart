@@ -49,14 +49,14 @@ class MyApp extends StatelessWidget {
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
     //  theme: ThemeData(primaryColor: AppColors.primaryColor),
-    theme: ThemeData(
+      theme: ThemeData(
       textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColors.primaryColor,
       selectionColor: Colors.blue.withOpacity(0.4),
       selectionHandleColor: Colors.blue,
        ),),
 
-    //locale:Get.deviceLocale,
+      //locale:Get.deviceLocale,
       translations: MyLanguage(),
       getPages: [
         GetPage(name: '/signIn', page: ()=>SignInScreen(),binding: SignInBindings()),

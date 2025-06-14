@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 19,
               ),
             ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
           IconButton(
             icon: const Text('🔎', style: TextStyle(fontSize: 25)),
             onPressed: () => Get.toNamed('/searchScreen'),
@@ -68,8 +68,8 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Transform.translate(
         offset: const Offset(0, 10),
         child: SizedBox(
-          height: MediaQuery.of(context).size.width * 0.17,
-          width: MediaQuery.of(context).size.width * 0.17,
+          height: MediaQuery.of(context).size.width * 0.14,
+          width: MediaQuery.of(context).size.width * 0.14,
           child: FloatingActionButton(
             backgroundColor: AppColors.primaryColor,
             elevation: 8,
@@ -81,12 +81,11 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-         notchMargin: 6.0,
-        child: Container(
-          //color: Colors.cyanAccent,
-          height: MediaQuery.of(context).size.height*0.08,
+      bottomNavigationBar: SizedBox(
+        height:MediaQuery.of(context).size.height * 0.074,
+        child: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+           notchMargin: 6.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
