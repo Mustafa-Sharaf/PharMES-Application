@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../Theme/theme_controller.dart';
+import '../app_theme/app_colors.dart';
 
 class AppDecorations {
   static InputDecoration customInputDecoration(String label, double width, double height) {
+    final ThemeController themeController = Get.find();
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(color: Colors.grey.shade600, fontSize: 17),
+      labelStyle: TextStyle(color: themeController.isDarkMode.value?Colors.grey:Colors.grey.shade600 , fontSize: 17),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       filled: true,
       fillColor: Colors.white,

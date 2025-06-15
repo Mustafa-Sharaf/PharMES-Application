@@ -6,6 +6,8 @@ class AppColors {
   static const Gray = Colors.grey;
   static const white = Colors.white;
   static const black = Colors.black;
+  static const backgroundDark = Color(0xFF48454E);
+  static const textDark = Color(0xFF1B1B1B);
   static const backgroundHome = Color(0xffDCE0E9);
 
 }

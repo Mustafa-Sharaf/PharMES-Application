@@ -5,6 +5,7 @@ import 'package:pharmes_app/modules/logout/logout_controller.dart';
 import 'package:pharmes_app/modules/profile/profile_controller.dart';
 import 'package:pharmes_app/modules/profile/update_profile%20_screen.dart';
 
+import '../../Theme/theme_controller.dart';
 import '../../language/language_controller.dart';
 import 'delete_profile_controller.dart';
 
@@ -19,451 +20,462 @@ class ProfileScreen extends StatelessWidget {
   DeleteProfileController deletecontroller = Get.put<DeleteProfileController>(
     DeleteProfileController(),
   );
+  final ThemeController themeController = Get.find();
   @override
   Widget build(BuildContext context) {
     MyLanguageController myLanguageController = Get.find();
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01,),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.1,
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Icon(Icons.arrow_back_ios, size: 15),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.24),
-                  const Text('My Profile', style: TextStyle(fontSize: 19)),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.24),
-                  Padding(
-                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0001,),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                          Container(
-                            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01,),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-                            ),
-                            child: ListTile(
-                              leading: const Icon(Icons.delete, color: Colors.red),
-                              title: const Text('Delete Profile'),
-                              onTap: () {
-                                deletecontroller.deleteProfile(controller.role.value);
-                              },
-                            ),
-                          ),
-                        );
-                      },
-
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.1,
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Icon(Icons.more_horiz, size: 15),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.width * 0.36,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.green,
-                            Colors.orange,
-                            Colors.purple,
-                            Colors.red,
-                          ],
-                        ),
-                      ),
-                      child: Padding(
-                        padding:  EdgeInsets.all(MediaQuery.of(context).size.width * 0.005,),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/logodrawer.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: AppColors.primaryColor,
-                        ),
-                        child: const Icon(Icons.edit_outlined, size: 15),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-               SizedBox(height: MediaQuery.of(context).size.width * 0.03,),
-              Obx(() {
-                final role = controller.role.value;
-                Widget infoUnderImage() {
-                  if (role == 1 || role == 2) {
-                    return Column(
-                      children: [
-                        Text(controller.name.value),
-                        Text(
-                          controller.email.value,
-                          style: TextStyle(color: AppColors.Gray),
-                        ),
-                        Text(
-                          controller.phone.value,
-                          style: TextStyle(color: AppColors.Gray),
-                        ),
-                      ],
-                    );
-                  } else if (role == 3 || role == 4) {
-                    return Column(
-                      children: [
-                        Text(controller.name.value),
-                        Text(
-                          controller.email.value,
-                          style: TextStyle(color: AppColors.Gray),
-                        ),
-                      ],
-                    );
-                  }
-                  return Container();
-                }
-                Widget whiteContainer() {
-                  if (role == 1) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.local_pharmacy),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.isNotEmpty
-                                    ? controller.otherInfo[0].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.phone),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.length > 1
-                                    ? controller.otherInfo[1].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.location_on),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.length > 2
-                                    ? controller.otherInfo[2].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else if (role == 2) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.business),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.isNotEmpty
-                                    ? controller.otherInfo[0].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.phone),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.length > 1
-                                    ? controller.otherInfo[1].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.location_on),
-                            title: Obx(
-                                  () => Text(
-                                controller.otherInfo.length > 2
-                                    ? controller.otherInfo[2].values.first
-                                    : '',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else if (role == 3 || role == 4) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.person),
-                            title: Obx(
-                                  () => Text(
-                                controller.name.value,
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.email),
-                            title: Obx(
-                                  () => Text(
-                                controller.email.value,
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: Icon(Icons.phone),
-                            title: Obx(
-                                  () => Text(
-                                controller.phone.value,
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return Container();
-                  }
-                }
-
-                return Column(
-                  children: [
-                    infoUnderImage(),
-                    const SizedBox(height: 10),
-                    whiteContainer(),
-                  ],
-                );
-              }),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 15,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                width: MediaQuery.of(context).size.width * 0.9,
+    return Obx(
+        (){return
+          Scaffold(
+            backgroundColor:themeController.isDarkMode.value?const Color(0xFF2A282D) : AppColors.background,
+            body: SafeArea(
+              child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.dark_mode),
-                        const SizedBox(width: 10),
-                        Expanded(child: Text('Dark_Mode'.tr)),
-                        Switch(
-                          activeTrackColor: AppColors.primaryColor,
-                          value: true,
-                          onChanged: (_) {},
+                        Padding(
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01,),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Icon(Icons.arrow_back_ios, size: 15,
+                                color: AppColors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.24),
+                        const Text('My Profile', style: TextStyle(fontSize: 19)),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.24),
+                        Padding(
+                          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0001,),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.bottomSheet(
+                                Container(
+                                  padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01,),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                                  ),
+                                  child: ListTile(
+                                    leading: const Icon(Icons.delete, color: Colors.red),
+                                    title: const Text('Delete Profile',style: TextStyle(color: AppColors.black),),
+                                    onTap: () {
+                                      deletecontroller.deleteProfile(controller.role.value);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Icon(Icons.more_horiz, size: 15,color: AppColors.black,),
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    const Divider(),
-                    InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Get.back();
-                                },
-                                child: Text(
-                                  "Close".tr,
-                                  style: TextStyle(color: Colors.black),
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.width * 0.36,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.blue,
+                                  Colors.green,
+                                  Colors.orange,
+                                  Colors.purple,
+                                  Colors.red,
+                                ],
+                              ),
+                            ),
+                            child: Padding(
+                              padding:  EdgeInsets.all(MediaQuery.of(context).size.width * 0.005,),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/images/logodrawer.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: AppColors.primaryColor,
+                              ),
+                              child: const Icon(Icons.edit_outlined, size: 15),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: MediaQuery.of(context).size.width * 0.03,),
+                    Obx(() {
+                      final role = controller.role.value;
+                      Widget infoUnderImage() {
+                        if (role == 1 || role == 2) {
+                          return Column(
+                            children: [
+                              Text(controller.name.value),
+                              Text(
+                                controller.email.value,
+                                style: TextStyle(color: AppColors.Gray),
+                              ),
+                              Text(
+                                controller.phone.value,
+                                style: TextStyle(color: AppColors.Gray),
+                              ),
                             ],
-                            title: Text("Language".tr),
-                            content: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                          );
+                        } else if (role == 3 || role == 4) {
+                          return Column(
+                            children: [
+                              Text(controller.name.value),
+                              Text(
+                                controller.email.value,
+                                style: TextStyle(color: AppColors.Gray),
+                              ),
+                            ],
+                          );
+                        }
+                        return Container();
+                      }
+                      Widget whiteContainer() {
+                        if (role == 1) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 15,
+                            ),
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextButton(
-                                  onPressed: () {
-                                    myLanguageController.changeLanguage(
-                                      "ar",
-                                    );
-                                  },
-                                  child: Text(
-                                    "Arabic".tr,
-                                    style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 25,
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.local_pharmacy),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.isNotEmpty
+                                          ? controller.otherInfo[0].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15,color: AppColors.backgroundDark),
                                     ),
                                   ),
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    myLanguageController.changeLanguage(
-                                      "en",
-                                    );
-                                  },
-                                  child: Text(
-                                    "English".tr,
-                                    style: TextStyle(
-                                      color: AppColors.primaryColor,
-                                      fontSize: 25,
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.phone),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.length > 1
+                                          ? controller.otherInfo[1].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.location_on),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.length > 2
+                                          ? controller.otherInfo[2].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(Icons.language),
-                          SizedBox(width: MediaQuery.of(context).size.width*0.03),
-                          Text('Language'.tr),
-                        ],
-                      ),
-                    ),
-                    const Divider(),GestureDetector(
-                      onTap: () {
-                        Get.to(() =>  UpdateProfileScreen());
-                      },
-                      child: Row(
-                        children: [
-                          const Icon(Icons.edit),
-                          const SizedBox(width: 10),
-                          Expanded(child: Text('Edit_Profile'.tr)),
-                        ],
-                      ),
-                    ),
+                          );
+                        } else if (role == 2) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 15,
+                            ),
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.business,color: AppColors.backgroundDark),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.isNotEmpty
+                                          ? controller.otherInfo[0].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.phone,color: AppColors.backgroundDark,),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.length > 1
+                                          ? controller.otherInfo[1].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.location_on,color: AppColors.backgroundDark),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.otherInfo.length > 2
+                                          ? controller.otherInfo[2].values.first
+                                          : '',
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else if (role == 3 || role == 4) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 15,
+                            ),
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.person,color: AppColors.backgroundDark),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.name.value,
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.email,color: AppColors.backgroundDark),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.email.value,
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: Icon(Icons.phone,color: AppColors.backgroundDark),
+                                  title: Obx(
+                                        () => Text(
+                                      controller.phone.value,
+                                      style: TextStyle(fontSize: 15,color: AppColors.textDark),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }
 
-                    const Divider(),
-                    Row(
-                      children: [
-                        const Icon(Icons.logout, color: Colors.red),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              controllerLogout.logout(controller.role.value);
+                      return Column(
+                        children: [
+                          infoUnderImage(),
+                          const SizedBox(height: 10),
+                          whiteContainer(),
+                        ],
+                      );
+                    }),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.dark_mode,color: Colors.black,),
+                              const SizedBox(width: 10),
+                              Expanded(child: Text('Dark_Mode'.tr,style: TextStyle(color: AppColors.textDark),)),
+                              Obx(() => Switch(
+                                activeTrackColor: AppColors.primaryColor,
+                                activeColor: Colors.white,
+                                value: themeController.isDarkMode.value,
+                                onChanged: (_) {
+                                  themeController.toggleTheme();
+                                },
+                              )),
+
+                            ],
+                          ),
+                          const Divider(),
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      child: Text(
+                                        "Close".tr,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                  title: Text("Language".tr),
+                                  content: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          myLanguageController.changeLanguage(
+                                            "ar",
+                                          );
+                                        },
+                                        child: Text(
+                                          "Arabic".tr,
+                                          style: TextStyle(
+                                            color: AppColors.primaryColor,
+                                            fontSize: 25,
+                                          ),
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          myLanguageController.changeLanguage(
+                                            "en",
+                                          );
+                                        },
+                                        child: Text(
+                                          "English".tr,
+                                          style: TextStyle(
+                                            color: AppColors.primaryColor,
+                                            fontSize: 25,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
                             },
-                            child: Text(
-                                'Log_Out'.tr,
-                              style: TextStyle(color: Colors.red),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.language,color: Colors.black),
+                                SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                                Text('Language'.tr,style: TextStyle(color: AppColors.textDark),),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
+                          const Divider(),GestureDetector(
+                            onTap: () {
+                              Get.to(() =>  UpdateProfileScreen());
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(Icons.edit,color: Colors.black),
+                                const SizedBox(width: 10),
+                                Expanded(child: Text('Edit_Profile'.tr,style:TextStyle(color: AppColors.textDark))),
+                              ],
+                            ),
+                          ),
+
+                          const Divider(),
+                          Row(
+                            children: [
+                              const Icon(Icons.logout, color: Colors.red),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: (){
+                                    controllerLogout.logout(controller.role.value);
+                                  },
+                                  child: Text(
+                                    'Log_Out'.tr,
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        }
     );
   }
 }
