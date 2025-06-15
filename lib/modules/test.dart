@@ -11,7 +11,7 @@ class Test extends StatelessWidget {
         title: Text('ssss')
       ),
       body: ElevatedButton(onPressed: (){
-        Get.toNamed('/home');
+        Get.toNamed('/permissionScreen');
       }, child: Text('Go')),
     );
   }

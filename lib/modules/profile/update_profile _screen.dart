@@ -4,6 +4,7 @@ import 'package:pharmes_app/modules/profile/profile_controller.dart';
 import 'package:pharmes_app/modules/profile/update_profile_controller.dart';
 
 import '../../app_theme/app_colors.dart';
+import '../../widgets/app_decoration.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({super.key});
@@ -15,33 +16,6 @@ class UpdateProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-
-    InputDecoration customInputDecoration(String label, double width, double height) {
-      return InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(color: Colors.grey.shade600, fontSize: 17),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding: EdgeInsets.symmetric(horizontal: width * 0.04, vertical: height * 0.025),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      );
-    }
-
-
-
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -64,8 +38,8 @@ class UpdateProfileScreen extends StatelessWidget {
                       child: const Icon(Icons.arrow_back_ios, size: 15),
                     ),
                   ),
-                  SizedBox(width: width * 0.25),
-                  const Text('My Profile', style: TextStyle(fontSize: 19)),
+                  SizedBox(width: width * 0.18),
+                  const Text('Update Profile', style: TextStyle(fontSize: 19)),
                 ],
               ),
               const SizedBox(height: 20),
@@ -123,43 +97,52 @@ class UpdateProfileScreen extends StatelessWidget {
                 children: [
                   TextField(
                     controller: controller.nameController,
-                    decoration: customInputDecoration('Name', width, height),
+                    decoration: AppDecorations.customInputDecoration('Name', width, height),
                     cursorColor: AppColors.primaryColor,
 
                   ),
                   const SizedBox(height: 15),
                   TextField(
                     controller: controller.emailController,
-                    decoration: customInputDecoration('Email', width, height),
+                    decoration: AppDecorations.customInputDecoration('Email', width, height),
                   ),
                   const SizedBox(height: 15),
                   TextField(
                     controller: controller.phoneController,
-                    decoration: customInputDecoration('Phone', width, height),
+                    decoration: AppDecorations.customInputDecoration('Phone', width, height),
+                  ),
+                  const SizedBox(height: 15),
+                  TextField(
+                    controller: controller.password,
+                    decoration: AppDecorations.customInputDecoration('password', width, height),
+                  ),
+                  const SizedBox(height: 15),
+                  TextField(
+                    controller: controller.confirmPassword,
+                    decoration: AppDecorations.customInputDecoration('confirmPassword', width, height),
                   ),
                   const SizedBox(height: 15),
                   if (controllerP.otherInfo.isNotEmpty) ...[
                     TextField(
                       controller: controller.info1Controller,
-                      decoration: customInputDecoration(controllerP.otherInfo[0].keys.first,width,height),
+                      decoration: AppDecorations.customInputDecoration(controllerP.otherInfo[0].keys.first,width,height),
                     ),
                     const SizedBox(height: 15),
                     if (controllerP.otherInfo.length > 1)
                       TextField(
                         controller: controller.info2Controller,
-                        decoration: customInputDecoration(controllerP.otherInfo[1].keys.first,width,height),
+                        decoration: AppDecorations.customInputDecoration(controllerP.otherInfo[1].keys.first,width,height),
                       ),
                     if (controllerP.otherInfo.length > 2) ...[
                       const SizedBox(height: 15),
                       TextField(
                         controller: controller.info3Controller,
-                        decoration: customInputDecoration(controllerP.otherInfo[2].keys.first,width,height),
+                        decoration: AppDecorations.customInputDecoration(controllerP.otherInfo[2].keys.first,width,height),
                       ),
                     ],
                   ]
                 ],
               ),
-
               const SizedBox(height: 30),
 
               // Save Button
@@ -174,7 +157,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    //controller.updateProfile();
+                    controller.updateProfile();
                   },
                   child: const Text(
                     'Save Profile',
