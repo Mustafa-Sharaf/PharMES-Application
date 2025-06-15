@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-import 'package:pharmes_app/modules/logout/logout_controller.dart';
 import 'package:pharmes_app/modules/profile/profile_controller.dart';
 import 'package:pharmes_app/modules/profile/update_profile%20_screen.dart';
 
-import 'delete_profile_controller.dart';
+import '../../language/language_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
   ProfileController controller = Get.put<ProfileController>(
     ProfileController(),
   );
-  LogOutController controllerLogout = Get.put<LogOutController>(
-    LogOutController(),
-  );
-  DeleteProfileController deletecontroller = Get.put<DeleteProfileController>(
-    DeleteProfileController(),
-  );
   @override
   Widget build(BuildContext context) {
+    MyLanguageController myLanguageController = Get.find();
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -48,41 +42,8 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.20),
-                  const Text('My Profile', style: TextStyle(fontSize: 19)),
+                  Text('My_Profile'.tr, style: TextStyle(fontSize: 19)),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.3),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.bottomSheet(
-                          Container(
-                            padding: const EdgeInsets.all(16.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-                            ),
-                            child: ListTile(
-                              leading: const Icon(Icons.delete, color: Colors.red),
-                              title: const Text('Delete Profile'),
-                              onTap: () {
-                                deletecontroller.deleteProfile(controller.role.value);
-                              },
-                            ),
-                          ),
-                        );
-                      },
-
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.1,
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Icon(Icons.more_horiz, size: 15),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -351,8 +312,8 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.dark_mode),
-                        const SizedBox(width: 10),
-                        const Expanded(child: Text('Dark Mode')),
+                        SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                        Expanded(child: Text('Dark_Mode'.tr)),
                         Switch(
                           activeTrackColor: AppColors.primaryColor,
                           value: true,
@@ -361,13 +322,67 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                     const Divider(),
-                    Row(
-                      children: [
-                        const Icon(Icons.language),
-                        const SizedBox(width: 10),
-                        const Expanded(child: Text('Language')),
-                        const Text('English'),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: Text(
+                                  "Close".tr,
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ],
+                            title: Text("Language".tr),
+                            content: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceEvenly,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    myLanguageController.changeLanguage(
+                                      "ar",
+                                    );
+                                  },
+                                  child: Text(
+                                    "Arabic".tr,
+                                    style: TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    myLanguageController.changeLanguage(
+                                      "en",
+                                    );
+                                  },
+                                  child: Text(
+                                    "English".tr,
+                                    style: TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          const Icon(Icons.language),
+                          SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                          Text('Language'.tr),
+                        ],
+                      ),
                     ),
                     const Divider(),GestureDetector(
                       onTap: () {
@@ -376,8 +391,8 @@ class ProfileScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           const Icon(Icons.edit),
-                          const SizedBox(width: 10),
-                          const Expanded(child: Text('Edit Profile')),
+                          SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                          Expanded(child: Text('Edit_Profile'.tr)),
                         ],
                       ),
                     ),
@@ -386,16 +401,11 @@ class ProfileScreen extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.logout, color: Colors.red),
-                        const SizedBox(width: 10),
-                         Expanded(
-                          child: GestureDetector(
-                            onTap: (){
-                              controllerLogout.logout(controller.role.value);
-                            },
-                            child: Text(
-                              'Log Out',
-                              style: TextStyle(color: Colors.red),
-                            ),
+                        SizedBox(width: MediaQuery.of(context).size.width*0.03),
+                        Expanded(
+                          child: Text(
+                            'Log_Out'.tr,
+                            style: TextStyle(color: Colors.red),
                           ),
                         ),
                       ],
