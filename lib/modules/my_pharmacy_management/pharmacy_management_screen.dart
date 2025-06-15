@@ -50,7 +50,7 @@ class PharmacyManagementScreen extends StatelessWidget {
               onTap: buttonController.pressButton,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                height: 75,
+                height: 60,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: isPressed ? AppColors.primaryColor : AppColors.white,

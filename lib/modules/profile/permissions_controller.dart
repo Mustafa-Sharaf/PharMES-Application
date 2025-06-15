@@ -10,7 +10,6 @@ import 'connectivity_service_controller.dart';
 
 class PermissionsController extends GetxController {
   RxBool isOffline = false.obs;
-  RxBool showGreenBanner = false.obs;
   RxList<Map<String, dynamic>> allPermissions = <Map<String, dynamic>>[].obs;
   RxList<String> selectedPermissionNames = <String>[].obs;
   RxList<Map<String, dynamic>> localNames = <Map<String, dynamic>>[].obs;
@@ -29,6 +28,17 @@ class PermissionsController extends GetxController {
     super.onInit();
     initializeNameList();
     fetchPermissions();
+    Future.delayed(Duration.zero, () async {
+      bool hasInternet = await connectivityService.isInternetAvailable();
+      if (hasInternet) {
+        connectivityService.showGreenBanner.value = true;
+
+        Future.delayed(Duration(seconds: 3), () {
+          connectivityService.showGreenBanner.value = false;
+        });
+      }
+    });
+
     nameController.addListener(() {
     final currentText = nameController.text.trim();
       if (ignoreNextInputChange) {
