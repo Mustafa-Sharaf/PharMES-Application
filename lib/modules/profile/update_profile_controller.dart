@@ -43,6 +43,10 @@ class UpdateProfileController extends GetxController{
       Get.snackbar('Error', 'All fields are required');
       return;
     }
+    if (pass != confirmPass) {
+      Get.snackbar('Error', 'Password and Confirm Password do not match');
+      return;
+    }
 
     Map<String, dynamic> data = {
       'name': name,

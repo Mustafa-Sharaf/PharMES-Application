@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import 'package:pharmes_app/modules/logout/logout_controller.dart';
 import 'package:pharmes_app/modules/profile/profile_controller.dart';
 import 'package:pharmes_app/modules/profile/update_profile%20_screen.dart';
+
+import 'delete_profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -13,6 +14,9 @@ class ProfileScreen extends StatelessWidget {
   );
   LogOutController controllerLogout = Get.put<LogOutController>(
     LogOutController(),
+  );
+  DeleteProfileController deletecontroller = Get.put<DeleteProfileController>(
+    DeleteProfileController(),
   );
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,39 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(width: MediaQuery.of(context).size.width * 0.20),
                   const Text('My Profile', style: TextStyle(fontSize: 19)),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.3),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 1.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.bottomSheet(
+                          Container(
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+                            ),
+                            child: ListTile(
+                              leading: const Icon(Icons.delete, color: Colors.red),
+                              title: const Text('Delete Profile'),
+                              onTap: () {
+                                deletecontroller.deleteProfile(controller.role.value);
+                              },
+                            ),
+                          ),
+                        );
+                      },
+
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Icon(Icons.more_horiz, size: 15),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
