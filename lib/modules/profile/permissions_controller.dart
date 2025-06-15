@@ -28,16 +28,7 @@ class PermissionsController extends GetxController {
     super.onInit();
     initializeNameList();
     fetchPermissions();
-    Future.delayed(Duration.zero, () async {
-      bool hasInternet = await connectivityService.isInternetAvailable();
-      if (hasInternet) {
-        connectivityService.showGreenBanner.value = true;
 
-        Future.delayed(Duration(seconds: 3), () {
-          connectivityService.showGreenBanner.value = false;
-        });
-      }
-    });
 
     nameController.addListener(() {
     final currentText = nameController.text.trim();
@@ -49,6 +40,21 @@ class PermissionsController extends GetxController {
       nameSelectedFromResults.value = false;
     });
   }
+  @override
+  void onReady() {
+    super.onReady();
+    Future.delayed(Duration.zero, () async {
+      bool hasInternet = await connectivityService.isInternetAvailable();
+      if (hasInternet) {
+        connectivityService.showGreenBanner.value = true;
+
+        Future.delayed(Duration(seconds: 3), () {
+          connectivityService.showGreenBanner.value = false;
+        });
+      }
+    });
+  }
+
   void initializeNameList() async {
     await GetStorage.init();
     List? cached = box.read('cached_names');

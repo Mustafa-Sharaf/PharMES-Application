@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final myLanguageController = Get.find<MyLanguageController>();
     return GetMaterialApp(
-      initialRoute: '/home',
+      initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
     //  theme: ThemeData(primaryColor: AppColors.primaryColor),
       theme: ThemeData(

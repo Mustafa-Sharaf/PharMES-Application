@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 1.0),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.01,),
                     child: GestureDetector(
                       onTap: () {
                         Get.back();
@@ -49,16 +49,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.20),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.24),
                   const Text('My Profile', style: TextStyle(fontSize: 19)),
-                  SizedBox(width: MediaQuery.of(context).size.width * 0.3),
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.24),
                   Padding(
-                    padding: const EdgeInsets.only(left: 1.0),
+                    padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0001,),
                     child: GestureDetector(
                       onTap: () {
                         Get.bottomSheet(
                           Container(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01,),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
@@ -92,8 +92,8 @@ class ProfileScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      width: 125,
-                      height: 125,
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: MediaQuery.of(context).size.width * 0.36,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
@@ -107,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(2.0),
+                        padding:  EdgeInsets.all(MediaQuery.of(context).size.width * 0.005,),
                         child: Container(
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
@@ -136,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
+               SizedBox(height: MediaQuery.of(context).size.width * 0.03,),
               Obx(() {
                 final role = controller.role.value;
                 Widget infoUnderImage() {
