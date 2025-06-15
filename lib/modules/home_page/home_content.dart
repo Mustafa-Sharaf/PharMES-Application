@@ -18,6 +18,7 @@ class HomeContent extends StatelessWidget {
              padding: EdgeInsets.only(
                  left: MediaQuery.of(context).size.width * 0.02,
                  right: MediaQuery.of(context).size.height*0.02,
+                 top: MediaQuery.of(context).size.height*0.01,
              ),
              child: Text("Companies".tr, style: TextStyle(fontSize: MediaQuery.textScalerOf(context).scale(18)
                  , fontWeight: FontWeight.bold)),
@@ -62,6 +63,7 @@ class HomeContent extends StatelessWidget {
              padding: EdgeInsets.only(
                left: MediaQuery.of(context).size.width * 0.02,
                right: MediaQuery.of(context).size.height*0.02,
+               top: MediaQuery.of(context).size.height*0.02,
              ),
              child: Text("View_All".tr, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
            ),

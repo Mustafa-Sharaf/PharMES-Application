@@ -56,6 +56,13 @@ class MyLanguage implements Translations{
       "Support":"Support",
       "Share_Application":"Share Application",
       "Privacy_Policy":"Privacy Policy",
+      "Language":"Language",
+      "English":"English",
+      "Arabic":"Arabic",
+      "Close":"Close",
+      "Edit_Profile":"Edit_Profile",
+      "Log_Out":"Log Out",
+      "Dark_Mode":"Dark Mode",
 
 
 
@@ -116,6 +123,13 @@ class MyLanguage implements Translations{
       "Support":"الدعم",
       "Share_Application":"مشاركة التطبيق",
       "Privacy_Policy":"سياسة الخصوصية",
+      "Language":"اللغة",
+      "English":"الإنجليزية",
+      "Arabic":"العربية",
+      "Close":"إغلاق",
+      "Edit_Profile":"تعديل الملف الشخصي",
+      "Log_Out":"تسجيل الخروج",
+      "Dark_Mode":"الوضع المظلم",
 
     },
 
