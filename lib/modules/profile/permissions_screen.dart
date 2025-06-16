@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import 'package:pharmes_app/modules/profile/permissions_controller.dart';
 
+import '../../Theme/theme_controller.dart';
 import 'connectivity_service_controller.dart';
 
 class PermissionsScreen extends StatelessWidget {
@@ -12,9 +13,11 @@ class PermissionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     PermissionsController controller = Get.find<PermissionsController>();
+    final ThemeController themeController = Get.find();
     ConnectivityService connectivityController =
     Get.find<ConnectivityService>();
     return Scaffold(
+      backgroundColor: themeController.isDarkMode.value?AppColors.dark : AppColors.white,
       appBar: AppBar(
         title: const Text(
           'Permissions',
@@ -115,7 +118,7 @@ class PermissionsScreen extends StatelessWidget {
                    },
                    decoration: InputDecoration(
                      filled: true,
-                     fillColor: Colors.grey[500]!.withOpacity(0.16),
+                     fillColor: themeController.isDarkMode.value?AppColors.backgroundDark :Colors.grey[500]!.withOpacity(0.16),
                      hintText: 'Search for the name',
                      suffixIcon: Icon(Icons.search, color: Colors.grey[700]),
                      contentPadding: const EdgeInsets.symmetric(
@@ -169,7 +172,7 @@ class PermissionsScreen extends StatelessWidget {
                    cursorColor: AppColors.primaryColor,
                    decoration: InputDecoration(
                      filled: true,
-                     fillColor: Colors.grey[500]!.withOpacity(0.16),
+                     fillColor: themeController.isDarkMode.value?AppColors.backgroundDark :Colors.grey[500]!.withOpacity(0.16),
                      hintText: 'Select the role',
                      contentPadding: const EdgeInsets.symmetric(
                        vertical: 15,

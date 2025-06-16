@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import '../../Theme/theme_controller.dart';
 import '../../widgets/bottom_tab_Item.dart';
 import '../../widgets/drawer_home.dart';
 import '../bills/bills_screen.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 19,
               ),
             ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.18,),
           IconButton(
             icon: const Text('🔎', style: TextStyle(fontSize: 25)),
             onPressed: () => Get.toNamed('/searchScreen'),
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: SizedBox(
-        height:MediaQuery.of(context).size.height * 0.074,
+        height:MediaQuery.of(context).size.height * 0.081,
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
            notchMargin: 6.0,

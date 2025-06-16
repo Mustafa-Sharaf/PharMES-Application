@@ -25,7 +25,6 @@ class SignUpController extends GetxController {
 
   List<String> roles = [
     'Pharmacy_Owner'.tr,
-    'Pharmacy_Owner'.tr,
     'Repository_Owner'.tr,
     'Pharmacist'.tr,
     'RepositoryEmployee'.tr,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Theme/theme_controller.dart';
 import '../app_theme/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -21,12 +22,13 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,color: themeController.isDarkMode.value?AppColors.white:AppColors.black,)),
           Container(
             decoration: BoxDecoration(
               color: const Color(0xFFF1F1F1),

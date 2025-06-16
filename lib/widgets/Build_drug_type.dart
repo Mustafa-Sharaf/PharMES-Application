@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app_theme/app_colors.dart';
+
 
 class BuildDrugType extends StatelessWidget {
   final String image;
@@ -33,7 +35,7 @@ class BuildDrugType extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01,),
-            child: Text(titleType, style: const TextStyle(fontSize: 13)),
+            child: Text(titleType, style: TextStyle(fontSize: 13,color: AppColors.black)),
           ),
         ],
       ),

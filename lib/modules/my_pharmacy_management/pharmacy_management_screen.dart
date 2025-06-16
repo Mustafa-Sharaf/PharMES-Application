@@ -6,12 +6,14 @@ import 'package:get_storage/get_storage.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:pharmes_app/modules/my_pharmacy_management/pharmacy_management_controller.dart';
 
+import '../../Theme/theme_controller.dart';
 import '../../app_theme/app_colors.dart';
 
 class PharmacyManagementScreen extends StatelessWidget {
   PharmacyManagementScreen({super.key});
 
   final ButtonController buttonController = Get.put(ButtonController());
+  final ThemeController themeController = Get.find();
   final GetStorage _box = GetStorage();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class PharmacyManagementScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: themeController.isDarkMode.value?AppColors.dark : AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         elevation: 0,

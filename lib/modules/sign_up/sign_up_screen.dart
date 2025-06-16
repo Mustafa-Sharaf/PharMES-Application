@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pharmes_app/app_theme/app_colors.dart';
 import '../../widgets/custom_text_field.dart';
 import 'sign_up_controller.dart';
 
@@ -61,11 +62,14 @@ class SignUpScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: DropdownButtonFormField<String>(
+                  dropdownColor: AppColors.background,
+                  iconEnabledColor: AppColors.Gray,
                   value: controller.selectedRole,
-                  hint:  Text("Select_Role".tr),
+                  hint:  Text("Select_Role".tr,style: TextStyle(color: AppColors.Gray),),
                   decoration: const InputDecoration(border: InputBorder.none),
                   items: controller.roles.map((role) {
-                    return DropdownMenuItem(value: role, child: Text(role));
+                    return DropdownMenuItem(value: role, child: Text(role,style: TextStyle(color:AppColors.black
+                    )));
                   }).toList(),
                   onChanged: controller.changeRole,
                 ),
