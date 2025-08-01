@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF111111),
       appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
           foregroundColor:AppColors.white  ,
@@ -18,6 +20,17 @@ class NotificationsScreen extends StatelessWidget {
             ),
           )
       ),
+     /* body: ElevatedButton(
+          onPressed:(){
+            Get.snackbar(
+              'Error'.tr,
+              'Failed_to_fetch_medications'.tr,
+              backgroundColor: Colors.red,
+              colorText: Colors.white,
+            );
+          }, child:Center(
+        child: Text("snackbar"),
+      )),*/
     );
   }
 }

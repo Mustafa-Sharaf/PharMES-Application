@@ -29,7 +29,7 @@ class EmailVerificationScreen extends StatelessWidget {
                       children: [
                         const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
                         const SizedBox(width: 30),
-                         Text('Email_Verification'.tr,
+                        Text('Email_Verification'.tr,
                             style: TextStyle(fontSize: 25, color: Colors.white)),
                         const SizedBox(width: 30),
                       ],
@@ -38,13 +38,13 @@ class EmailVerificationScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 35),
-               Text(
+              Text(
                 'Get_Your_Code'.tr,
                 style: TextStyle(color: AppColors.primaryColor,
                     fontSize: 22, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 30),
-               Padding(
+              Padding(
                 padding: EdgeInsets.all(18.0),
                 child: Text(
                   'Please_Enter_the_6_digit_code_that_sent_to_your_email_address'.tr,
@@ -60,18 +60,23 @@ class EmailVerificationScreen extends StatelessWidget {
                 onSubmit: controller.submitCode,
               ),
               const SizedBox(height: 55),
-              MaterialButton(
-                onPressed: () {Get.toNamed('/resetPass');},
+              Obx(() => MaterialButton(
+                onPressed: controller.isLoading.value
+                    ? null
+                    : () => controller.verifyCodeAndProceed(),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: AppColors.primaryColor,
-                child:Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                  child: Text(
+                  child: controller.isLoading.value
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text(
                     'Verify_and_Proceed'.tr,
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
-              ),
+              ))
+
             ],
           ),
         ),

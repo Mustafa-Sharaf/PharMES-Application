@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       drawer: DrawerHome(),
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
@@ -84,6 +85,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: SizedBox(
         height:MediaQuery.of(context).size.height * 0.074,
         child: BottomAppBar(
+          //color:  Color(0xFF111111),
           shape: const CircularNotchedRectangle(),
            notchMargin: 6.0,
           child: Row(

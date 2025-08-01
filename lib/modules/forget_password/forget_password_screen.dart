@@ -46,37 +46,50 @@ class ForgetPasswordScreen extends StatelessWidget {
               ),
               SizedBox(height: 25,),
               GetBuilder<ForgetPasswordController>(
-                init: ForgetPasswordController(),
-                builder: (controller) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Enter_your_Email'.tr,
-                      prefixIcon: Icon(Icons.email, color: AppColors.Gray),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.Gray),
-                        borderRadius: BorderRadius.circular(10),
+                  init: ForgetPasswordController(),
+                  builder: (controller) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: TextFormField(
+                        controller: controller.emailPController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter_your_Email'.tr,
+                          prefixIcon: Icon(Icons.email, color: AppColors.Gray),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.Gray),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+
+                        ),
+                        cursorColor: AppColors.primaryColor,
                       ),
 
-                    ),
-                    cursorColor: AppColors.primaryColor,
-                  ),
-
-                );}
-                ),
+                    );}
+              ),
               SizedBox(height: 55,),
-              MaterialButton(onPressed: (){Get.toNamed('/emailVerify');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
+              Obx(() => MaterialButton(
+                onPressed: controller.isLoading.value
+                    ? null
+                    : () {
+                  controller.sendForgetRequest();
+                },
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                color: AppColors.primaryColor,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 20),
-                  child: Text('Verify_and_Proceed'.tr,style: TextStyle(color: AppColors.white,
-                      fontSize: 20),),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                  child: controller.isLoading.value
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                    'Verify_and_Proceed'.tr,
+                    style: TextStyle(color: AppColors.white, fontSize: 20),
+                  ),
                 ),
-              )
+              ))
+
             ],
           ),
         ),

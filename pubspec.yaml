@@ -40,6 +40,7 @@ dependencies:
   get_storage: ^2.1.1
   firebase_messaging: ^15.2.7
   firebase_core: ^3.14.0
+  lucide_icons_flutter: ^3.0.8
 
 
 

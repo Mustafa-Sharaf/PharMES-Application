@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../configurations/http_helpers.dart';
 
 class BuildDrugType extends StatelessWidget {
   final String image;
@@ -12,9 +13,15 @@ class BuildDrugType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? fullImageUrl;
+    if (image.isNotEmpty) {
+      fullImageUrl = '$imgURL$image';
+    }
     return Container(
-      width: MediaQuery.of(context).size.width*0.24,
-      margin:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
+      width: MediaQuery.of(context).size.width * 0.24,
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.02,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -24,16 +31,33 @@ class BuildDrugType extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              image,
-              height: MediaQuery.of(context).size.width*0.18,
-              width: MediaQuery.of(context).size.width*0.18,
-              fit: BoxFit.cover,
-            ),
+            child: fullImageUrl != null
+                ? Image.network(
+                    fullImageUrl,
+                    height: MediaQuery.of(context).size.width * 0.18,
+                    width: MediaQuery.of(context).size.width * 0.18,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/images/logo.jpg',
+                    height: MediaQuery.of(context).size.width * 0.18,
+                    width: MediaQuery.of(context).size.width * 0.18,
+                    fit: BoxFit.cover,
+                  ),
           ),
+
           Padding(
-            padding: EdgeInsets.only(top:MediaQuery.of(context).size.height*0.01,),
-            child: Text(titleType, style: const TextStyle(fontSize: 13)),
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.01,
+            ),
+            child: Center(
+              child: Text(
+                titleType,
+                style: const TextStyle(fontSize: 12),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            )
           ),
         ],
       ),

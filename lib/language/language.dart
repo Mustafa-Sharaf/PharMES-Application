@@ -63,6 +63,11 @@ class MyLanguage implements Translations{
       "Edit_Profile":"Edit_Profile",
       "Log_Out":"Log Out",
       "Dark_Mode":"Dark Mode",
+      "Failed_to_fetch_medications":"Failed to fetch medications",
+      "Error":"Error",
+      "Exception":"Exception",
+      "":"",
+      "":"",
 
 
 
@@ -130,6 +135,9 @@ class MyLanguage implements Translations{
       "Edit_Profile":"تعديل الملف الشخصي",
       "Log_Out":"تسجيل الخروج",
       "Dark_Mode":"الوضع المظلم",
+      "Failed_to_fetch_medications":"فشل في جلب الأدوية",
+      "Error":"خطأ",
+      "Exception":"استثناء",
 
     },
 

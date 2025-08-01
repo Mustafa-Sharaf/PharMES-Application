@@ -1,6 +1,47 @@
 import 'package:flutter/material.dart';
 
+import '../configurations/http_helpers.dart';
+class BuildCompanies extends StatelessWidget {
+  final String? image;
+  final String title;
 
+  const BuildCompanies({Key? key, this.image, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String? fullImageUrl;
+    if (image != null && image!.isNotEmpty) {
+      fullImageUrl = '$imgURL$image';
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: (fullImageUrl != null)
+                ? NetworkImage(fullImageUrl)
+                : const AssetImage('assets/images/logo.jpg') as ImageProvider,
+          ),
+          const SizedBox(height: 5),
+          SizedBox(
+            width: 100,
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 12),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          )
+
+        ],
+      ),
+    );
+  }
+}
+
+
+/*
 class BuildCompanies extends StatelessWidget {
   final String image;
   final String title;
@@ -30,3 +71,4 @@ class BuildCompanies extends StatelessWidget {
     );
   }
 }
+*/
