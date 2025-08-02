@@ -115,7 +115,7 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
 
               SizedBox(height: 55,),
-              MaterialButton(onPressed: (){Get.offAllNamed('/signIn');},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
+              MaterialButton(onPressed: (){controller.reset();},shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),color: AppColors.primaryColor,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 70),
                   child: Text('Continue'.tr,style: TextStyle(color: AppColors.white,

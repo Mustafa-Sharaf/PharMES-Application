@@ -39,7 +39,7 @@ class EmailVerificationController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        Get.toNamed('/reset');
+        Get.toNamed('/reset', arguments: {'email': email});
       } else {
         final data = jsonDecode(response.body);
         print(response.body);

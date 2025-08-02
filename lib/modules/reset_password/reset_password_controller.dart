@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../configurations/http_helpers.dart';
 import '../sign_in/sign_in_screen.dart';
 
 class ResetPasswordController extends GetxController {
@@ -11,6 +14,14 @@ class ResetPasswordController extends GetxController {
   var obscurePassword = true.obs;
   var obscureConfirmPassword = true.obs;
 
+  late String email;
+
+  @override
+  void onInit() {
+    super.onInit();
+    email = Get.arguments['email'];
+  }
+
   void togglePasswordVisibility() {
     obscurePassword.value = !obscurePassword.value;
   }
@@ -19,26 +30,42 @@ class ResetPasswordController extends GetxController {
     obscureConfirmPassword.value = !obscureConfirmPassword.value;
   }
 
-  void reset() {
+  Future<void> reset() async {
     final password = passwordController.text.trim();
     final confirmPassword = confirmPassController.text.trim();
 
     if (password.isEmpty || confirmPassword.isEmpty) {
-      Get.snackbar("Error", "Please fill all fields",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Error", "Please fill all fields");
       return;
     }
 
     if (password != confirmPassword) {
-      Get.snackbar("Error", "Passwords do not match",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Error", "Passwords do not match");
       return;
     }
 
-    Get.snackbar("Success", "Password reset successfully",
-        snackPosition: SnackPosition.BOTTOM);
+    try {
+      final response = await HttpHelper.postData(
+        url: "passwordAndEmail/resetPassword",
+        body: {
+          "email": email,
+          "password": password,
+          "password_confirmation": confirmPassword
+        },
+      );
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Get.snackbar("Success", data['message']);
+        Get.to(() => SignInScreen());
 
-     Get.offAll(() => SignInScreen());
+
+      } else {
+        print(response.body);
+        Get.snackbar("Error", data['message']);
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Server error: $e");
+    }
   }
 
   @override
