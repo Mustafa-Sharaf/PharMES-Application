@@ -41,7 +41,9 @@ dependencies:
   firebase_messaging: ^15.2.7
   firebase_core: ^3.14.0
   lucide_icons_flutter: ^3.0.8
-
+  convex_bottom_bar: ^3.2.0
+  image_picker: ^1.0.6
+  google_mlkit_text_recognition: ^0.14.0
 
 
 dev_dependencies:

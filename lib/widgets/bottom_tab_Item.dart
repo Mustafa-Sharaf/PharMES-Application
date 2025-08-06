@@ -27,7 +27,7 @@ class BottomTabItem extends StatelessWidget {
       return GestureDetector(
         onTap: (){
             if (index == 1) {
-              Get.to(() => const InventoryManagementScreen());
+              Get.to(() =>  InventoryManagementScreen());
             } else if (index == 3) {
               Get.to(() => const CartScreen());
             } else if (index == 4) {

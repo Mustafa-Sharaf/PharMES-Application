@@ -6,8 +6,8 @@ import 'package:http/http.dart';
 import 'package:http/http.dart 'as http;
 
 //String? token;
-const String baseurl='http://192.168.160.128:8000/api/';
-const String imgURL='http://192.168.160.128:8000';
+const String baseurl='http://192.168.43.63:8000/api/';
+const String imgURL='http://192.168.43.63:8000';
 class HttpHelper{
 
   static Future<Response> postData(

@@ -8,6 +8,7 @@ import 'app_theme/app_theme.dart';
 import 'app_theme/theme_controller.dart';
 import 'helpers/connectivity_service_controller.dart';
 import 'language/language_controller.dart';
+import 'modules/barcode/barcode_screen.dart';
 import 'modules/electronic_inventory_pictures/electronic_inventory_pictures.dart';
 import 'modules/email_verification/email_verification_screen.dart';
 import 'modules/forget_password/forget_password_screen.dart';
@@ -91,7 +92,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/editSpecialRequests', page: ()=>EditSpecialRequests()),
         GetPage(name: '/customerDebts', page: ()=>CustomerDebts()),
         GetPage(name: '/medicineRequests', page: ()=>MedicineRequests()),
-        GetPage(name: '/electronicInventoryPictures', page: ()=>ElectronicInventoryPictures()),
+        GetPage(name: '/electronicInventoryPictures',page: ()=>  TextRecognitionScreen(),),
         GetPage(name: '/inventoryByName', page: ()=>InventoryByName()),
       ],
     );
