@@ -6,6 +6,7 @@ import 'package:pharmes_app/modules/my_pharmacy_management/pharmacy_management_c
 import '../../app_theme/app_colors.dart';
 import '../../app_theme/theme_controller.dart';
 import '../../widgets/build_pharmacy_management.dart';
+import '../electronic_inventory_pictures/electronic_inventory_pictures.dart';
 
 class PharmacyManagementScreen extends StatelessWidget {
   PharmacyManagementScreen({super.key});
@@ -38,7 +39,7 @@ class PharmacyManagementScreen extends StatelessWidget {
           },
         ),
         title: Text(titleText,
-            style: const TextStyle(fontSize: 18, color: Colors.white)),
+            style:  TextStyle(fontSize: MediaQuery.of(context).size.width * 0.055, color: Colors.white)),
       ),
       body: SafeArea(
         child: ListView(
@@ -48,7 +49,7 @@ class PharmacyManagementScreen extends StatelessWidget {
             BuildPharmacyManagement(text:"Customer Debts" ,pathName:'/customerDebts' ,icon:Icons.money_off ,),
             BuildPharmacyManagement(text:"Medicine Requests" ,pathName:'/medicineRequests' ,icon:Icons.receipt_long ,),
             BuildPharmacyManagement(text:"Inventory by Name " ,pathName:'/inventoryByName' ,icon:Icons.inventory ,),
-            BuildPharmacyManagement(text:"Electronic Inventory with Pictures" ,pathName:'/electronicInventoryPictures' ,icon:Icons.photo_library ,),
+          //  BuildPharmacyManagement(text:"Electronic Inventory with Pictures" ,pathName:'/electronicInventoryPictures' ,icon:Icons.photo_library ,),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Obx(() {
@@ -145,6 +146,20 @@ class PharmacyManagementScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(TextRecognitionScreen());
+        },
+        backgroundColor: AppColors.primaryColor,
+        shape: const CircleBorder(),
+        child: const Icon(
+          Icons.camera_alt_outlined,
+          size: 30,
+          color: Colors.white,
+        ),
+      ),
+
+
     );
   }
 }

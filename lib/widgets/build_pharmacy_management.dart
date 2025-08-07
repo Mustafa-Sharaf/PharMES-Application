@@ -31,11 +31,11 @@ class BuildPharmacyManagement extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-              Icon(icon, size: 25, color: Color(0xFF2C5FE0)),
+              Icon(icon, size:  MediaQuery.of(context).size.width * 0.05, color: Color(0xFF2C5FE0)),
               SizedBox(width: MediaQuery.of(context).size.width * 0.02),
               Text(
                 text,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize:  MediaQuery.of(context).size.width * 0.048, fontWeight: FontWeight.w500),
               ),
             ],
           ),
