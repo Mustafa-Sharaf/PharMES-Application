@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../app_theme/app_colors.dart';
 import 'electronic_inventory_pictures_controller.dart';
 
 class TextRecognitionScreen extends StatelessWidget {
@@ -9,7 +10,9 @@ class TextRecognitionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Text Recognition')),
+      appBar: AppBar(title:  Text(' Inventory by Pictures',
+        style: TextStyle(fontSize: MediaQuery.of(context).size.width*0.055,color: Colors.white),),
+        backgroundColor: AppColors.primaryColor,),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -27,14 +30,20 @@ class TextRecognitionScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: Obx(() {
-                return SingleChildScrollView(
-                  child: SelectableText(
-                    controller.text.value,
-                    style: const TextStyle(fontSize: 18),
+                return Scrollbar(
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(8),
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: SelectableText(
+                      controller.text.value,
+                      style: const TextStyle(fontSize: 18),
+                    ),
                   ),
                 );
               }),
             ),
+
           ],
         ),
       ),

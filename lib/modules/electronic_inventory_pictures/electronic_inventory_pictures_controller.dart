@@ -51,11 +51,29 @@ class TextRecognitionController extends GetxController {
     StringBuffer processedText = StringBuffer();
 
     for (var line in lines) {
-      if (line.toLowerCase().contains("film")) continue;
-      if (!uniqueLines.contains(line) && line.isNotEmpty) {
-        uniqueLines.add(line);
-        processedText.writeln(line);
+      final lowerLine = line.toLowerCase();
+      if (lowerLine.contains("film")  || lowerLine.contains("tablets") || lowerLine.contains("hours")||
+          lowerLine.contains("capsules") || lowerLine.contains("for adults")||lowerLine.contains("suppositories") ||
+          lowerLine.contains("comprimés") || lowerLine.contains("pizotifen")||lowerLine.contains("capsule")||lowerLine.contains("diclofenac")||lowerLine.contains("loratadine")||
+          lowerLine.contains("lot")||lowerLine.contains("mfg")||lowerLine.contains("exp")||lowerLine.contains("forte")||
+          lowerLine.contains("delta")||lowerLine.contains("delorta*")||lowerLine.contains("maleate")||lowerLine.contains("phenylephrine "))
+        continue;
+      if (RegExp(r'^\d+$').hasMatch(line)) continue;
+      if (RegExp(r'^\d+\s*mg$', caseSensitive: false).hasMatch(lowerLine)) {
+        continue;
       }
+      String modifiedLine = line.replaceAllMapped(
+        RegExp(r'(\b\w+\b)?\s*(\d+)\s*mg', caseSensitive: false),
+            (match) {
+          final word = match.group(1);
+          return word != null ? word : '';
+        },
+      ).trim();
+      if (!uniqueLines.contains(modifiedLine) && modifiedLine.isNotEmpty) {
+        uniqueLines.add(modifiedLine);
+        processedText.writeln(modifiedLine);
+      }
+
     }
 
     return processedText.toString().trim();

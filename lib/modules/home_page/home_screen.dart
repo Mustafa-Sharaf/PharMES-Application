@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           Text("Home_Screen".tr,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 19,
+                fontSize: MediaQuery.of(context).size.width*0.055,
               ),
             ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
@@ -47,14 +47,14 @@ class HomeScreen extends StatelessWidget {
             icon: const Text('🔔', style: TextStyle(fontSize: 20)),
             onPressed: () => Get.toNamed('/notificationsScreen'),
           ),
-          SizedBox(width:MediaQuery.of(context).size.width * 0.08,),
+          SizedBox(width:MediaQuery.of(context).size.width * 0.01,),
 
         ],
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Padding(
+            icon:  Padding(
               padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.menu, color: Colors.white, size: 28),
+              child: Icon(Icons.menu, color: Colors.white, size: MediaQuery.of(context).size.width*0.055),
             ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),

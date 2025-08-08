@@ -6,8 +6,7 @@ import 'package:pharmes_app/modules/my_pharmacy_management/pharmacy_management_c
 import '../../app_theme/app_colors.dart';
 import '../../app_theme/theme_controller.dart';
 import '../../widgets/build_pharmacy_management.dart';
-import '../electronic_inventory_pictures/electronic_inventory_pictures.dart';
-
+import '../../widgets/camera_floating_button.dart';
 class PharmacyManagementScreen extends StatelessWidget {
   PharmacyManagementScreen({super.key});
 
@@ -141,23 +140,10 @@ class PharmacyManagementScreen extends StatelessWidget {
                 );
               }),
             ),
-
-
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(TextRecognitionScreen());
-        },
-        backgroundColor: AppColors.primaryColor,
-        shape: const CircleBorder(),
-        child: const Icon(
-          Icons.camera_alt_outlined,
-          size: 30,
-          color: Colors.white,
-        ),
-      ),
+      floatingActionButton: CameraFloatingButton()
 
 
     );
