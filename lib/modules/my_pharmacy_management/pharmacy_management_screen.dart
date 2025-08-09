@@ -48,7 +48,7 @@ class PharmacyManagementScreen extends StatelessWidget {
             BuildPharmacyManagement(text:"Customer Debts" ,pathName:'/customerDebts' ,icon:Icons.money_off ,),
             BuildPharmacyManagement(text:"Medicine Requests" ,pathName:'/medicineRequests' ,icon:Icons.receipt_long ,),
             BuildPharmacyManagement(text:"Inventory by Name " ,pathName:'/inventoryByName' ,icon:Icons.inventory ,),
-          //  BuildPharmacyManagement(text:"Electronic Inventory with Pictures" ,pathName:'/electronicInventoryPictures' ,icon:Icons.photo_library ,),
+            BuildPharmacyManagement(text:"My Stock" ,pathName:'/myStock' ,icon:Icons.inventory ,),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Obx(() {

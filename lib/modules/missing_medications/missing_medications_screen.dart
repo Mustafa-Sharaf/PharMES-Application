@@ -38,6 +38,7 @@ class MissingMedicationsScreen extends StatelessWidget {
               medicine: medicine,
               highlightField: 'quantity',
               icon: 'missing',
+             showButton: true,
             );
           },
         );

@@ -17,6 +17,7 @@ import 'modules/inventory_by_name/inventory_by_name.dart';
 import 'modules/medicine_inventory_management/medicine_inventory_management.dart';
 import 'modules/medicine_requests/medicine_requests.dart';
 import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
+import 'modules/my_stock/my_stock_screen.dart';
 import 'modules/notifications/notifications.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 import 'modules/permissions/permissions_bindings.dart';
@@ -94,6 +95,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/medicineRequests', page: ()=>MedicineRequests()),
         GetPage(name: '/electronicInventoryPictures',page: ()=>  TextRecognitionScreen(),),
         GetPage(name: '/inventoryByName', page: ()=>InventoryByName()),
+        GetPage(name: '/myStock', page: ()=>MyStockScreen()),
+
       ],
     );
   }

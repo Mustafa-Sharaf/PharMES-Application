@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pharmes_app/modules/expired_medicines/expired_medicines_controller.dart';
+import '../../app_theme/app_colors.dart';
 import '../../widgets/medicine_card.dart';
-class ExpiredMedicinesScreen extends StatelessWidget {
-  const ExpiredMedicinesScreen({super.key});
+import 'my_stock_controller.dart';
+class MyStockScreen extends StatelessWidget {
+  const MyStockScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ExpiredMedicinesController controller = Get.put(ExpiredMedicinesController());
+    final MyStockController controller = Get.put(MyStockController());
     return Scaffold(
+      appBar: AppBar(title: Text("My Stock",style: TextStyle(color: Colors.white),),backgroundColor: AppColors.primaryColor,),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -28,12 +30,10 @@ class ExpiredMedicinesScreen extends StatelessWidget {
             final stock = controller.stocks[index];
             final medicine = stock['medicine'] as Map<String, dynamic>? ?? {};
 
-           return MedicineCard(
+            return MedicineCard(
               stock: stock,
               medicine: medicine,
-              highlightField: 'expires',
-              icon: 'expired',
-             showButton: true,
+              showButton: false,
             );
           },
         );

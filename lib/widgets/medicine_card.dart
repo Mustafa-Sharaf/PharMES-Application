@@ -6,13 +6,15 @@ class MedicineCard extends StatelessWidget {
   final Map<String, dynamic> medicine;
   final String highlightField;
   final String icon;
+  final bool showButton;
 
   const MedicineCard({
     super.key,
     required this.stock,
     required this.medicine,
     this.highlightField = '',
-    this.icon = ''
+    this.icon = '',
+    this.showButton = true,
   });
   @override
   Widget build(BuildContext context) {
@@ -98,6 +100,7 @@ class MedicineCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  if (showButton)
                   ElevatedButton(
                     onPressed: () {
                     },
