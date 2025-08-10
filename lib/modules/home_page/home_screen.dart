@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: SizedBox(
-        height:MediaQuery.of(context).size.height * 0.074,
+        height:MediaQuery.of(context).size.height * 0.0805,
         child: BottomAppBar(
           //color:  Color(0xFF111111),
           shape: const CircularNotchedRectangle(),

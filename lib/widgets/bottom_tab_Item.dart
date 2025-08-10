@@ -31,7 +31,7 @@ class BottomTabItem extends StatelessWidget {
             } else if (index == 3) {
               Get.to(() => const CartScreen());
             } else if (index == 4) {
-              Get.to(() => const BillsScreen());
+              Get.to(() =>  BillsScreen());
             } else {
               controller.changeTabIndex(index);
             }
