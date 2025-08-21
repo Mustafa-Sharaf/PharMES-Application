@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
+import '../bills/medicine.dart';
 class MedicineInfoCard extends StatelessWidget {
-  final Map<String, dynamic> medicine;
+  final Medicine medicine;
   final VoidCallback onIncrease;
   final VoidCallback onDecrease;
   final double widthFactor;
-
   const MedicineInfoCard({
     super.key,
     required this.medicine,
@@ -13,7 +12,6 @@ class MedicineInfoCard extends StatelessWidget {
     required this.onDecrease,
     this.widthFactor = 0.2,
   });
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,17 +27,22 @@ class MedicineInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    medicine["trade_name"],
+                    medicine.tradeName,
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
-                  Text("الاسم العلمي: ${medicine["scientific_name"]}"),
-                  Text("الشكل الصيدلاني: ${medicine["pharmaceutical_form"]}"),
+                //  Text("الاسم العلمي: ${medicine.scientificName}"),
+                 // Text("الشكل الصيدلاني: ${medicine.pharmaceuticalForm}"),
+                      Row(
+                        children: [
+                          Text("الجرعة: "),
+                          Text("${medicine.dosage}"),
+                        ],
+                      ),
                   Row(
                     children: [
-                      Text("الجرعة: ${medicine["dosage"]}"),
-                      SizedBox(width: MediaQuery.of(context).size.width * widthFactor),
-                      Text("السعر: ${medicine["price"]}"),
+                      Text("السعر  :  "),
+                      Text("${medicine.price}"),
                     ],
                   ),
                 ],
@@ -61,7 +64,7 @@ class MedicineInfoCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    "${medicine["quantity"]}",
+                    "${medicine.quantity}",
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 3),

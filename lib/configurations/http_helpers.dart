@@ -16,6 +16,7 @@ class HttpHelper{
     final box = GetStorage();
     final storedToken = box.read<String>('token');
     return await http.post(Uri.parse('$baseurl$url'), body: body,headers:{ 'Accept':'application/json',
+
       if (storedToken != null) 'Authorization': 'Bearer $storedToken',});
   }
   static Future<Response> gettData({required String url})async {

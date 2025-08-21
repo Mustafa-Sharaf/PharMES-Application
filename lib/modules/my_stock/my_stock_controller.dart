@@ -7,6 +7,8 @@ import '../../configurations/http_helpers.dart';
 
 class MyStockController extends GetxController {
   var stocks = <Map<String, dynamic>>[].obs;
+  var filteredStocks = <Map<String, dynamic>>[].obs;
+  var searchQuery = ''.obs;
   var isLoading = false.obs;
   var errorMessage = RxnString();
   final box = GetStorage();
@@ -14,6 +16,7 @@ class MyStockController extends GetxController {
   void onInit() {
     super.onInit();
     fetchStocks();
+    ever(searchQuery, (_) => filterStocks());
   }
 
   Future<void> fetchStocks() async {
@@ -45,6 +48,18 @@ class MyStockController extends GetxController {
       errorMessage.value = 'error: $e';
     } finally {
       isLoading.value = false;
+    }
+  }
+  void filterStocks() {
+    final query = searchQuery.value.toLowerCase();
+    if (query.isEmpty) {
+      filteredStocks.value = stocks;
+    } else {
+      filteredStocks.value = stocks.where((stock) {
+        final medicine = stock['medicine'] as Map<String, dynamic>? ?? {};
+        final tradeName = (medicine['trade_name'] ?? '').toString().toLowerCase();
+        return tradeName.startsWith(query);
+      }).toList();
     }
   }
 }
