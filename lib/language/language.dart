@@ -66,6 +66,9 @@ class MyLanguage implements Translations{
       "Failed_to_fetch_medications":"Failed to fetch medications",
       "Error":"Error",
       "Exception":"Exception",
+      "All_Users":"All Users",
+      "Distress_Call":"Distress Call",
+      "":"",
       "":"",
       "":"",
 
@@ -138,6 +141,8 @@ class MyLanguage implements Translations{
       "Failed_to_fetch_medications":"فشل في جلب الأدوية",
       "Error":"خطأ",
       "Exception":"استثناء",
+      "All_Users":"جميع المستخدمين",
+      "Distress_Call":"نداء استغاثة",
 
     },
 

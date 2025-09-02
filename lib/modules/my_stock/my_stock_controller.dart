@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../configurations/http_helpers.dart';
+import '../../helpers/request_queue_manager.dart';
+
 
 
 class MyStockController extends GetxController {
@@ -17,6 +19,7 @@ class MyStockController extends GetxController {
     super.onInit();
     fetchStocks();
     ever(searchQuery, (_) => filterStocks());
+    //RequestQueueManager.processQueue();
   }
 
   Future<void> fetchStocks() async {
@@ -63,3 +66,4 @@ class MyStockController extends GetxController {
     }
   }
 }
+

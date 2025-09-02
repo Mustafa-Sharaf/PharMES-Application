@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
 import '../../configurations/http_helpers.dart';
+
 
 class RequestQueueManager {
   static final _queueBox = GetStorage();
@@ -62,16 +64,37 @@ class RequestQueueManager {
 
     for (var request in queue) {
       try {
-        final response = await HttpHelper.postData(
+
+/* final response = await HttpHelper.postData(
           url: request['url'],
           body: request['body'],
-        );
+        );*/
+
+        http.Response response;
+
+        // إذا body فيه List أو تركيبة معقدة → استعمل postJson
+        if (request['body'] is Map<String, dynamic>) {
+          response = await HttpHelper.postJson(
+            url: request['url'],
+            body: request['body'],
+          );
+        } else {
+          // fallback للـ postData (زي ما كنت تستخدم)
+          response = await HttpHelper.postData(
+            url: request['url'],
+            body: request['body'],
+          );
+        }
+
 
         final responseBody = jsonDecode(response.body);
         final userName = request['userName'] ?? 'user';
+        print('[QUEUE] Response body: $responseBody');
 
         if (response.statusCode == 200 &&
-            responseBody['status']?.toString().contains('success') == true) {
+            (responseBody.containsKey('added') ||
+                responseBody['success'] == true ||
+                responseBody['status']?.toString().toLowerCase() == 'success')) {
           print('[QUEUE]  Request sent successfully');
           request['status'] = 'done';
           log.add(request);
@@ -82,7 +105,7 @@ class RequestQueueManager {
           request['status'] = 'failed';
           newQueue.insert(0,request);
           log.add(request);
-          Get.to('/signIn');
+          //Get.toNamed('/signIn');
         }
       } catch (e) {
         print('[QUEUE]  Error sending request: $e');
@@ -101,3 +124,4 @@ class RequestQueueManager {
 
 
 }
+

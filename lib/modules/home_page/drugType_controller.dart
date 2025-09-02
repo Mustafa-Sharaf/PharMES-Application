@@ -42,12 +42,16 @@ class DrugTypeController extends GetxController {
 
         if (response.statusCode == 200) {
           List jsonData = json.decode(response.body);
+
+          print('[DEBUG] response.body: ${response.body}');
+
           drugTypeMedicine.value =
               jsonData.map((e) => DrugTypeMedicine.fromJson(e)).toList();
           box.write(cacheKey, response.body);
           box.write(cacheTimeKey, now.toIso8601String());
         } else {
           print('فشل في الجلب من السيرفر. الرمز: ${response.statusCode}');
+          print('[DEBUG] response.statusCode: ${response.statusCode}');
         }
       } catch (e) {
         print('فشل الاتصال بالسيرفر، سيتم استخدام البيانات المخزنة فقط. الخطأ: $e');

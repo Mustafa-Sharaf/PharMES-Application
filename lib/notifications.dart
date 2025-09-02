@@ -1,16 +1,19 @@
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get_storage/get_storage.dart';
 
 
 class Notifications {
   final firebaseMessaging=FirebaseMessaging.instance;
-
 
     Future<void> initNotifications() async {
       try {
         await FirebaseMessaging.instance.requestPermission();
         final token = await FirebaseMessaging.instance.getToken();
         print("Notification Token============================= $token");
+        if (token != null) {
+          GetStorage().write('fcm_token', token);
+        }
         FirebaseMessaging.onBackgroundMessage(handleNotification);
       } catch (e) {
         print("❌ Failed to get FCM token: $e");

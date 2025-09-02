@@ -3,15 +3,19 @@ import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import '../../widgets/bottom_tab_Item.dart';
 import '../../widgets/drawer_home.dart';
+import '../../widgets/drawer_home/distress_Controller.dart';
 import '../bills/bills_screen.dart';
 import '../cart/cart_screen.dart';
 import '../inventory_management/inventory_management_screen.dart';
+import '../profile/profile_controller.dart';
 import '../qr_code/qr_code_screen.dart';
 import 'home_content.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   final BottomNavController controller = Get.put(BottomNavController());
+  final ProfileController profileController = Get.find();
+  final DistressController distressController = Get.put(DistressController());
   HomeScreen({super.key});
 
   final List<Widget> pages = [
@@ -25,8 +29,86 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            SizedBox(
+              height:MediaQuery.of(context).size.height*0.25,
+              child: DrawerHeader(
+                decoration:  BoxDecoration(color: AppColors.primaryColor),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'PharMes'.tr,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/images/logodrawer.jpg'),
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                    Obx(
+                          () => Text(
+                            profileController.name.value,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    Obx(
+                          () => Text(
+                            profileController.email.value,
+                        style: TextStyle(color: Colors.grey, fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
-      drawer: DrawerHome(),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My_Profile'.tr),
+              onTap: () {
+                Get.toNamed('/profileScreen');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.inventory_2),
+              title: Text('My_Pharmacy_Management'.tr),
+              onTap: () {
+                Get.toNamed('/pharmacyManagementScreen');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.group),
+              title: Text('All_Users'.tr),
+              onTap: () {
+                Get.toNamed('/allUsers');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.sos),
+              title: Text('Distress_Call'.tr),
+              onTap: () {
+                distressController.sendDistressMessage();
+              },
+            ),
+            ListTile(leading: Icon(Icons.support), title: Text('Support'.tr)),
+            ListTile(
+              leading: Icon(Icons.share),
+              title: Text('Share_Application'.tr),
+              //onTap: shareController.shareApp,
+            ),
+            ListTile(
+              leading: Icon(Icons.privacy_tip),
+              title: Text('Privacy_Policy'.tr),
+            ),
+          ],
+        ),
+      ),
+
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         actions: [

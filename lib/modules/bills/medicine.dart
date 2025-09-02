@@ -1,4 +1,4 @@
-class Medicine {
+class MedicineStock {
   final int medicineId;
   final String tradeName;
   //final String scientificName;
@@ -8,7 +8,7 @@ class Medicine {
   final double price;
   final String batch;
 
-  Medicine({
+  MedicineStock({
     required this.medicineId,
     required this.tradeName,
    // required this.scientificName,

@@ -10,9 +10,7 @@ import 'delete_profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
-  ProfileController controller = Get.put<ProfileController>(
-    ProfileController(),
-  );
+  final ProfileController controller= Get.find();
   LogOutController controllerLogout = Get.put<LogOutController>(
     LogOutController(),
   );

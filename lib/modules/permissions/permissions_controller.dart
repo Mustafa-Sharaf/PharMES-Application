@@ -175,7 +175,7 @@ class PermissionsController extends GetxController {
     };
 
     final Map<String, dynamic> requestData = {
-      'url': 'Pharmacy/assign-permissions/$selectedUserId',
+      'url': 'Pharmacy/assignOrUpdate-Permissions/$selectedUserId',
       'body': requestBody,
     };
     final connectivityService = Get.find<ConnectivityService>();
@@ -196,6 +196,8 @@ class PermissionsController extends GetxController {
         } else {
           Get.snackbar('Failed', 'Failed to save data',
               backgroundColor: Colors.red, colorText: Colors.white);
+          print('[SAVE] Status: ${response.statusCode}');
+          print('[SAVE] Body: ${response.body}');
         }
       } catch (e) {
         print('Error while sending request: $e');

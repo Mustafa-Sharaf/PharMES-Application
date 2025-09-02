@@ -3,15 +3,34 @@ import 'dart:io';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
-import 'package:http/http.dart 'as http;
+import 'package:http/http.dart' as http;
+
 
 //String? token;
-const String baseurl='http://192.168.43.63:8000/api/';
-const String imgURL='http://192.168.43.63:8000';
+const String baseurl='http://10.171.109.128:8000/api/';
+const String imgURL='http://10.171.109.128:8000';
 class HttpHelper{
 
-  static Future<Response> postData(
+  static Future<http.Response> postJson(
+      {required String url, required Map<String, dynamic> body}) async {
+    final box = GetStorage();
+    final token = box.read<String>('token');
 
+    return await http.post(
+      Uri.parse('$baseurl$url'),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(body), // هذا يحول Map إلى JSON string
+    );
+  }
+
+
+
+
+  static Future<Response> postData(
       {required String url, Map<String, dynamic>?body} )async{
     final box = GetStorage();
     final storedToken = box.read<String>('token');
@@ -47,8 +66,6 @@ class HttpHelper{
       print('error catch $e');
     }
   }
-
-
 }
 
 

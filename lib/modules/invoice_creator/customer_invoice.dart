@@ -8,7 +8,7 @@ class CustomerInvoice extends GetxController {
   var isPsychotropic = false.obs;
   var customerNameEditing = "".obs;
   var nationalId = "".obs;
-  var medicines = <Medicine>[].obs;
+  var medicines = <MedicineStock>[].obs;
 
   double get total =>
       medicines.fold(0.0, (sum, item) => sum + item.quantity * item.price);

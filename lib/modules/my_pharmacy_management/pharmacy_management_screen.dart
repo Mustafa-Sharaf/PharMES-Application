@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:pharmes_app/modules/my_pharmacy_management/pharmacy_management_controller.dart';
 import '../../app_theme/app_colors.dart';
 import '../../app_theme/theme_controller.dart';
@@ -43,13 +42,28 @@ class PharmacyManagementScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            BuildPharmacyManagement(text:"Medicine inventory management" ,pathName:'/medicineInventoryManagement',icon:Icons.medical_services_rounded,),
+            BuildPharmacyManagement(text:"My Stock" ,pathName:'/myStock' ,icon:Icons.medical_services ,),
+            BuildPharmacyManagement(text:"My Pharmacists" ,pathName:'/myPharmacists' ,icon:Icons.group ,),
+            BuildPharmacyManagement(text:"Determine Permissions" ,pathName:'/permissionScreen' ,icon:Icons.settings ,),
+            BuildPharmacyManagement(text:"View Permissions" ,pathName:'/queueViewer' ,icon:Icons.remove_red_eye_rounded ,),
+            BuildPharmacyManagement(text:"Inventory by Name " ,pathName:'/inventoryByName' ,icon:Icons.inventory ,),
             BuildPharmacyManagement(text:"Special Requests" ,pathName:'/specialRequests',icon: Icons.note_alt ,),
+            BuildPharmacyManagement(text:"Returned medications" ,pathName:'/returnedMedications' ,icon:Icons.replay ,),
+
+
             BuildPharmacyManagement(text:"Customer Debts" ,pathName:'/customerDebts' ,icon:Icons.money_off ,),
             BuildPharmacyManagement(text:"Medicine Requests" ,pathName:'/medicineRequests' ,icon:Icons.receipt_long ,),
-            BuildPharmacyManagement(text:"Inventory by Name " ,pathName:'/inventoryByName' ,icon:Icons.inventory ,),
-            BuildPharmacyManagement(text:"My Stock" ,pathName:'/myStock' ,icon:Icons.inventory ,),
-            Padding(
+            BuildPharmacyManagement(text:"Foreign Medicine" ,pathName:'/foreignMedicineInventoryManagement',icon:Icons.medical_services_rounded,),
+
+
+
+
+
+
+
+
+
+          /*  Padding(
               padding: const EdgeInsets.all(20),
               child: Obx(() {
                 final isPressed = buttonController.isPressed1.value;
@@ -93,8 +107,8 @@ class PharmacyManagementScreen extends StatelessWidget {
                   ),
                 );
               }),
-            ),
-            Padding(
+            ),*/
+          /*  Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Obx(() {
                 final isPressed = buttonController.isPressed2.value;
@@ -139,7 +153,7 @@ class PharmacyManagementScreen extends StatelessWidget {
                   ),
                 );
               }),
-            ),
+            ),*/
           ],
         ),
       ),

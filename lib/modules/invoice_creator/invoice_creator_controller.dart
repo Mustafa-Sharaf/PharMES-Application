@@ -11,7 +11,7 @@ class InvoiceCreatorController extends GetxController {
   var isPsychotropic = false.obs;
   var customerNameEditing = "".obs;
   var nationalId = "".obs;
-  var medicines = <Medicine>[].obs;
+  var medicines = <MedicineStock>[].obs;
   double get total => medicines.fold(0.0,
           (sum, item) => sum + item.quantity * item.price);
   void increaseQuantity(int index) {
@@ -26,7 +26,7 @@ class InvoiceCreatorController extends GetxController {
     }
     medicines.refresh();
   }
-  void addMedicine(Medicine newMedicine) {
+  void addMedicine(MedicineStock newMedicine) {
     final existingIndex = medicines.indexWhere(
           (med) => med.medicineId == newMedicine.medicineId,
     );

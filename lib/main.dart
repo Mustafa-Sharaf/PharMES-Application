@@ -4,24 +4,30 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/language/language.dart';
 import 'package:pharmes_app/modules/customer_debts/customer_debts.dart';
+import 'package:pharmes_app/returned_medications/returned_medications.dart';
+import 'all_users/all_users.dart';
 import 'app_theme/app_theme.dart';
 import 'app_theme/theme_controller.dart';
 import 'helpers/connectivity_service_controller.dart';
 import 'language/language_controller.dart';
-import 'modules/barcode/barcode_screen.dart';
 import 'modules/electronic_inventory_pictures/electronic_inventory_pictures.dart';
 import 'modules/email_verification/email_verification_screen.dart';
+import 'modules/foreign_medicines_inventory_management/foreign_medicine_inventory_management.dart';
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_screen.dart';
 import 'modules/inventory_by_name/inventory_by_name.dart';
-import 'modules/medicine_inventory_management/medicine_inventory_management.dart';
 import 'modules/medicine_requests/medicine_requests.dart';
+import 'modules/my_Pharmacists/my_Pharmacists.dart';
 import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
+import 'modules/my_pharmacy_management/queue_viewer.dart';
+import 'modules/my_stock/addmedicine_in_my_stock.dart';
+import 'modules/my_stock/my_stock_controller.dart';
 import 'modules/my_stock/my_stock_screen.dart';
 import 'modules/notifications/notifications.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 import 'modules/permissions/permissions_bindings.dart';
 import 'modules/permissions/permissions_screen.dart';
+import 'modules/profile/profile_controller.dart';
 import 'modules/profile/profile_screen.dart';
 import 'modules/profile/update_profile _screen.dart';
 import 'modules/reset_password/reset_password_screen.dart';
@@ -43,10 +49,12 @@ void main()async {
   final box = GetStorage();
   Get.put(ConnectivityService());
   Get.put(MyLanguageController());
+  Get.put(ProfileController(),);
+  Get.put(MyStockController(),);
   final themeController =Get.put(ThemeController());
   themeController.loadThemeFromStorage();
   final token = box.read<String>('token');
-  print('[main] Token from storage: $token');
+  //print('[main] Token from storage: $token');
   await Firebase.initializeApp();
   await Notifications().initNotifications();
   runApp(MyApp(initialRoute: token == null ? '/splash' : '/home'));
@@ -86,7 +94,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/notificationsScreen', page: ()=>NotificationsScreen()),
         GetPage(name: '/profileScreen', page: ()=>ProfileScreen()),
         GetPage(name: '/pharmacyManagementScreen', page: ()=>PharmacyManagementScreen()),
-        GetPage(name: '/medicineInventoryManagement', page: ()=>MedicineInventoryManagement()),
+        GetPage(name: '/foreignMedicineInventoryManagement', page: ()=>ForeignMedicineInventoryManagement()),
         GetPage(name: '/updateProfile', page: ()=>UpdateProfileScreen()),
         GetPage(name: '/specialRequests', page: ()=>SpecialRequests()),
         GetPage(name: '/createSpecialRequests', page: ()=>CreateSpecialRequests()),
@@ -96,6 +104,11 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/electronicInventoryPictures',page: ()=>  TextRecognitionScreen(),),
         GetPage(name: '/inventoryByName', page: ()=>InventoryByName()),
         GetPage(name: '/myStock', page: ()=>MyStockScreen()),
+        GetPage(name: '/queueViewer', page: ()=>QueueViewer()),
+        GetPage(name: '/addMedicineInMyStock', page: ()=>AddMedicineInMyStock()),
+        GetPage(name: '/returnedMedications', page: ()=>ReturnedMedications()),
+        GetPage(name: '/allUsers', page: ()=>AllUsers()),
+        GetPage(name: '/myPharmacists', page: ()=>MyPharmacistsPage()),
 
       ],
     );

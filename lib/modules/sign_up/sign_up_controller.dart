@@ -46,6 +46,7 @@ class SignUpController extends GetxController {
   }
 
   signUp(BuildContext context) async {
+    String? fcmToken = GetStorage().read('fcm_token');
     String name = nameController.text;
     String phone = phoneController.text;
     String email = emailController.text.trim();
@@ -98,6 +99,7 @@ class SignUpController extends GetxController {
       'email': email,
       'password': password,
       'password_confirmation': confirmPassword,
+      'mac_token': fcmToken,
     };
 
     String endpoint = '';
@@ -155,7 +157,7 @@ class SignUpController extends GetxController {
         GetStorage().write('token', token);
         GetStorage().write('role_id', role);
         Get.snackbar('Success', res['status'].toString(), backgroundColor: AppColors.primaryColor, colorText: Colors.white);
-        Get.offNamed('/test');
+        Get.offNamed('/home');
       } else {
       print("Sending to [$endpoint]:");
       print(jsonEncode(data));

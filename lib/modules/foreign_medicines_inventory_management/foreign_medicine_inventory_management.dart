@@ -1,10 +1,11 @@
 
+
 import 'package:flutter/material.dart';
 
 import '../../app_theme/app_colors.dart';
 
-class MedicineInventoryManagement extends StatelessWidget {
-  const MedicineInventoryManagement({super.key});
+class ForeignMedicineInventoryManagement extends StatelessWidget {
+  const ForeignMedicineInventoryManagement({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,3 +24,4 @@ class MedicineInventoryManagement extends StatelessWidget {
     );
   }
 }
+

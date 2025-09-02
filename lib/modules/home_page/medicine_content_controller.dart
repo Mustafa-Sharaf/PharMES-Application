@@ -7,7 +7,9 @@ import 'medicine_content_model.dart';
 
 class HomeContentController extends GetxController {
   var medicines = <Medicine>[].obs;
+  var filteredMedicines = <Medicine>[].obs;
   var isLoading = false.obs;
+  var recentSearches = <String>[].obs;
 
   @override
   void onInit() {
@@ -24,11 +26,11 @@ class HomeContentController extends GetxController {
     if (cachedData != null) {
       try {
         List jsonData = json.decode(cachedData);
-        medicines.value = jsonData
-            .map((item) => Medicine.fromJson(item))
-            .toList();
+        medicines.value =
+            jsonData.map((item) => Medicine.fromJson(item)).toList();
+        filteredMedicines.assignAll(medicines);
       } catch (e) {
-        print(' خطأ في قراءة البيانات المخزنة: $e');
+        print('خطأ في قراءة البيانات المخزنة: $e');
       }
     }
 
@@ -39,7 +41,7 @@ class HomeContentController extends GetxController {
     final now = DateTime.now();
 
     final shouldFetchFromApi =
-        lastFetchTime == null || now.difference(lastFetchTime).inHours >= 4;
+        lastFetchTime == null || now.difference(lastFetchTime).inHours >= 8;
 
     if (shouldFetchFromApi) {
       try {
@@ -47,9 +49,9 @@ class HomeContentController extends GetxController {
 
         if (response.statusCode == 200) {
           List jsonData = json.decode(response.body);
-          medicines.value = jsonData
-              .map((item) => Medicine.fromJson(item))
-              .toList();
+          medicines.value =
+              jsonData.map((item) => Medicine.fromJson(item)).toList();
+          filteredMedicines.assignAll(medicines);
           box.write('medicines', response.body);
           box.write('medicines_last_fetch', now.toIso8601String());
         } else {
@@ -72,6 +74,33 @@ class HomeContentController extends GetxController {
     }
 
     isLoading.value = false;
+  }
+
+
+
+  void searchMedicines(String query) {
+    if (query.isEmpty) {
+      filteredMedicines.assignAll(medicines);
+      return;
+    }
+    filteredMedicines.assignAll(
+      medicines.where((med) =>
+      med.tradeName.toLowerCase().contains(query.toLowerCase()) ||
+          med.composition.toLowerCase().contains(query.toLowerCase()) ||
+          med.laboratory.toLowerCase().contains(query.toLowerCase())),
+    );
+  }
+  void addRecentSearch(String searchTerm) {
+    if (searchTerm.isNotEmpty && !recentSearches.contains(searchTerm)) {
+      recentSearches.insert(0, searchTerm);
+      if (recentSearches.length > 10) {
+        recentSearches.removeLast();
+      }
+    }
+  }
+
+  void clearRecentSearches() {
+    recentSearches.clear();
   }
 
 }

@@ -11,7 +11,8 @@ class BillsScreen extends StatelessWidget {
   BillsScreen({super.key});
 
   final BillsController controller = Get.put(BillsController());
-  final MyStockController stockController = Get.put(MyStockController());
+  final MyStockController stockController= Get.find();
+ // final MyStockController stockController = Get.put(MyStockController());
   final List<Widget> pages = [InvoiceCreatorScreen(), InvoiceDisplayScreen()];
 
   final isSearching = false.obs;
@@ -78,7 +79,7 @@ class BillsScreen extends StatelessWidget {
                           final invoiceController = Get.find<InvoiceCreatorController>();
 
                           invoiceController.addMedicine(
-                            Medicine(
+                            MedicineStock(
                               medicineId: stock['medicine_id'],
                               tradeName: medicine['trade_name'],
                               //scientificName: medicine['scientific_name'] ?? '',

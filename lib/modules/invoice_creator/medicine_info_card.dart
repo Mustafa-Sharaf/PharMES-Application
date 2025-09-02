@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../bills/medicine.dart';
 class MedicineInfoCard extends StatelessWidget {
-  final Medicine medicine;
+  final MedicineStock medicine;
   final VoidCallback onIncrease;
   final VoidCallback onDecrease;
   final double widthFactor;

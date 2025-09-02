@@ -28,7 +28,7 @@ class InventoryManagementScreen extends StatelessWidget {
       ),
       body: Obx(() => pages[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
-            () => BottomNavigationBar(
+        () => BottomNavigationBar(
           currentIndex: controller.selectedIndex.value,
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Colors.grey,
