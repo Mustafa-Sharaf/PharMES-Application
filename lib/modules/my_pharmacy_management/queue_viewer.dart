@@ -8,7 +8,9 @@ import '../../app_theme/app_colors.dart';
 class QueueViewer extends StatelessWidget {
   final box = GetStorage();
 
-  final ValueNotifier<List<Map<String, dynamic>>> requestList = ValueNotifier([]);
+  final ValueNotifier<List<Map<String, dynamic>>> requestList = ValueNotifier(
+    [],
+  );
 
   QueueViewer({super.key}) {
     _loadQueue();
@@ -20,13 +22,17 @@ class QueueViewer extends StatelessWidget {
 
   void _loadQueue() {
     final log = List<Map<String, dynamic>>.from(box.read('request_log') ?? []);
-    final queue = List<Map<String, dynamic>>.from(box.read('request_queue') ?? []);
+    final queue = List<Map<String, dynamic>>.from(
+      box.read('request_queue') ?? [],
+    );
 
     final combined = [...log];
     for (var qItem in queue) {
-      final exists = combined.any((lItem) =>
-      lItem['url'] == qItem['url'] &&
-          jsonEncode(lItem['body']) == jsonEncode(qItem['body']));
+      final exists = combined.any(
+        (lItem) =>
+            lItem['url'] == qItem['url'] &&
+            jsonEncode(lItem['body']) == jsonEncode(qItem['body']),
+      );
       if (!exists) {
         combined.add(qItem);
       }
@@ -81,40 +87,44 @@ class QueueViewer extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.white,
           appBar: AppBar(
-            title: const Text('Request Queue Viewer',style: TextStyle(color: AppColors.white),),
+            title: const Text(
+              'Request Queue Viewer',
+              style: TextStyle(color: AppColors.white),
+            ),
             backgroundColor: AppColors.primaryColor,
+            foregroundColor: AppColors.white,
           ),
           body: queue.isEmpty
               ? const Center(child: Text('No requests in queue.'))
               : ListView.builder(
-            itemCount: queue.length,
-            itemBuilder: (context, index) {
-              final item = queue[index];
-              return ListTile(
-                leading: getStatusIcon(item['status']),
-                title: Text(getStatusText(item)),
-                trailing: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () => removeItem(index),
+                  itemCount: queue.length,
+                  itemBuilder: (context, index) {
+                    final item = queue[index];
+                    return ListTile(
+                      leading: getStatusIcon(item['status']),
+                      title: Text(getStatusText(item)),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () => removeItem(index),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
           bottomNavigationBar: queue.isNotEmpty
               ? Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton.icon(
-              onPressed: clearAll,
-              icon: const Icon(Icons.delete_forever, color: Colors.white),
-              label: const Text(
-                'Clear All',
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.shade600,
-              ),
-            ),
-          )
+                  padding: const EdgeInsets.all(10.0),
+                  child: ElevatedButton.icon(
+                    onPressed: clearAll,
+                    icon: const Icon(Icons.delete_forever, color: Colors.white),
+                    label: const Text(
+                      'Clear All',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.shade600,
+                    ),
+                  ),
+                )
               : null,
         );
       },

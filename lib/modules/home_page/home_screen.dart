@@ -34,9 +34,9 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             SizedBox(
-              height:MediaQuery.of(context).size.height*0.25,
+              height: MediaQuery.of(context).size.height * 0.25,
               child: DrawerHeader(
-                decoration:  BoxDecoration(color: AppColors.primaryColor),
+                decoration: BoxDecoration(color: AppColors.primaryColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,18 +47,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/images/logodrawer.jpg'),
+                      backgroundImage: AssetImage(
+                        'assets/images/logodrawer.jpg',
+                      ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                     Obx(
-                          () => Text(
-                            profileController.name.value,
+                      () => Text(
+                        profileController.name.value,
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
                     Obx(
-                          () => Text(
-                            profileController.email.value,
+                      () => Text(
+                        profileController.email.value,
                         style: TextStyle(color: Colors.grey, fontSize: 15),
                       ),
                     ),
@@ -81,13 +83,13 @@ class HomeScreen extends StatelessWidget {
                 Get.toNamed('/pharmacyManagementScreen');
               },
             ),
-            ListTile(
+            /*  ListTile(
               leading: Icon(Icons.group),
               title: Text('All_Users'.tr),
               onTap: () {
                 Get.toNamed('/allUsers');
               },
-            ),
+            ),*/
             ListTile(
               leading: Icon(Icons.sos),
               title: Text('Distress_Call'.tr),
@@ -112,41 +114,45 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         actions: [
-          Text("Home_Screen".tr,
+          Text(
+            "Home_Screen".tr,
             style: TextStyle(
-                color: Colors.white,
-                fontSize: MediaQuery.of(context).size.width*0.055,
-              ),
+              color: Colors.white,
+              fontSize: MediaQuery.of(context).size.width * 0.055,
             ),
-          SizedBox(width: MediaQuery.of(context).size.width * 0.25,),
+          ),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.25),
           IconButton(
             icon: const Text('🔎', style: TextStyle(fontSize: 25)),
             onPressed: () => Get.toNamed('/searchScreen'),
           ),
 
-          SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.01),
           IconButton(
             icon: const Text('🔔', style: TextStyle(fontSize: 20)),
             onPressed: () => Get.toNamed('/notificationsScreen'),
           ),
-          SizedBox(width:MediaQuery.of(context).size.width * 0.01,),
-
+          SizedBox(width: MediaQuery.of(context).size.width * 0.01),
         ],
         leading: Builder(
           builder: (context) => IconButton(
-            icon:  Padding(
+            icon: Padding(
               padding: EdgeInsets.only(left: 10),
-              child: Icon(Icons.menu, color: Colors.white, size: MediaQuery.of(context).size.width*0.055),
+              child: Icon(
+                Icons.menu,
+                color: Colors.white,
+                size: MediaQuery.of(context).size.width * 0.055,
+              ),
             ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
       ),
 
-      body: Obx(() => IndexedStack(
-        index: controller.currentIndex.value,
-        children: pages,
-      )),
+      body: Obx(
+        () =>
+            IndexedStack(index: controller.currentIndex.value, children: pages),
+      ),
 
       floatingActionButton: Transform.translate(
         offset: const Offset(0, 10),
@@ -158,28 +164,52 @@ class HomeScreen extends StatelessWidget {
             elevation: 8,
             shape: const CircleBorder(),
             onPressed: () => controller.changeTabIndex(2),
-            child: const Icon(Icons.qr_code, size: 35,color: Colors.grey,),
+            child: const Icon(Icons.qr_code, size: 35, color: Colors.grey),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: SizedBox(
-        height:MediaQuery.of(context).size.height * 0.0805,
+        height: MediaQuery.of(context).size.height * 0.0805,
         child: BottomAppBar(
           //color:  Color(0xFF111111),
           shape: const CircularNotchedRectangle(),
-           notchMargin: 6.0,
+          notchMargin: 6.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(child: BottomTabItem(index: 0, icon: Icons.home, label: 'Home'.tr)),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-              Expanded(child: BottomTabItem(index: 1, icon: Icons.inventory, label: 'Inventory'.tr)),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.20,),
-              Expanded(child: BottomTabItem(index: 3, icon: Icons.shopping_cart_outlined, label: 'Cart'.tr)),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
-              Expanded(child: BottomTabItem(index: 4, icon: Icons.receipt_long, label: 'Bills'.tr)),
+              Expanded(
+                child: BottomTabItem(
+                  index: 0,
+                  icon: Icons.home,
+                  label: 'Home'.tr,
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+              Expanded(
+                child: BottomTabItem(
+                  index: 1,
+                  icon: Icons.inventory,
+                  label: 'Inventory'.tr,
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.20),
+              Expanded(
+                child: BottomTabItem(
+                  index: 3,
+                  icon: Icons.shopping_cart_outlined,
+                  label: 'Cart'.tr,
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+              Expanded(
+                child: BottomTabItem(
+                  index: 4,
+                  icon: Icons.receipt_long,
+                  label: 'Bills'.tr,
+                ),
+              ),
             ],
           ),
         ),
@@ -187,8 +217,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

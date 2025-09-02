@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -211,7 +210,7 @@ class PermissionsController extends GetxController {
       await RequestQueueManager.addToQueue(requestData);
       Get.snackbar('Offline', 'Saved locally. Will send when online.',
           backgroundColor: Colors.orange, colorText: Colors.white);
-      Get.offNamed('/home');
+      Get.offNamed('/pharmacyManagementScreen');
 
     }
   }
