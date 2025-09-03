@@ -17,6 +17,7 @@ import 'modules/home_page/home_screen.dart';
 import 'modules/inventory_by_name/inventory_by_name.dart';
 import 'modules/medicine_requests/medicine_requests.dart';
 import 'modules/my_Pharmacists/my_Pharmacists.dart';
+import 'modules/my_permissions/my_permissions.dart';
 import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
 import 'modules/my_pharmacy_management/queue_viewer.dart';
 import 'modules/my_stock/addmedicine_in_my_stock.dart';
@@ -109,6 +110,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/returnedMedications', page: ()=>ReturnedMedications()),
         GetPage(name: '/allUsers', page: ()=>AllUsers()),
         GetPage(name: '/myPharmacists', page: ()=>MyPharmacistsPage()),
+        GetPage(name: '/myPermissionsScreen', page: ()=>MyPermissionsScreen()),
+
 
       ],
     );

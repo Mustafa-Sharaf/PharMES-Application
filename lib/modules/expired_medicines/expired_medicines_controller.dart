@@ -35,8 +35,15 @@ class ExpiredMedicinesController extends GetxController {
           errorMessage.value = 'No data';
         }
       }
-      else if(res.statusCode == 500) {
+      else if (res.statusCode == 401) {
+        box.erase();
         Get.offNamed('/signIn');
+      }
+      else if (res.statusCode == 403) {
+        print("You are not able to access this page.");
+      }
+      else if (res.statusCode == 500) {
+        print("Internal Server Error. Please try again later");
       }
       else {
         errorMessage.value = ' Faild : ${res.statusCode}';

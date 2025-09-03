@@ -49,6 +49,7 @@ class PharmacyManagementScreen extends StatelessWidget {
             BuildPharmacyManagement(text:"Inventory by Name " ,pathName:'/inventoryByName' ,icon:Icons.inventory ,),
             BuildPharmacyManagement(text:"Special Requests" ,pathName:'/specialRequests',icon: Icons.note_alt ,),
             BuildPharmacyManagement(text:"Returned medications" ,pathName:'/returnedMedications' ,icon:Icons.replay ,),
+            BuildPharmacyManagement(text:"My Permissions" ,pathName:'/myPermissionsScreen' ,icon:Icons.key,),
 
 
             BuildPharmacyManagement(text:"Customer Debts" ,pathName:'/customerDebts' ,icon:Icons.money_off ,),

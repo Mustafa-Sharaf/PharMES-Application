@@ -64,6 +64,7 @@ class SignInController extends GetxController {
         GetStorage _box = GetStorage();
         _box.write('token', token);
         _box.write('role_id', role);
+        //print("role_id=======================1$role");
         //HttpHelper.token = token;
         Get.snackbar(' ', res['status'].toString(),
             snackPosition: SnackPosition.BOTTOM,
