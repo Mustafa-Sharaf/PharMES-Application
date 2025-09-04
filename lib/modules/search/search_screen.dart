@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import '../../app_theme/theme_controller.dart';
 import '../../widgets/medicine_component.dart';
 import '../home_page/medicine_content_controller.dart';
 
@@ -9,9 +10,10 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     final HomeContentController controller = Get.find<HomeContentController>();
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark :AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.white,
@@ -70,7 +72,7 @@ class SearchScreen extends StatelessWidget {
                     children: controller.recentSearches.map((search) {
                       return ActionChip(
                         label: Text(search),
-                        backgroundColor: Colors.grey[300],
+                        backgroundColor: themeController.isDarkMode.value?AppColors.componentDark :Colors.grey[300],
                         onPressed: () {
                           controller.searchMedicines(search);
                         },

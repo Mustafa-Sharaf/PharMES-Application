@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../app_theme/app_colors.dart';
+import '../../app_theme/theme_controller.dart';
 import '../../widgets/medicine_card.dart';
 import 'my_stock_controller.dart';
 
@@ -10,7 +11,9 @@ class MyStockScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MyStockController controller = Get.find();
+    final ThemeController themeController = Get.find();
     return Scaffold(
+      backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark : AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor:AppColors.white,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import '../../app_theme/theme_controller.dart';
 import '../../language/language_controller.dart';
 import '../../widgets/Build_drug_type.dart';
 import '../../widgets/build_Companies.dart';
@@ -20,8 +21,9 @@ class HomeContent extends StatelessWidget {
     final companiesController = Get.put(CompaniesController());
     final formsController = Get.put(FormsController());
     final languageController = Get.find<MyLanguageController>();
+    final ThemeController themeController = Get.find();
     return Scaffold(
-      backgroundColor: AppColors.backgroundHome,
+      backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark :AppColors.backgroundHome,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -126,7 +128,7 @@ class HomeContent extends StatelessWidget {
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: themeController.isDarkMode.value?AppColors.componentDark :Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
@@ -138,11 +140,11 @@ class HomeContent extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 BuildFlexible(
-                                  title: "Trade name: ",
+                                  title: "Trade_name".tr,
                                   text: med.tradeName,
                                 ),
                                 BuildFlexible(
-                                  title: "Type: ",
+                                  title: "Type".tr,
                                   text: med.pharmaceuticalForm,
                                 ),
                               ],
@@ -155,11 +157,11 @@ class HomeContent extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 BuildFlexible(
-                                  title: "Composition: ",
+                                  title: "Composition".tr,
                                   text: med.composition,
                                 ),
                                 BuildFlexible(
-                                  title: "Titer: ",
+                                  title: "Titer".tr,
                                   text: med.titer,
                                 ),
                               ],
@@ -172,7 +174,7 @@ class HomeContent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BuildFlexible(
-                                  title: "Company Name: ",
+                                  title: "Company_Name".tr,
                                   text: med.laboratory,
                                 ),
                               ],

@@ -17,7 +17,7 @@ class ExpiredMedicinesScreen extends StatelessWidget {
           return Center(child: Text(controller.errorMessage.value!));
         }
         if (controller.stocks.isEmpty) {
-          return const Center(child: Text('No data'));
+          return  Center(child: Text('No_data'.tr));
         }
 
         return ListView.separated(
@@ -31,7 +31,7 @@ class ExpiredMedicinesScreen extends StatelessWidget {
            return MedicineCard(
               stock: stock,
               medicine: medicine,
-              highlightField: 'expires',
+              highlightField: 'expires'.tr,
               icon: 'expired',
              showButton: true,
             );

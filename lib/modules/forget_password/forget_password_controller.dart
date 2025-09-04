@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../configurations/http_helpers.dart';
 
 class ForgetPasswordController extends GetxController{

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+import '../../app_theme/theme_controller.dart';
 import '../../widgets/build_flexible.dart';
 import 'drugType_controller.dart';
 
@@ -17,12 +18,13 @@ class DrugTypeMedicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DrugTypeController controller = Get.put(DrugTypeController());
+    final ThemeController themeController = Get.find();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.fetchDrugType(formId);
     });
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundHome,
+      backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark :AppColors.backgroundHome,
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.white,
@@ -36,8 +38,8 @@ class DrugTypeMedicine extends StatelessWidget {
           }
 
           if (controller.drugTypeMedicine.isEmpty) {
-            return const Center(
-              child: Text("There are no medications for this type"),
+            return  Center(
+              child: Text("There_are_no_medications_for_this_type".tr),
             );
           }
 
@@ -53,7 +55,7 @@ class DrugTypeMedicine extends StatelessWidget {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: themeController.isDarkMode.value?AppColors.componentDark :Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -65,11 +67,11 @@ class DrugTypeMedicine extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             BuildFlexible(
-                              title: "Trade name: ",
+                              title: "Trade_name".tr,
                               text: drugType.tradeName,
                             ),
                             BuildFlexible(
-                              title: "Titer: ",
+                              title: "Titer".tr,
                               text: drugType.titer,
                             ),
                           ],
@@ -82,7 +84,7 @@ class DrugTypeMedicine extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             BuildFlexible(
-                              title: "Composition: ",
+                              title: "Composition".tr,
                               text: drugType.composition,
                             ),
                           ],
@@ -95,7 +97,7 @@ class DrugTypeMedicine extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             BuildFlexible(
-                              title: "Company Name: ",
+                              title: "Company_Name".tr,
                               text: drugType.laboratory.nameEn,
                             ),
                           ],

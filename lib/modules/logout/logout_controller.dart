@@ -10,13 +10,13 @@ class LogOutController extends GetxController {
 
   Future<void> logout(int roleId) async {
     Get.defaultDialog(
-      title: 'Are you sure to log out?',
+      title: 'Are_you_sure_to_log_out'.tr,
       titleStyle: const TextStyle(fontSize: 18),
       content: const SizedBox.shrink(),
       cancelTextColor: AppColors.primaryColor,
-      textConfirm: 'Confirm',
+      textConfirm: 'Confirm'.tr,
       buttonColor: AppColors.primaryColor,
-      textCancel: 'Cancel',
+      textCancel: 'Cancel'.tr,
       confirmTextColor: Colors.white,
       onConfirm: () async {
         String endpoint;

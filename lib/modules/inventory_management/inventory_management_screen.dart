@@ -21,8 +21,8 @@ class InventoryManagementScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: Colors.white,
-        title: const Text(
-          "Inventory Management",
+        title:  Text(
+          "Inventory_Management".tr,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -33,14 +33,14 @@ class InventoryManagementScreen extends StatelessWidget {
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Colors.grey,
           onTap: controller.changeTab,
-          items: const [
+          items:  [
             BottomNavigationBarItem(
               icon: Icon(Icons.remove_circle_outline),
-              label: "Missing",
+              label: "Missing".tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.warning_amber),
-              label: "Expired",
+              label: "Expired".tr,
             ),
           ],
         ),

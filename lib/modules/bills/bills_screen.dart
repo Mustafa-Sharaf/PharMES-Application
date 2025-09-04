@@ -12,7 +12,6 @@ class BillsScreen extends StatelessWidget {
 
   final BillsController controller = Get.put(BillsController());
   final MyStockController stockController= Get.find();
- // final MyStockController stockController = Get.put(MyStockController());
   final List<Widget> pages = [InvoiceCreatorScreen(), InvoiceDisplayScreen()];
 
   final isSearching = false.obs;
@@ -30,8 +29,8 @@ class BillsScreen extends StatelessWidget {
                 ? TextField(
                     autofocus: true,
                     style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      hintText: "search here",
+                    decoration:  InputDecoration(
+                      hintText: "search_here".tr,
                       hintStyle: TextStyle(color: Colors.white70),
                       border: InputBorder.none,
                     ),
@@ -39,8 +38,8 @@ class BillsScreen extends StatelessWidget {
                       stockController.searchQuery.value = value;
                     },
                   )
-                : const Text(
-                    "Bills Management",
+                :  Text(
+                    "Bills_Management".tr,
                     style: TextStyle(color: Colors.white),
                   ),
             actions: [
@@ -109,14 +108,14 @@ class BillsScreen extends StatelessWidget {
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Colors.grey,
           onTap: controller.changeTab,
-          items: const [
+          items:  [
             BottomNavigationBarItem(
               icon: Icon(Icons.remove_circle_outline),
-              label: "Create a bill",
+              label: "Create_a_bill".tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.warning_amber),
-              label: "Bills",
+              label: "Bills".tr,
             ),
           ],
         ),

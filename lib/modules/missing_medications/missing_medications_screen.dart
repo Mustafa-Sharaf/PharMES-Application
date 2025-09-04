@@ -22,7 +22,7 @@ class MissingMedicationsScreen extends StatelessWidget {
         }
 
         if (controller.stocks.isEmpty) {
-          return const Center(child: Text('No data'));
+          return Center(child: Text('No_data'.tr));
         }
 
         return ListView.separated(
@@ -36,7 +36,7 @@ class MissingMedicationsScreen extends StatelessWidget {
            return MedicineCard(
               stock: stock,
               medicine: medicine,
-              highlightField: 'quantity',
+              highlightField: 'quantity'.tr,
               icon: 'missing',
              showButton: true,
             );

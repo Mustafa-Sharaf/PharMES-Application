@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../app_theme/app_colors.dart';
@@ -87,15 +88,15 @@ class QueueViewer extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.white,
           appBar: AppBar(
-            title: const Text(
-              'Request Queue Viewer',
+            title:  Text(
+              "Request_Queue_Viewer".tr,
               style: TextStyle(color: AppColors.white),
             ),
             backgroundColor: AppColors.primaryColor,
             foregroundColor: AppColors.white,
           ),
           body: queue.isEmpty
-              ? const Center(child: Text('No requests in queue.'))
+              ?  Center(child: Text("No_requests_in_queue".tr))
               : ListView.builder(
                   itemCount: queue.length,
                   itemBuilder: (context, index) {
@@ -116,8 +117,8 @@ class QueueViewer extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: clearAll,
                     icon: const Icon(Icons.delete_forever, color: Colors.white),
-                    label: const Text(
-                      'Clear All',
+                    label:  Text(
+                      "Clear_All".tr,
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(

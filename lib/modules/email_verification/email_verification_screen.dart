@@ -75,8 +75,8 @@ class EmailVerificationScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
-              ))
-
+              ),
+              ),
             ],
           ),
         ),

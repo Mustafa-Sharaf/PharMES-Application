@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
+
+import '../app_theme/theme_controller.dart';
 
 class MedicineCard extends StatelessWidget {
   final Map<String, dynamic> stock;
@@ -18,14 +22,17 @@ class MedicineCard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     final quantityColor = highlightField == 'quantity' ? Colors.red : DefaultTextStyle.of(context).style.color;
     final expiresColor = highlightField == 'expires' ? Colors.red : DefaultTextStyle.of(context).style.color;
     return Card(
+      color: themeController.isDarkMode.value?AppColors.componentDark :null,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       elevation: 3,
       child: Card(
+        color: themeController.isDarkMode.value?AppColors.componentDark :null,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

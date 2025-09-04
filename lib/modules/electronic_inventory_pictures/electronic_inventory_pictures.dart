@@ -13,7 +13,7 @@ class TextRecognitionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          ' Inventory by Pictures',
+          'Inventory_by_Pictures'.tr,
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width * 0.055,
             color: Colors.white,
@@ -33,7 +33,7 @@ class TextRecognitionScreen extends StatelessWidget {
                 color: Colors.grey[300],
                 child: controller.image.value != null
                     ? Image.file(controller.image.value!)
-                    : const Center(child: Text("No image")),
+                    : Center(child: Text("No image".tr)),
               );
             }),
             const SizedBox(height: 20),
@@ -77,7 +77,7 @@ class TextRecognitionScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   BuildFlexible(
-                                    title: "Trade name: ",
+                                    title: "Trade_name".tr,
                                     text: medicine['trade_name'] ?? '',
                                   ),
                                 ],
@@ -86,7 +86,7 @@ class TextRecognitionScreen extends StatelessWidget {
                               Row(
                                 children: [
                                   BuildFlexible(
-                                    title: "Titer: ",
+                                    title: "Titer".tr,
                                     text: medicine['titer'] ?? '',
                                   ),
                                 ],
@@ -94,6 +94,7 @@ class TextRecognitionScreen extends StatelessWidget {
                             ],
                           ),
                           subtitle: Text(
+                            //'Quantity:'.trParams({'quantity': stock['quantity'] ?? ''}),
                             "Quantity: ${stock['quantity'] ?? ''}",
                             style: TextStyle(
                               fontSize:
@@ -108,7 +109,6 @@ class TextRecognitionScreen extends StatelessWidget {
                 );
               }),
             ),
-
           ],
         ),
       ),

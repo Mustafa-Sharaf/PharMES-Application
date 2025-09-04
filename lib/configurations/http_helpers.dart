@@ -51,7 +51,32 @@ class HttpHelper{
       if (storedToken != null) 'Authorization': 'Bearer $storedToken',
     });
   }
-  getData(String url)async {
+
+  getData(String url, {String? token}) async {
+    try {
+      var headers = <String, String>{
+        'Accept': 'application/json',
+      };
+      if (token != null && token.isNotEmpty) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+
+      var response = await http.get(Uri.parse('$baseurl$url'), headers: headers);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseBody = jsonDecode(response.body);
+        return responseBody;
+      } else {
+        print('Error ${response.statusCode}: ${response.body}');
+        return null;
+      }
+    } catch (e) {
+      print('Error catch: $e');
+      return null;
+    }
+  }
+
+/*  getData(String url)async {
     try {
       var response =await http.get(Uri.parse('$baseurl$url'));
       if (response.statusCode==200||response.statusCode==201){
@@ -65,7 +90,8 @@ class HttpHelper{
     catch (e){
       print('error catch $e');
     }
-  }
+  }*/
+
 }
 
 

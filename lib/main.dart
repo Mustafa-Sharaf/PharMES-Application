@@ -34,6 +34,7 @@ import 'modules/reset_password/reset_password_screen.dart';
 import 'modules/returned_medications/returned_medications.dart';
 import 'modules/search/search_screen.dart';
 import 'modules/sign_in/sign_in_bindings.dart';
+import 'modules/sign_in/sign_in_controller.dart';
 import 'modules/sign_in/sign_in_screen.dart';
 import 'modules/sign_up/sign_up_screen.dart';
 import 'modules/special_requests/create_special_requests.dart';

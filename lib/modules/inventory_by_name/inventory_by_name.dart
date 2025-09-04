@@ -14,7 +14,7 @@ class InventoryByName extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.white,
-        title: const Text("Inventory By Name", style: TextStyle(fontSize: 22)),
+        title:  Text("Inventory_By_Name".tr, style: TextStyle(fontSize: 22)),
       ),
       body: Column(
         children: [
@@ -22,7 +22,7 @@ class InventoryByName extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Search for the medicine name...",
+                hintText: "Search_for_the_medicine_name".tr,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -44,7 +44,7 @@ class InventoryByName extends StatelessWidget {
               }
 
               if (controller.filteredStocks.isEmpty) {
-                return const Center(child: Text("No results"));
+                return  Center(child: Text("No_results".tr));
               }
               return ListView.builder(
                 itemCount: controller.filteredStocks.length,
@@ -74,7 +74,7 @@ class InventoryByName extends StatelessWidget {
                               Row(
                                 children: [
                                   BuildFlexible(
-                                    title: "Trade name: ",
+                                    title: "Trade_name".tr,
                                     text: medicine['trade_name'] ?? '',
                                   ),
                                 ],
@@ -83,7 +83,7 @@ class InventoryByName extends StatelessWidget {
                               Row(
                                 children: [
                                   BuildFlexible(
-                                    title: "Titer: ",
+                                    title: "Titer".tr,
                                     text: medicine['titer'] ?? '',
                                   ),
                                 ],
@@ -91,7 +91,8 @@ class InventoryByName extends StatelessWidget {
                             ],
                           ),
                           subtitle: Text(
-                            "Quantity: ${stock['quantity'] ?? ''}",
+                            "${'Quantity'.tr} ${stock['quantity'] ?? ''}",
+                            // "Quantity: ${stock['quantity'] ?? ''}",
                             style: TextStyle(
                               fontSize:
                                   MediaQuery.of(context).size.width * 0.045,

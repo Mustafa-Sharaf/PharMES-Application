@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../app_theme/app_colors.dart';
+import '../../app_theme/theme_controller.dart';
 import '../../widgets/build_flexible.dart';
 import 'laboratory_controller.dart';
 
@@ -14,11 +15,12 @@ class LaboratoryMedicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LaboratoryController controller = Get.put(LaboratoryController());
+    final ThemeController themeController = Get.find();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.fetchLaboratory(laboratoryId);
     });
     return Scaffold(
-      backgroundColor: AppColors.backgroundHome,
+      backgroundColor:themeController.isDarkMode.value?AppColors.backgroundDark : AppColors.backgroundHome,
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.white,
@@ -32,8 +34,8 @@ class LaboratoryMedicine extends StatelessWidget {
           }
 
           if (controller.laboratoryModel.isEmpty) {
-            return const Center(
-              child: Text("There are no medications for this type"),
+            return  Center(
+              child: Text("There_are_no_medications_for_this_company".tr),
             );
           }
           return ListView.builder(
@@ -48,7 +50,7 @@ class LaboratoryMedicine extends StatelessWidget {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: themeController.isDarkMode.value?AppColors.componentDark :Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -60,11 +62,11 @@ class LaboratoryMedicine extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             BuildFlexible(
-                              title: "Trade name: ",
+                              title: "Trade_name".tr,
                               text: laboratory.tradeName,
                             ),
                             BuildFlexible(
-                              title: "Titer: ",
+                              title: "Titer".tr,
                               text: laboratory.titer,
                             ),
                           ],
@@ -77,11 +79,11 @@ class LaboratoryMedicine extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             BuildFlexible(
-                              title: "Composition: ",
+                              title: "Composition".tr,
                               text: laboratory.composition,
                             ),
                             BuildFlexible(
-                              title: "Type: ",
+                              title: "Type".tr,
                               text: laboratory.pharmaceuticalForm.nameEn,
                             ),
                           ],

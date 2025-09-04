@@ -110,7 +110,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         actions: [
@@ -148,7 +147,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-
       body: Obx(
         () =>
             IndexedStack(index: controller.currentIndex.value, children: pages),
@@ -173,7 +171,6 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: SizedBox(
         height: MediaQuery.of(context).size.height * 0.0805,
         child: BottomAppBar(
-          //color:  Color(0xFF111111),
           shape: const CircularNotchedRectangle(),
           notchMargin: 6.0,
           child: Row(

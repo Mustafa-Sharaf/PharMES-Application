@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../app_theme/app_colors.dart';
+import '../app_theme/theme_controller.dart';
 
 class BuildFlexible extends StatelessWidget {
   const BuildFlexible({super.key, required this.title, required this.text});
@@ -8,6 +10,7 @@ class BuildFlexible extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     return Flexible(
       child: RichText(
         text: TextSpan(
@@ -17,7 +20,7 @@ class BuildFlexible extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 14,
-                color: Colors.black,
+                color: themeController.isDarkMode.value?AppColors.white :Colors.black,
               ),
             ),
             TextSpan(
@@ -25,7 +28,7 @@ class BuildFlexible extends StatelessWidget {
               style: TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 14,
-                color: AppColors.DarkGray,
+                color: themeController.isDarkMode.value?AppColors.background :AppColors.DarkGray,
               ),
             ),
           ],

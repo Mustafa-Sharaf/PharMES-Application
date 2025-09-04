@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../app_theme/app_colors.dart';
+import '../app_theme/theme_controller.dart';
 import '../configurations/http_helpers.dart';
 
 class BuildDrugType extends StatelessWidget {
@@ -13,6 +15,7 @@ class BuildDrugType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     String? fullImageUrl;
     if (image.isNotEmpty) {
       fullImageUrl = '$imgURL$image';
@@ -23,7 +26,7 @@ class BuildDrugType extends StatelessWidget {
         horizontal: MediaQuery.of(context).size.width * 0.02,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: themeController.isDarkMode.value?AppColors.componentDark :Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
