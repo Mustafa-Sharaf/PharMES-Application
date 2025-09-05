@@ -126,6 +126,7 @@ class MyLanguage implements Translations{
       "Add_Medicine_In_My_Stock":"Add Medicine In My Stock",
       "Notifications":"Notifications",
       "Permissions":"Permissions",
+      "There_are_no_requests_for_this_warehouse":"There are no requests for this warehouse",
       "":"",
       "":"",
       "":"",
@@ -264,6 +265,7 @@ class MyLanguage implements Translations{
       "Add_Medicine_In_My_Stock":"إضافة دواء على المخزون",
       "Notifications":"إشعارات",
       "Permissions":"الصلاحيات",
+      "There_are_no_requests_for_this_warehouse":"لا يوجد طلبات لهذا المستودع",
 
 
     },

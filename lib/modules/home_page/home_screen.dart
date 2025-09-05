@@ -7,6 +7,7 @@ import '../../widgets/drawer_home/distress_Controller.dart';
 import '../bills/bills_screen.dart';
 import '../cart/cart_screen.dart';
 import '../inventory_management/inventory_management_screen.dart';
+import '../my_stock/my_stock_controller.dart';
 import '../profile/profile_controller.dart';
 import '../qr_code/qr_code_screen.dart';
 import 'home_content.dart';
@@ -157,15 +158,62 @@ class HomeScreen extends StatelessWidget {
         child: SizedBox(
           height: MediaQuery.of(context).size.width * 0.14,
           width: MediaQuery.of(context).size.width * 0.14,
-          child: FloatingActionButton(
+          child:FloatingActionButton(
+            backgroundColor: AppColors.primaryColor,
+            elevation: 8,
+            shape: const CircleBorder(),
+            onPressed: () async {
+
+
+              final scannedCode = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const QrCodeScreen()),
+              );
+
+              if (scannedCode != null) {
+                final controller = Get.find<MyStockController>();
+
+                // البحث في my stock
+                final found = controller.stocks.firstWhereOrNull((stock) {
+                  final medicine = stock['medicine'] ?? {};
+                  final barcode = medicine['barcode']?.toString();
+                  return barcode == scannedCode;
+                });
+
+                if (found != null) {
+                  // ✅ وجدنا الدواء
+                  Get.snackbar(
+                    "Medicine Found",
+                    "Name: ${found['medicine']['trade_name']}",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+
+                  // ممكن تفتح شاشة تفاصيل بدل Snackbar:
+                  // Get.to(() => MedicineDetailsScreen(medicine: found));
+                } else {
+                  // ❌ الدواء غير موجود
+                  Get.snackbar(
+                    "Not Found",
+                    "No medicine with this barcode in stock",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              }
+            },
+            child: const Icon(Icons.qr_code, size: 35, color: Colors.grey),
+          ),
+
+          /*FloatingActionButton(
             backgroundColor: AppColors.primaryColor,
             elevation: 8,
             shape: const CircleBorder(),
             onPressed: () => controller.changeTabIndex(2),
             child: const Icon(Icons.qr_code, size: 35, color: Colors.grey),
-          ),
+          ),*/
         ),
       ),
+
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: SizedBox(
