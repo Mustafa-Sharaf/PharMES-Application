@@ -130,6 +130,13 @@ class PharmacyManagementScreen extends StatelessWidget {
                   pathName: '/foreignMedicineInventoryManagement',
                   icon: Icons.medical_services_rounded,
                 ),
+              if (role == 1 || role == 2 || permController.hasPermission(5))
+                BuildPharmacyManagement(
+                  text: "My_Orders".tr,
+                  pathName: '/myOrdersScreen',
+                  icon: Icons.receipt_long,
+                ),
+                SizedBox(height: 40,)
             ],
           ),
         ),

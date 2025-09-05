@@ -18,7 +18,7 @@ class MyStockScreen extends StatelessWidget {
         backgroundColor: AppColors.primaryColor,
         foregroundColor:AppColors.white,
         actions: [
-          Text("My Stock",
+          Text("MyStock".tr,
             style: TextStyle(
               color: Colors.white,
               fontSize: MediaQuery.of(context).size.width*0.055,
@@ -44,7 +44,7 @@ class MyStockScreen extends StatelessWidget {
           return Center(child: Text(controller.errorMessage.value!));
         }
         if (controller.stocks.isEmpty) {
-          return const Center(child: Text('No data'));
+          return  Center(child: Text('No_data'.tr));
         }
 
         return ListView.separated(

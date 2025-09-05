@@ -19,8 +19,8 @@ class PermissionsScreen extends StatelessWidget {
       return Scaffold(
         backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark : AppColors.white,
         appBar: AppBar(
-          title: const Text(
-            'Permissions',
+          title:  Text(
+            'Permissions'.tr,
             style: TextStyle(color: AppColors.white),
           ),
           backgroundColor: AppColors.primaryColor,

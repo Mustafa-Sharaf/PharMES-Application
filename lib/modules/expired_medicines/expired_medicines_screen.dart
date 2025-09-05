@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/modules/expired_medicines/expired_medicines_controller.dart';
 import '../../widgets/medicine_card.dart';
+import '../demand_order/demand_order.dart';
 class ExpiredMedicinesScreen extends StatelessWidget {
   const ExpiredMedicinesScreen({super.key});
 
@@ -34,6 +35,9 @@ class ExpiredMedicinesScreen extends StatelessWidget {
               highlightField: 'expires'.tr,
               icon: 'expired',
              showButton: true,
+             onButtonPressed: () {
+               showAddOrderDialog(context, medicine);
+             },
             );
           },
         );

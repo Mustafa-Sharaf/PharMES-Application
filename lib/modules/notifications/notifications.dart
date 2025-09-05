@@ -12,7 +12,7 @@ class NotificationsScreen extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
           foregroundColor:AppColors.white  ,
-          title:Text("Notifications",
+          title:Text("Notifications".tr,
             style: TextStyle(
                 color: AppColors.white,
                 fontSize: 25,

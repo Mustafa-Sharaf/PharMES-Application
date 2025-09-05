@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
-
 import '../app_theme/theme_controller.dart';
+
+
 
 class MedicineCard extends StatelessWidget {
   final Map<String, dynamic> stock;
@@ -12,6 +12,8 @@ class MedicineCard extends StatelessWidget {
   final String icon;
   final bool showButton;
 
+  final void Function()? onButtonPressed;
+
   const MedicineCard({
     super.key,
     required this.stock,
@@ -19,6 +21,7 @@ class MedicineCard extends StatelessWidget {
     this.highlightField = '',
     this.icon = '',
     this.showButton = true,
+    this.onButtonPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -109,8 +112,7 @@ class MedicineCard extends StatelessWidget {
                   ),
                   if (showButton)
                   ElevatedButton(
-                    onPressed: () {
-                    },
+                    onPressed: onButtonPressed,
                     style: ElevatedButton.styleFrom(
                       minimumSize:  Size(MediaQuery.of(context).size.width*0.077, MediaQuery.of(context).size.height*0.035),
                       padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.017, vertical: MediaQuery.of(context).size.height*0.0018),

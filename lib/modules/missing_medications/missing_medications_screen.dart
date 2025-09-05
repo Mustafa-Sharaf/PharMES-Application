@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../widgets/medicine_card.dart';
+import '../demand_order/demand_order.dart';
 import 'missing_medications_controller.dart';
 
 class MissingMedicationsScreen extends StatelessWidget {
@@ -9,9 +10,7 @@ class MissingMedicationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MissingController controller = Get.put(MissingController());
-
     return Scaffold(
-
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -39,10 +38,15 @@ class MissingMedicationsScreen extends StatelessWidget {
               highlightField: 'quantity'.tr,
               icon: 'missing',
              showButton: true,
-            );
+             onButtonPressed: () {
+               showAddOrderDialog(context, medicine);
+             },
+
+           );
           },
         );
       }),
     );
   }
 }
+

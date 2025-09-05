@@ -29,7 +29,7 @@ class BottomTabItem extends StatelessWidget {
             if (index == 1) {
               Get.to(() =>  InventoryManagementScreen());
             } else if (index == 3) {
-              Get.to(() => const CartScreen());
+              Get.to(() =>  CartScreen());
             } else if (index == 4) {
               Get.to(() =>  BillsScreen());
             } else {
