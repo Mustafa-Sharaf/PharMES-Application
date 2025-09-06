@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pharmes_app/app_theme/app_colors.dart';
 import '../../widgets/bottom_tab_Item.dart';
-import '../../widgets/drawer_home.dart';
 import '../../widgets/drawer_home/distress_Controller.dart';
 import '../bills/bills_screen.dart';
 import '../cart/cart_screen.dart';
 import '../inventory_management/inventory_management_screen.dart';
-import '../my_stock/my_stock_controller.dart';
+import '../my_permissions/my_permissions_controller.dart';
 import '../profile/profile_controller.dart';
 import '../qr_code/qr_code_screen.dart';
 import 'home_content.dart';
@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   final BottomNavController controller = Get.put(BottomNavController());
   final ProfileController profileController = Get.find();
   final DistressController distressController = Get.put(DistressController());
+
   HomeScreen({super.key});
 
   final List<Widget> pages = [
@@ -29,6 +30,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GetStorage box = GetStorage();
+    final MyPermissionsController permController = Get.find();
+    int role = box.read('role_id') ?? 0;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -84,13 +88,6 @@ class HomeScreen extends StatelessWidget {
                 Get.toNamed('/pharmacyManagementScreen');
               },
             ),
-            /*  ListTile(
-              leading: Icon(Icons.group),
-              title: Text('All_Users'.tr),
-              onTap: () {
-                Get.toNamed('/allUsers');
-              },
-            ),*/
             ListTile(
               leading: Icon(Icons.sos),
               title: Text('Distress_Call'.tr),
@@ -153,8 +150,11 @@ class HomeScreen extends StatelessWidget {
             IndexedStack(index: controller.currentIndex.value, children: pages),
       ),
 
-      floatingActionButton: Transform.translate(
+      floatingActionButton:
+    (role == 1 || role == 2 || permController.hasPermission(8))
+      ?Transform.translate(
         offset: const Offset(0, 10),
+
         child: SizedBox(
           height: MediaQuery.of(context).size.width * 0.14,
           width: MediaQuery.of(context).size.width * 0.14,
@@ -163,57 +163,15 @@ class HomeScreen extends StatelessWidget {
             elevation: 8,
             shape: const CircleBorder(),
             onPressed: () async {
-
-
               final scannedCode = await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const QrCodeScreen()),
               );
-
-              if (scannedCode != null) {
-                final controller = Get.find<MyStockController>();
-
-                // البحث في my stock
-                final found = controller.stocks.firstWhereOrNull((stock) {
-                  final medicine = stock['medicine'] ?? {};
-                  final barcode = medicine['barcode']?.toString();
-                  return barcode == scannedCode;
-                });
-
-                if (found != null) {
-                  // ✅ وجدنا الدواء
-                  Get.snackbar(
-                    "Medicine Found",
-                    "Name: ${found['medicine']['trade_name']}",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-
-                  // ممكن تفتح شاشة تفاصيل بدل Snackbar:
-                  // Get.to(() => MedicineDetailsScreen(medicine: found));
-                } else {
-                  // ❌ الدواء غير موجود
-                  Get.snackbar(
-                    "Not Found",
-                    "No medicine with this barcode in stock",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-                }
-              }
             },
             child: const Icon(Icons.qr_code, size: 35, color: Colors.grey),
           ),
-
-          /*FloatingActionButton(
-            backgroundColor: AppColors.primaryColor,
-            elevation: 8,
-            shape: const CircleBorder(),
-            onPressed: () => controller.changeTabIndex(2),
-            child: const Icon(Icons.qr_code, size: 35, color: Colors.grey),
-          ),*/
         ),
-      ),
-
-
+      ):null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: SizedBox(
@@ -262,3 +220,26 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+/*  if (scannedCode != null) {
+                final controller = Get.find<MyStockController>();
+                final found = controller.stocks.firstWhereOrNull((stock) {
+                  final medicine = stock['medicine'] ?? {};
+                  final barcode = medicine['barcode']?.toString();
+                  return barcode == scannedCode;
+                });
+
+                if (found != null) {
+                  Get.snackbar(
+                    "Medicine Found",
+                    "Name: ${found['medicine']['trade_name']}",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+
+                } else {
+                  Get.snackbar(
+                    "Not Found",
+                    "No medicine with this barcode in stock",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              }*/

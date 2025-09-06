@@ -13,7 +13,7 @@ class PharmacyManagementScreen extends StatelessWidget {
 
   final ThemeController themeController = Get.find();
   final GetStorage _box = GetStorage();
-  final MyPermissionsController permController = Get.put(MyPermissionsController());
+  final MyPermissionsController permController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -54,42 +54,42 @@ class PharmacyManagementScreen extends StatelessWidget {
         body: SafeArea(
           child: ListView(
             children: [
-              if (role == 1 || role == 2 || permController.hasPermission(1))
+              if (role == 1 || role == 2 || permController.hasPermission(15))
                 BuildPharmacyManagement(
                   text: "My_Stock".tr,
                   pathName: '/myStock',
                   icon: Icons.medical_services,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(2))
+              if (role == 1 || role == 2 || permController.hasPermission(3))
                 BuildPharmacyManagement(
                   text: "My_Pharmacists".tr,
                   pathName: '/myPharmacists',
                   icon: Icons.group,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(3))
+              //if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "Determine_Permissions".tr,
                   pathName: '/permissionScreen',
                   icon: Icons.settings,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(4))
+              //if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "View_Permissions".tr,
                   pathName: '/queueViewer',
                   icon: Icons.remove_red_eye_rounded,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(5))
+              if (role == 1 || role == 2 || permController.hasPermission(13))
                 BuildPharmacyManagement(
                   text: "Inventory_by_Name".tr,
                   pathName: '/inventoryByName',
                   icon: Icons.inventory,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(15))
+             // if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "Special_Requests".tr,
                   pathName: '/specialRequests',
@@ -103,34 +103,34 @@ class PharmacyManagementScreen extends StatelessWidget {
                   icon: Icons.replay,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(17))
+              //if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "My_Permissions".tr,
                   pathName: '/myPermissionsScreen',
                   icon: Icons.key,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(13))
+             // if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "Customer_Debts".tr,
                   pathName: '/customerDebts',
                   icon: Icons.money_off,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(11))
+             // if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "Medicine_Requests".tr,
                   pathName: '/medicineRequests',
                   icon: Icons.receipt_long,
                 ),
 
-              if (role == 1 || role == 2 || permController.hasPermission(5))
+              //if (role == 1 || role == 2 || permController.hasPermission())
                 BuildPharmacyManagement(
                   text: "Foreign_Medicine".tr,
                   pathName: '/foreignMedicineInventoryManagement',
                   icon: Icons.medical_services_rounded,
                 ),
-              if (role == 1 || role == 2 || permController.hasPermission(5))
+              if (role == 1 || role == 2 || permController.hasPermission(6))
                 BuildPharmacyManagement(
                   text: "My_Orders".tr,
                   pathName: '/myOrdersScreen',
@@ -143,7 +143,7 @@ class PharmacyManagementScreen extends StatelessWidget {
 
 
         floatingActionButton:
-        (role == 1 || role == 2 || permController.hasPermission(1))
+        (role == 1 || role == 2 || permController.hasPermission(4))
             ? CameraFloatingButton()
             : null,
       );

@@ -81,8 +81,6 @@ class BillsScreen extends StatelessWidget {
                             MedicineStock(
                               medicineId: stock['medicine_id'],
                               tradeName: medicine['trade_name'],
-                              //scientificName: medicine['scientific_name'] ?? '',
-                             // pharmaceuticalForm: medicine['pharmaceutical_form'] ?? '',
                               dosage: medicine['titer'] ?? '',
                               quantity: 1,
                               price: double.tryParse(stock['sale_price'].toString()) ?? 0.0,

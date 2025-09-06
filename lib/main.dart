@@ -21,6 +21,7 @@ import 'modules/medicine_requests/medicine_requests.dart';
 import 'modules/my_Pharmacists/my_Pharmacists.dart';
 import 'modules/my_orders/my_orders.dart';
 import 'modules/my_permissions/my_permissions.dart';
+import 'modules/my_permissions/my_permissions_controller.dart';
 import 'modules/my_pharmacy_management/pharmacy_management_screen.dart';
 import 'modules/my_pharmacy_management/queue_viewer.dart';
 import 'modules/my_stock/addmedicine_in_my_stock.dart';
@@ -55,8 +56,8 @@ void main()async {
   Get.put(MyLanguageController());
   Get.put(ProfileController(),);
   Get.put(MyStockController(),);
- Get.put(DemandOrderController());
-  //Get.put(CartController());
+  Get.put(DemandOrderController());
+  Get.put(MyPermissionsController());
   final themeController =Get.put(ThemeController());
   themeController.loadThemeFromStorage();
   final token = box.read<String>('token');

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../app_theme/app_colors.dart';
 import '../../app_theme/theme_controller.dart';
 import '../../widgets/medicine_card.dart';
+import '../my_permissions/my_permissions_controller.dart';
 import 'my_stock_controller.dart';
 
 class MyStockScreen extends StatelessWidget {
@@ -12,6 +14,9 @@ class MyStockScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MyStockController controller = Get.find();
     final ThemeController themeController = Get.find();
+    final GetStorage box = GetStorage();
+    final MyPermissionsController permController = Get.find();
+    int role = box.read('role_id') ?? 0;
     return Scaffold(
       backgroundColor: themeController.isDarkMode.value?AppColors.backgroundDark : AppColors.background,
       appBar: AppBar(
@@ -25,6 +30,7 @@ class MyStockScreen extends StatelessWidget {
             ),
           ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.45,),
+          if (role == 1 || role == 2 || permController.hasPermission(5))
           IconButton(
             icon: Icon(Icons.add_circle,color: AppColors.white,),
             onPressed: () => Get.toNamed('/addMedicineInMyStock'),
