@@ -35,13 +35,13 @@ class MedicineInfoCard extends StatelessWidget {
                  // Text("الشكل الصيدلاني: ${medicine.pharmaceuticalForm}"),
                       Row(
                         children: [
-                          Text("Titer: "),
+                          Text("الجرعة: "),
                           Text("${medicine.dosage}"),
                         ],
                       ),
                   Row(
                     children: [
-                      Text("Price  :  "),
+                      Text("السعر  :  "),
                       Text("${medicine.price}"),
                     ],
                   ),

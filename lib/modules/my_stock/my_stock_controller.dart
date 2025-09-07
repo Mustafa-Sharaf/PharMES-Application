@@ -18,7 +18,6 @@ class MyStockController extends GetxController {
     super.onInit();
     fetchStocks();
     ever(searchQuery, (_) => filterStocks());
-    //RequestQueueManager.processQueue();
   }
 
   Future<void> fetchStocks() async {

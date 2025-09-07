@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmes_app/widgets/rounded_text_field.dart';
@@ -14,31 +15,74 @@ class BuildCustomerRow extends StatelessWidget {
       children: [
         controller.isPsychotropic.value
             ? Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8.0,
-                    right: 6,
-                    left: 6,
-                  ),
-                  child: RoundedTextField(
-                    hintText: controller.customerName.value,
-                    onChanged: (val) =>
-                        controller.customerNameEditing.value = val,
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    height: 45,
-                  ),
-                ),
-              )
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0,right: 6,left: 6),
+            child: RoundedTextField(
+              hintText: controller.customerName.value,
+              onChanged: (val) => controller.customerNameEditing.value = val,
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              height: 45,
+            ),
+          ),
+        )
             : Text(
-                "الزبون: ${controller.customerName.value}",
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+          "الزبون: ${controller.customerName.value}",
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         Text(
           "رقم الفاتورة: ${controller.invoiceNumber.value}",
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }}
+*/
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pharmes_app/widgets/rounded_text_field.dart';
+import 'customer_invoice.dart';
+import 'invoice_creator_controller.dart';
+
+class BuildCustomerRow extends StatelessWidget {
+  final CustomerInvoice invoice;
+  const BuildCustomerRow({super.key, required this.invoice});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Obx(
+          () => invoice.isPsychotropic.value
+              ? Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 8.0,
+                      right: 6,
+                      left: 6,
+                    ),
+                    child: RoundedTextField(
+                      hintText: invoice.customerName.value,
+                      onChanged: (val) =>
+                          invoice.customerNameEditing.value = val,
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      height: 45,
+                    ),
+                  ),
+                )
+              : Text(
+                  "الزبون: ${invoice.customerName.value}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+        ),
+        Obx(
+          () => Text(
+            "رقم الفاتورة: ${invoice.invoiceNumber.value}",
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );

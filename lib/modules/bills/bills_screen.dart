@@ -13,8 +13,9 @@ class BillsScreen extends StatelessWidget {
   final BillsController controller = Get.put(BillsController());
   final MyStockController stockController= Get.find();
   final List<Widget> pages = [InvoiceCreatorScreen(), InvoiceDisplayScreen()];
-
   final isSearching = false.obs;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,6 @@ class BillsScreen extends StatelessWidget {
           );
         }),
       ),
-
       body: Obx(() {
         if (isSearching.value && stockController.searchQuery.isNotEmpty) {
           return Column(
@@ -76,8 +76,9 @@ class BillsScreen extends StatelessWidget {
                       trailing: const Icon(Icons.add, color: AppColors.primaryColor),
                         onTap: () {
                           final invoiceController = Get.find<InvoiceCreatorController>();
-
+                          final currentInvoice = invoiceController.currentInvoice;
                           invoiceController.addMedicine(
+                            currentInvoice,
                             MedicineStock(
                               medicineId: stock['medicine_id'],
                               tradeName: medicine['trade_name'],

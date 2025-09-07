@@ -17,6 +17,7 @@ import 'modules/foreign_medicines_inventory_management/foreign_medicine_inventor
 import 'modules/forget_password/forget_password_screen.dart';
 import 'modules/home_page/home_screen.dart';
 import 'modules/inventory_by_name/inventory_by_name.dart';
+import 'modules/invoice_creator/invoice_creator_controller.dart';
 import 'modules/medicine_requests/medicine_requests.dart';
 import 'modules/my_Pharmacists/my_Pharmacists.dart';
 import 'modules/my_orders/my_orders.dart';
@@ -58,6 +59,7 @@ void main()async {
   Get.put(MyStockController(),);
   Get.put(DemandOrderController());
   Get.put(MyPermissionsController());
+  Get.put(InvoiceCreatorController());
   final themeController =Get.put(ThemeController());
   themeController.loadThemeFromStorage();
   final token = box.read<String>('token');

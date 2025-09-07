@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'invoice_creator_controller.dart';
@@ -22,5 +23,41 @@ class BuildMedicinesList extends StatelessWidget {
         },
       ),
     );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'customer_invoice.dart';
+import 'medicine_info_card.dart';
+
+class BuildMedicinesList extends StatelessWidget {
+  final CustomerInvoice invoice;
+  const BuildMedicinesList({super.key, required this.invoice});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => ListView.separated(
+      itemCount: invoice.medicines.length,
+      separatorBuilder: (_, __) => const Divider(height: 1),
+      itemBuilder: (context, i) {
+        final med = invoice.medicines[i];
+        return MedicineInfoCard(
+          medicine: med,
+          onIncrease: () {
+            med.quantity++;
+            invoice.medicines.refresh();
+          },
+          onDecrease: () {
+            if (med.quantity > 1) {
+              med.quantity--;
+            } else {
+              invoice.medicines.removeAt(i);
+            }
+            invoice.medicines.refresh();
+          },
+        );
+      },
+    ));
   }
 }
